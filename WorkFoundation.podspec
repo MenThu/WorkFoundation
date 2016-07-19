@@ -3,7 +3,7 @@ Pod::Spec.new do |s|
 
   
   s.name         = "WorkFoundation"
-  s.version      = "0.1"
+  s.version      = "0.2"
   s.summary      = "My WorkFoundation"
   s.homepage     = "https://github.com/MenThu/WorkFoundation"
   s.license      = { :type => 'MIT' }
