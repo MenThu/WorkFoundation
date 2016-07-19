@@ -10,7 +10,7 @@ Pod::Spec.new do |s|
   s.platform     = :ios, '7.0'
   s.author       = { "MenThu" => "422729946@qq.com" }
 
-  s.source       = { :git => "https://github.com/MenThu/WorkFoundation.git", :tag=>s.version.to_s}  
+  s.source       = { :git => "https://github.com/MenThu/WorkFoundation.git"}  
 
   s.requires_arc = true
   s.source_files = 'WorkFoundation/**/*.{h,m}'
