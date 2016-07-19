@@ -12,18 +12,12 @@ Pod::Spec.new do |s|
   s.source       = { :git => "https://github.com/MenThu/WorkFoundation.git"}
 
   s.requires_arc = true
-  s.source_files = 'BM4Group/**/*.{h,m}'
-  s.public_header_files = 'BM4Group/**/*.{h}'
+  s.source_files = 'WorkFoundation/**/*.{h,m}'
+  s.public_header_files = 'WorkFoundation/**/*.{h}'
 
-  #s.ios.vendored_frameworks = 'Vendor/Reveal.framework'
-
-  s.dependency 'BRCocoaLumberjack'
-  s.dependency 'IQKeyboardManager'
-  s.dependency 'DZNEmptyDataSet'
-  s.dependency 'SVProgressHUD'
   s.dependency 'AFNetworking'
   s.dependency 'MJExtension'
   s.dependency 'MJRefresh'
-  s.dependency 'YYKit'
+
 
 end
