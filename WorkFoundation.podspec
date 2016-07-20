@@ -12,7 +12,7 @@ Pod::Spec.new do |s|
 
   s.requires_arc = true
   s.source_files = 'WorkFoundation/**/*.{h,m}'
-  s.public_header_files = 'WorkFoundation/**/*.{h}'
+  #s.public_header_files = 'WorkFoundation/**/*.{h}'
 
   #s.ios.vendored_frameworks = 'Vendor/Reveal.framework'
 
