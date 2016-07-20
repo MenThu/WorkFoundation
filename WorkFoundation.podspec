@@ -16,6 +16,7 @@ Pod::Spec.new do |s|
   s.dependency 'AFNetworking'
   s.dependency 'MJExtension'
   s.dependency 'MJRefresh'
+  s.dependency 'YYkit'
 
 
 end
