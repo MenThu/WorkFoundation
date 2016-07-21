@@ -1,7 +1,6 @@
 Pod::Spec.new do |s|
 
-  #s.name         = "WorkFoundation"
-  s.name         = "MenThu"
+  s.name         = "WorkFoundation"
   s.version      = "0.1"
   s.summary      = "WorkFoundation Develpoe iOS Library."
   s.homepage     = "https://github.com/MenThu/WorkFoundation"
