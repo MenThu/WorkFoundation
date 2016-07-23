@@ -21,5 +21,7 @@ Pod::Spec.new do |s|
   s.dependency 'MJRefresh'
   s.dependency 'YYKit'
   s.dependency 'ZLPhotoBrowser'
-  
+  s.dependency 'SDWebImage'
+  s.dependency 'Masonry'
+  s.dependency 'SVProgressHUD'
 end
