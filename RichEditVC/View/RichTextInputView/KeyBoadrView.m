@@ -12,7 +12,6 @@
 #import "JZNewEmotion.h"
 #import "BigView.h"
 #import "JZEmotionTool.h"
-#import "Masonry.h"
 
 
 #define Row 8
