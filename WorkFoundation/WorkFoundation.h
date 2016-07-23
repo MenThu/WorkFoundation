@@ -15,7 +15,6 @@
 
 #import <WorkFoundation/ZLPhoto.h>
 #import <WorkFoundation/CameraManager.h>
-#import <WorkFoundation/RichEditVC.h>
 #import <WorkFoundation/MyLog.h>
 #import <WorkFoundation/MyCategory.h>
 #import <WorkFoundation/HttpLibrary.h>
