@@ -12,7 +12,7 @@ Pod::Spec.new do |s|
 
   s.requires_arc = true
   s.source_files = 'WorkFoundation/**/*.{h,m,xib}'
-  s.resource     = "WorkFoundation/**/*.xib"
+  s.resource     = "WorkFoundation/RichEditVC/View/**/*"
   #s.public_header_files = 'WorkFoundation/**/*.{h}'
 
   #s.ios.vendored_frameworks = 'Vendor/Reveal.framework'
