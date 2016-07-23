@@ -13,6 +13,7 @@
 #import "JZTextAttachment.h"
 #import "CameraManager.h"
 #import "NSDictionary+Convinience.h"
+#import "Masonry.h"
 
 
 
