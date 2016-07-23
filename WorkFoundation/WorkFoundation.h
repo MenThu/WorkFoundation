@@ -13,11 +13,22 @@
 #if __has_include(<WorkFoundation/WorkFoundation.h>)
 
 
-#define MenThuDebug 1
+#import <WorkFoundation/ZLPhoto.h>
+#import <WorkFoundation/CameraManager.h>
+#import <WorkFoundation/RichEditVC.h>
+#import <WorkFoundation/MyLog.h>
+#import <WorkFoundation/MyCategory.h>
+#import <WorkFoundation/HttpLibrary.h>
+#import <WorkFoundation/ConvenientView.h>
 
 #else
 
-#define MenThuDebug 0
+#import"ZLPhoto.h"
+#import"CameraManager.h"
+#import"MyLog.h"
+#import"MyCategory.h"
+#import"HttpLibrary.h"
+#import"ConvenientView.h"
 
 
 #endif
