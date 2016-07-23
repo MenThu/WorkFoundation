@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="14F1808" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="hLx-NM-GVZ" userLabel="inputView" customClass="InputView">
+            <rect key="frame" x="0.0" y="0.0" width="400" height="201"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XDq-mV-wUg" customClass="KeyBoadrView">
+                    <rect key="frame" x="0.0" y="0.0" width="400" height="156"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                </view>
+                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nr1-W1-ZyS" userLabel="ToolView" customClass="ToolView">
+                    <rect key="frame" x="0.0" y="156" width="400" height="45"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="45" id="W6F-Qc-Nqr"/>
+                    </constraints>
+                </scrollView>
+            </subviews>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="Nr1-W1-ZyS" secondAttribute="trailing" id="5CM-Z3-hJa"/>
+                <constraint firstItem="XDq-mV-wUg" firstAttribute="leading" secondItem="hLx-NM-GVZ" secondAttribute="leading" id="IeW-zn-kk6"/>
+                <constraint firstAttribute="trailing" secondItem="XDq-mV-wUg" secondAttribute="trailing" id="Odf-32-Q8e"/>
+                <constraint firstItem="Nr1-W1-ZyS" firstAttribute="leading" secondItem="hLx-NM-GVZ" secondAttribute="leading" id="Pdi-f8-TzA"/>
+                <constraint firstItem="XDq-mV-wUg" firstAttribute="top" secondItem="hLx-NM-GVZ" secondAttribute="top" id="Pdv-2c-Ir7"/>
+                <constraint firstAttribute="bottom" secondItem="Nr1-W1-ZyS" secondAttribute="bottom" id="Ra0-Vc-Alq"/>
+                <constraint firstItem="Nr1-W1-ZyS" firstAttribute="top" secondItem="XDq-mV-wUg" secondAttribute="bottom" id="swY-JW-iIM"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="keyBoardView" destination="XDq-mV-wUg" id="IpL-nm-5du"/>
+                <outlet property="toolView" destination="Nr1-W1-ZyS" id="5Q6-hF-hZF"/>
+            </connections>
+            <point key="canvasLocation" x="-204" y="272.5"/>
+        </view>
+    </objects>
+</document>

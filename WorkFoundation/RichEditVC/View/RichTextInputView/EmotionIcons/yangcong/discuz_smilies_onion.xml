@@ -1,0 +1,842 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<root>
+	<item id="Title"><![CDATA[Discuz! Smilies]]></item>
+	<item id="Version"><![CDATA[X3.1]]></item>
+	<item id="Time"><![CDATA[2016-06-07 14:49]]></item>
+	<item id="From"><![CDATA[¼Ò³¤100 (http://www.jz100.cn/)]]></item>
+	<item id="Data">
+		<item id="typeid"><![CDATA[18]]></item>
+		<item id="available"><![CDATA[1]]></item>
+		<item id="name"><![CDATA[Ñó´Ð]]></item>
+		<item id="type"><![CDATA[smiley]]></item>
+		<item id="displayorder"><![CDATA[18]]></item>
+		<item id="directory"><![CDATA[yangcong]]></item>
+		<item id="smilies">
+			<item id="0">
+				<item id="id"><![CDATA[1368]]></item>
+				<item id="typeid"><![CDATA[18]]></item>
+				<item id="displayorder"><![CDATA[0]]></item>
+				<item id="type"><![CDATA[smiley]]></item>
+				<item id="code"><![CDATA[{:18_1368:}]]></item>
+				<item id="url"><![CDATA[yangcong60.gif]]></item>
+			</item>
+			<item id="1">
+				<item id="id"><![CDATA[1369]]></item>
+				<item id="typeid"><![CDATA[18]]></item>
+				<item id="displayorder"><![CDATA[0]]></item>
+				<item id="type"><![CDATA[smiley]]></item>
+				<item id="code"><![CDATA[{:18_1369:}]]></item>
+				<item id="url"><![CDATA[yangcong06.gif]]></item>
+			</item>
+			<item id="2">
+				<item id="id"><![CDATA[1370]]></item>
+				<item id="typeid"><![CDATA[18]]></item>
+				<item id="displayorder"><![CDATA[0]]></item>
+				<item id="type"><![CDATA[smiley]]></item>
+				<item id="code"><![CDATA[{:18_1370:}]]></item>
+				<item id="url"><![CDATA[yangcong75.gif]]></item>
+			</item>
+			<item id="3">
+				<item id="id"><![CDATA[1371]]></item>
+				<item id="typeid"><![CDATA[18]]></item>
+				<item id="displayorder"><![CDATA[0]]></item>
+				<item id="type"><![CDATA[smiley]]></item>
+				<item id="code"><![CDATA[{:18_1371:}]]></item>
+				<item id="url"><![CDATA[yangcong94.gif]]></item>
+			</item>
+			<item id="4">
+				<item id="id"><![CDATA[1372]]></item>
+				<item id="typeid"><![CDATA[18]]></item>
+				<item id="displayorder"><![CDATA[0]]></item>
+				<item id="type"><![CDATA[smiley]]></item>
+				<item id="code"><![CDATA[{:18_1372:}]]></item>
+				<item id="url"><![CDATA[yangcong35.gif]]></item>
+			</item>
+			<item id="5">
+				<item id="id"><![CDATA[1373]]></item>
+				<item id="typeid"><![CDATA[18]]></item>
+				<item id="displayorder"><![CDATA[0]]></item>
+				<item id="type"><![CDATA[smiley]]></item>
+				<item id="code"><![CDATA[{:18_1373:}]]></item>
+				<item id="url"><![CDATA[yangcong17.gif]]></item>
+			</item>
+			<item id="6">
+				<item id="id"><![CDATA[1374]]></item>
+				<item id="typeid"><![CDATA[18]]></item>
+				<item id="displayorder"><![CDATA[0]]></item>
+				<item id="type"><![CDATA[smiley]]></item>
+				<item id="code"><![CDATA[{:18_1374:}]]></item>
+				<item id="url"><![CDATA[yangcong15.gif]]></item>
+			</item>
+			<item id="7">
+				<item id="id"><![CDATA[1375]]></item>
+				<item id="typeid"><![CDATA[18]]></item>
+				<item id="displayorder"><![CDATA[0]]></item>
+				<item id="type"><![CDATA[smiley]]></item>
+				<item id="code"><![CDATA[{:18_1375:}]]></item>
+				<item id="url"><![CDATA[yangcong69.gif]]></item>
+			</item>
+			<item id="8">
+				<item id="id"><![CDATA[1376]]></item>
+				<item id="typeid"><![CDATA[18]]></item>
+				<item id="displayorder"><![CDATA[0]]></item>
+				<item id="type"><![CDATA[smiley]]></item>
+				<item id="code"><![CDATA[{:18_1376:}]]></item>
+				<item id="url"><![CDATA[yangcong54.gif]]></item>
+			</item>
+			<item id="9">
+				<item id="id"><![CDATA[1377]]></item>
+				<item id="typeid"><![CDATA[18]]></item>
+				<item id="displayorder"><![CDATA[0]]></item>
+				<item id="type"><![CDATA[smiley]]></item>
+				<item id="code"><![CDATA[{:18_1377:}]]></item>
+				<item id="url"><![CDATA[yangcong82.gif]]></item>
+			</item>
+			<item id="10">
+				<item id="id"><![CDATA[1378]]></item>
+				<item id="typeid"><![CDATA[18]]></item>
+				<item id="displayorder"><![CDATA[0]]></item>
+				<item id="type"><![CDATA[smiley]]></item>
+				<item id="code"><![CDATA[{:18_1378:}]]></item>
+				<item id="url"><![CDATA[yangcong41.gif]]></item>
+			</item>
+			<item id="11">
+				<item id="id"><![CDATA[1379]]></item>
+				<item id="typeid"><![CDATA[18]]></item>
+				<item id="displayorder"><![CDATA[0]]></item>
+				<item id="type"><![CDATA[smiley]]></item>
+				<item id="code"><![CDATA[{:18_1379:}]]></item>
+				<item id="url"><![CDATA[yangcong100.gif]]></item>
+			</item>
+			<item id="12">
+				<item id="id"><![CDATA[1380]]></item>
+				<item id="typeid"><![CDATA[18]]></item>
+				<item id="displayorder"><![CDATA[0]]></item>
+				<item id="type"><![CDATA[smiley]]></item>
+				<item id="code"><![CDATA[{:18_1380:}]]></item>
+				<item id="url"><![CDATA[yangcong42.gif]]></item>
+			</item>
+			<item id="13">
+				<item id="id"><![CDATA[1381]]></item>
+				<item id="typeid"><![CDATA[18]]></item>
+				<item id="displayorder"><![CDATA[0]]></item>
+				<item id="type"><![CDATA[smiley]]></item>
+				<item id="code"><![CDATA[{:18_1381:}]]></item>
+				<item id="url"><![CDATA[yangcong51.gif]]></item>
+			</item>
+			<item id="14">
+				<item id="id"><![CDATA[1382]]></item>
+				<item id="typeid"><![CDATA[18]]></item>
+				<item id="displayorder"><![CDATA[0]]></item>
+				<item id="type"><![CDATA[smiley]]></item>
+				<item id="code"><![CDATA[{:18_1382:}]]></item>
+				<item id="url"><![CDATA[yangcong40.gif]]></item>
+			</item>
+			<item id="15">
+				<item id="id"><![CDATA[1383]]></item>
+				<item id="typeid"><![CDATA[18]]></item>
+				<item id="displayorder"><![CDATA[0]]></item>
+				<item id="type"><![CDATA[smiley]]></item>
+				<item id="code"><![CDATA[{:18_1383:}]]></item>
+				<item id="url"><![CDATA[yangcong72.gif]]></item>
+			</item>
+			<item id="16">
+				<item id="id"><![CDATA[1384]]></item>
+				<item id="typeid"><![CDATA[18]]></item>
+				<item id="displayorder"><![CDATA[0]]></item>
+				<item id="type"><![CDATA[smiley]]></item>
+				<item id="code"><![CDATA[{:18_1384:}]]></item>
+				<item id="url"><![CDATA[yangcong30.gif]]></item>
+			</item>
+			<item id="17">
+				<item id="id"><![CDATA[1385]]></item>
+				<item id="typeid"><![CDATA[18]]></item>
+				<item id="displayorder"><![CDATA[0]]></item>
+				<item id="type"><![CDATA[smiley]]></item>
+				<item id="code"><![CDATA[{:18_1385:}]]></item>
+				<item id="url"><![CDATA[yangcong38.gif]]></item>
+			</item>
+			<item id="18">
+				<item id="id"><![CDATA[1386]]></item>
+				<item id="typeid"><![CDATA[18]]></item>
+				<item id="displayorder"><![CDATA[0]]></item>
+				<item id="type"><![CDATA[smiley]]></item>
+				<item id="code"><![CDATA[{:18_1386:}]]></item>
+				<item id="url"><![CDATA[yangcong99.gif]]></item>
+			</item>
+			<item id="19">
+				<item id="id"><![CDATA[1387]]></item>
+				<item id="typeid"><![CDATA[18]]></item>
+				<item id="displayorder"><![CDATA[0]]></item>
+				<item id="type"><![CDATA[smiley]]></item>
+				<item id="code"><![CDATA[{:18_1387:}]]></item>
+				<item id="url"><![CDATA[yangcong05.gif]]></item>
+			</item>
+			<item id="20">
+				<item id="id"><![CDATA[1388]]></item>
+				<item id="typeid"><![CDATA[18]]></item>
+				<item id="displayorder"><![CDATA[0]]></item>
+				<item id="type"><![CDATA[smiley]]></item>
+				<item id="code"><![CDATA[{:18_1388:}]]></item>
+				<item id="url"><![CDATA[yangcong76.gif]]></item>
+			</item>
+			<item id="21">
+				<item id="id"><![CDATA[1389]]></item>
+				<item id="typeid"><![CDATA[18]]></item>
+				<item id="displayorder"><![CDATA[0]]></item>
+				<item id="type"><![CDATA[smiley]]></item>
+				<item id="code"><![CDATA[{:18_1389:}]]></item>
+				<item id="url"><![CDATA[yangcong36.gif]]></item>
+			</item>
+			<item id="22">
+				<item id="id"><![CDATA[1390]]></item>
+				<item id="typeid"><![CDATA[18]]></item>
+				<item id="displayorder"><![CDATA[0]]></item>
+				<item id="type"><![CDATA[smiley]]></item>
+				<item id="code"><![CDATA[{:18_1390:}]]></item>
+				<item id="url"><![CDATA[yangcong58.gif]]></item>
+			</item>
+			<item id="23">
+				<item id="id"><![CDATA[1391]]></item>
+				<item id="typeid"><![CDATA[18]]></item>
+				<item id="displayorder"><![CDATA[0]]></item>
+				<item id="type"><![CDATA[smiley]]></item>
+				<item id="code"><![CDATA[{:18_1391:}]]></item>
+				<item id="url"><![CDATA[yangcong93.gif]]></item>
+			</item>
+			<item id="24">
+				<item id="id"><![CDATA[1392]]></item>
+				<item id="typeid"><![CDATA[18]]></item>
+				<item id="displayorder"><![CDATA[0]]></item>
+				<item id="type"><![CDATA[smiley]]></item>
+				<item id="code"><![CDATA[{:18_1392:}]]></item>
+				<item id="url"><![CDATA[yangcong78.gif]]></item>
+			</item>
+			<item id="25">
+				<item id="id"><![CDATA[1393]]></item>
+				<item id="typeid"><![CDATA[18]]></item>
+				<item id="displayorder"><![CDATA[0]]></item>
+				<item id="type"><![CDATA[smiley]]></item>
+				<item id="code"><![CDATA[{:18_1393:}]]></item>
+				<item id="url"><![CDATA[yangcong79.gif]]></item>
+			</item>
+			<item id="26">
+				<item id="id"><![CDATA[1394]]></item>
+				<item id="typeid"><![CDATA[18]]></item>
+				<item id="displayorder"><![CDATA[0]]></item>
+				<item id="type"><![CDATA[smiley]]></item>
+				<item id="code"><![CDATA[{:18_1394:}]]></item>
+				<item id="url"><![CDATA[yangcong33.gif]]></item>
+			</item>
+			<item id="27">
+				<item id="id"><![CDATA[1395]]></item>
+				<item id="typeid"><![CDATA[18]]></item>
+				<item id="displayorder"><![CDATA[0]]></item>
+				<item id="type"><![CDATA[smiley]]></item>
+				<item id="code"><![CDATA[{:18_1395:}]]></item>
+				<item id="url"><![CDATA[yangcong77.gif]]></item>
+			</item>
+			<item id="28">
+				<item id="id"><![CDATA[1396]]></item>
+				<item id="typeid"><![CDATA[18]]></item>
+				<item id="displayorder"><![CDATA[0]]></item>
+				<item id="type"><![CDATA[smiley]]></item>
+				<item id="code"><![CDATA[{:18_1396:}]]></item>
+				<item id="url"><![CDATA[yangcong67.gif]]></item>
+			</item>
+			<item id="29">
+				<item id="id"><![CDATA[1397]]></item>
+				<item id="typeid"><![CDATA[18]]></item>
+				<item id="displayorder"><![CDATA[0]]></item>
+				<item id="type"><![CDATA[smiley]]></item>
+				<item id="code"><![CDATA[{:18_1397:}]]></item>
+				<item id="url"><![CDATA[yangcong80.gif]]></item>
+			</item>
+			<item id="30">
+				<item id="id"><![CDATA[1398]]></item>
+				<item id="typeid"><![CDATA[18]]></item>
+				<item id="displayorder"><![CDATA[0]]></item>
+				<item id="type"><![CDATA[smiley]]></item>
+				<item id="code"><![CDATA[{:18_1398:}]]></item>
+				<item id="url"><![CDATA[yangcong57.gif]]></item>
+			</item>
+			<item id="31">
+				<item id="id"><![CDATA[1399]]></item>
+				<item id="typeid"><![CDATA[18]]></item>
+				<item id="displayorder"><![CDATA[0]]></item>
+				<item id="type"><![CDATA[smiley]]></item>
+				<item id="code"><![CDATA[{:18_1399:}]]></item>
+				<item id="url"><![CDATA[yangcong71.gif]]></item>
+			</item>
+			<item id="32">
+				<item id="id"><![CDATA[1400]]></item>
+				<item id="typeid"><![CDATA[18]]></item>
+				<item id="displayorder"><![CDATA[0]]></item>
+				<item id="type"><![CDATA[smiley]]></item>
+				<item id="code"><![CDATA[{:18_1400:}]]></item>
+				<item id="url"><![CDATA[yangcong47.gif]]></item>
+			</item>
+			<item id="33">
+				<item id="id"><![CDATA[1401]]></item>
+				<item id="typeid"><![CDATA[18]]></item>
+				<item id="displayorder"><![CDATA[0]]></item>
+				<item id="type"><![CDATA[smiley]]></item>
+				<item id="code"><![CDATA[{:18_1401:}]]></item>
+				<item id="url"><![CDATA[yangcong96.gif]]></item>
+			</item>
+			<item id="34">
+				<item id="id"><![CDATA[1402]]></item>
+				<item id="typeid"><![CDATA[18]]></item>
+				<item id="displayorder"><![CDATA[0]]></item>
+				<item id="type"><![CDATA[smiley]]></item>
+				<item id="code"><![CDATA[{:18_1402:}]]></item>
+				<item id="url"><![CDATA[yangcong49.gif]]></item>
+			</item>
+			<item id="35">
+				<item id="id"><![CDATA[1403]]></item>
+				<item id="typeid"><![CDATA[18]]></item>
+				<item id="displayorder"><![CDATA[0]]></item>
+				<item id="type"><![CDATA[smiley]]></item>
+				<item id="code"><![CDATA[{:18_1403:}]]></item>
+				<item id="url"><![CDATA[yangcong07.gif]]></item>
+			</item>
+			<item id="36">
+				<item id="id"><![CDATA[1404]]></item>
+				<item id="typeid"><![CDATA[18]]></item>
+				<item id="displayorder"><![CDATA[0]]></item>
+				<item id="type"><![CDATA[smiley]]></item>
+				<item id="code"><![CDATA[{:18_1404:}]]></item>
+				<item id="url"><![CDATA[yangcong53.gif]]></item>
+			</item>
+			<item id="37">
+				<item id="id"><![CDATA[1405]]></item>
+				<item id="typeid"><![CDATA[18]]></item>
+				<item id="displayorder"><![CDATA[0]]></item>
+				<item id="type"><![CDATA[smiley]]></item>
+				<item id="code"><![CDATA[{:18_1405:}]]></item>
+				<item id="url"><![CDATA[yangcong63.gif]]></item>
+			</item>
+			<item id="38">
+				<item id="id"><![CDATA[1406]]></item>
+				<item id="typeid"><![CDATA[18]]></item>
+				<item id="displayorder"><![CDATA[0]]></item>
+				<item id="type"><![CDATA[smiley]]></item>
+				<item id="code"><![CDATA[{:18_1406:}]]></item>
+				<item id="url"><![CDATA[yangcong44.gif]]></item>
+			</item>
+			<item id="39">
+				<item id="id"><![CDATA[1407]]></item>
+				<item id="typeid"><![CDATA[18]]></item>
+				<item id="displayorder"><![CDATA[0]]></item>
+				<item id="type"><![CDATA[smiley]]></item>
+				<item id="code"><![CDATA[{:18_1407:}]]></item>
+				<item id="url"><![CDATA[yangcong32.gif]]></item>
+			</item>
+			<item id="40">
+				<item id="id"><![CDATA[1408]]></item>
+				<item id="typeid"><![CDATA[18]]></item>
+				<item id="displayorder"><![CDATA[0]]></item>
+				<item id="type"><![CDATA[smiley]]></item>
+				<item id="code"><![CDATA[{:18_1408:}]]></item>
+				<item id="url"><![CDATA[yangcong52.gif]]></item>
+			</item>
+			<item id="41">
+				<item id="id"><![CDATA[1409]]></item>
+				<item id="typeid"><![CDATA[18]]></item>
+				<item id="displayorder"><![CDATA[0]]></item>
+				<item id="type"><![CDATA[smiley]]></item>
+				<item id="code"><![CDATA[{:18_1409:}]]></item>
+				<item id="url"><![CDATA[yangcong66.gif]]></item>
+			</item>
+			<item id="42">
+				<item id="id"><![CDATA[1410]]></item>
+				<item id="typeid"><![CDATA[18]]></item>
+				<item id="displayorder"><![CDATA[0]]></item>
+				<item id="type"><![CDATA[smiley]]></item>
+				<item id="code"><![CDATA[{:18_1410:}]]></item>
+				<item id="url"><![CDATA[yangcong29.gif]]></item>
+			</item>
+			<item id="43">
+				<item id="id"><![CDATA[1411]]></item>
+				<item id="typeid"><![CDATA[18]]></item>
+				<item id="displayorder"><![CDATA[0]]></item>
+				<item id="type"><![CDATA[smiley]]></item>
+				<item id="code"><![CDATA[{:18_1411:}]]></item>
+				<item id="url"><![CDATA[yangcong27.gif]]></item>
+			</item>
+			<item id="44">
+				<item id="id"><![CDATA[1412]]></item>
+				<item id="typeid"><![CDATA[18]]></item>
+				<item id="displayorder"><![CDATA[0]]></item>
+				<item id="type"><![CDATA[smiley]]></item>
+				<item id="code"><![CDATA[{:18_1412:}]]></item>
+				<item id="url"><![CDATA[yangcong04.gif]]></item>
+			</item>
+			<item id="45">
+				<item id="id"><![CDATA[1413]]></item>
+				<item id="typeid"><![CDATA[18]]></item>
+				<item id="displayorder"><![CDATA[0]]></item>
+				<item id="type"><![CDATA[smiley]]></item>
+				<item id="code"><![CDATA[{:18_1413:}]]></item>
+				<item id="url"><![CDATA[yangcong59.gif]]></item>
+			</item>
+			<item id="46">
+				<item id="id"><![CDATA[1414]]></item>
+				<item id="typeid"><![CDATA[18]]></item>
+				<item id="displayorder"><![CDATA[0]]></item>
+				<item id="type"><![CDATA[smiley]]></item>
+				<item id="code"><![CDATA[{:18_1414:}]]></item>
+				<item id="url"><![CDATA[yangcong91.gif]]></item>
+			</item>
+			<item id="47">
+				<item id="id"><![CDATA[1415]]></item>
+				<item id="typeid"><![CDATA[18]]></item>
+				<item id="displayorder"><![CDATA[0]]></item>
+				<item id="type"><![CDATA[smiley]]></item>
+				<item id="code"><![CDATA[{:18_1415:}]]></item>
+				<item id="url"><![CDATA[yangcong26.gif]]></item>
+			</item>
+			<item id="48">
+				<item id="id"><![CDATA[1416]]></item>
+				<item id="typeid"><![CDATA[18]]></item>
+				<item id="displayorder"><![CDATA[0]]></item>
+				<item id="type"><![CDATA[smiley]]></item>
+				<item id="code"><![CDATA[{:18_1416:}]]></item>
+				<item id="url"><![CDATA[yangcong62.gif]]></item>
+			</item>
+			<item id="49">
+				<item id="id"><![CDATA[1417]]></item>
+				<item id="typeid"><![CDATA[18]]></item>
+				<item id="displayorder"><![CDATA[0]]></item>
+				<item id="type"><![CDATA[smiley]]></item>
+				<item id="code"><![CDATA[{:18_1417:}]]></item>
+				<item id="url"><![CDATA[yangcong45.gif]]></item>
+			</item>
+			<item id="50">
+				<item id="id"><![CDATA[1418]]></item>
+				<item id="typeid"><![CDATA[18]]></item>
+				<item id="displayorder"><![CDATA[0]]></item>
+				<item id="type"><![CDATA[smiley]]></item>
+				<item id="code"><![CDATA[{:18_1418:}]]></item>
+				<item id="url"><![CDATA[yangcong88.gif]]></item>
+			</item>
+			<item id="51">
+				<item id="id"><![CDATA[1419]]></item>
+				<item id="typeid"><![CDATA[18]]></item>
+				<item id="displayorder"><![CDATA[0]]></item>
+				<item id="type"><![CDATA[smiley]]></item>
+				<item id="code"><![CDATA[{:18_1419:}]]></item>
+				<item id="url"><![CDATA[yangcong48.gif]]></item>
+			</item>
+			<item id="52">
+				<item id="id"><![CDATA[1420]]></item>
+				<item id="typeid"><![CDATA[18]]></item>
+				<item id="displayorder"><![CDATA[0]]></item>
+				<item id="type"><![CDATA[smiley]]></item>
+				<item id="code"><![CDATA[{:18_1420:}]]></item>
+				<item id="url"><![CDATA[yangcong84.gif]]></item>
+			</item>
+			<item id="53">
+				<item id="id"><![CDATA[1421]]></item>
+				<item id="typeid"><![CDATA[18]]></item>
+				<item id="displayorder"><![CDATA[0]]></item>
+				<item id="type"><![CDATA[smiley]]></item>
+				<item id="code"><![CDATA[{:18_1421:}]]></item>
+				<item id="url"><![CDATA[yangcong01.gif]]></item>
+			</item>
+			<item id="54">
+				<item id="id"><![CDATA[1422]]></item>
+				<item id="typeid"><![CDATA[18]]></item>
+				<item id="displayorder"><![CDATA[0]]></item>
+				<item id="type"><![CDATA[smiley]]></item>
+				<item id="code"><![CDATA[{:18_1422:}]]></item>
+				<item id="url"><![CDATA[yangcong102.gif]]></item>
+			</item>
+			<item id="55">
+				<item id="id"><![CDATA[1423]]></item>
+				<item id="typeid"><![CDATA[18]]></item>
+				<item id="displayorder"><![CDATA[0]]></item>
+				<item id="type"><![CDATA[smiley]]></item>
+				<item id="code"><![CDATA[{:18_1423:}]]></item>
+				<item id="url"><![CDATA[yangcong11.gif]]></item>
+			</item>
+			<item id="56">
+				<item id="id"><![CDATA[1424]]></item>
+				<item id="typeid"><![CDATA[18]]></item>
+				<item id="displayorder"><![CDATA[0]]></item>
+				<item id="type"><![CDATA[smiley]]></item>
+				<item id="code"><![CDATA[{:18_1424:}]]></item>
+				<item id="url"><![CDATA[yangcong68.gif]]></item>
+			</item>
+			<item id="57">
+				<item id="id"><![CDATA[1425]]></item>
+				<item id="typeid"><![CDATA[18]]></item>
+				<item id="displayorder"><![CDATA[0]]></item>
+				<item id="type"><![CDATA[smiley]]></item>
+				<item id="code"><![CDATA[{:18_1425:}]]></item>
+				<item id="url"><![CDATA[yangcong34.gif]]></item>
+			</item>
+			<item id="58">
+				<item id="id"><![CDATA[1426]]></item>
+				<item id="typeid"><![CDATA[18]]></item>
+				<item id="displayorder"><![CDATA[0]]></item>
+				<item id="type"><![CDATA[smiley]]></item>
+				<item id="code"><![CDATA[{:18_1426:}]]></item>
+				<item id="url"><![CDATA[yangcong98.gif]]></item>
+			</item>
+			<item id="59">
+				<item id="id"><![CDATA[1427]]></item>
+				<item id="typeid"><![CDATA[18]]></item>
+				<item id="displayorder"><![CDATA[0]]></item>
+				<item id="type"><![CDATA[smiley]]></item>
+				<item id="code"><![CDATA[{:18_1427:}]]></item>
+				<item id="url"><![CDATA[yangcong50.gif]]></item>
+			</item>
+			<item id="60">
+				<item id="id"><![CDATA[1428]]></item>
+				<item id="typeid"><![CDATA[18]]></item>
+				<item id="displayorder"><![CDATA[0]]></item>
+				<item id="type"><![CDATA[smiley]]></item>
+				<item id="code"><![CDATA[{:18_1428:}]]></item>
+				<item id="url"><![CDATA[yangcong92.gif]]></item>
+			</item>
+			<item id="61">
+				<item id="id"><![CDATA[1429]]></item>
+				<item id="typeid"><![CDATA[18]]></item>
+				<item id="displayorder"><![CDATA[0]]></item>
+				<item id="type"><![CDATA[smiley]]></item>
+				<item id="code"><![CDATA[{:18_1429:}]]></item>
+				<item id="url"><![CDATA[yangcong09.gif]]></item>
+			</item>
+			<item id="62">
+				<item id="id"><![CDATA[1430]]></item>
+				<item id="typeid"><![CDATA[18]]></item>
+				<item id="displayorder"><![CDATA[0]]></item>
+				<item id="type"><![CDATA[smiley]]></item>
+				<item id="code"><![CDATA[{:18_1430:}]]></item>
+				<item id="url"><![CDATA[yangcong87.gif]]></item>
+			</item>
+			<item id="63">
+				<item id="id"><![CDATA[1431]]></item>
+				<item id="typeid"><![CDATA[18]]></item>
+				<item id="displayorder"><![CDATA[0]]></item>
+				<item id="type"><![CDATA[smiley]]></item>
+				<item id="code"><![CDATA[{:18_1431:}]]></item>
+				<item id="url"><![CDATA[yangcong103.gif]]></item>
+			</item>
+			<item id="64">
+				<item id="id"><![CDATA[1432]]></item>
+				<item id="typeid"><![CDATA[18]]></item>
+				<item id="displayorder"><![CDATA[0]]></item>
+				<item id="type"><![CDATA[smiley]]></item>
+				<item id="code"><![CDATA[{:18_1432:}]]></item>
+				<item id="url"><![CDATA[yangcong70.gif]]></item>
+			</item>
+			<item id="65">
+				<item id="id"><![CDATA[1433]]></item>
+				<item id="typeid"><![CDATA[18]]></item>
+				<item id="displayorder"><![CDATA[0]]></item>
+				<item id="type"><![CDATA[smiley]]></item>
+				<item id="code"><![CDATA[{:18_1433:}]]></item>
+				<item id="url"><![CDATA[yangcong08.gif]]></item>
+			</item>
+			<item id="66">
+				<item id="id"><![CDATA[1434]]></item>
+				<item id="typeid"><![CDATA[18]]></item>
+				<item id="displayorder"><![CDATA[0]]></item>
+				<item id="type"><![CDATA[smiley]]></item>
+				<item id="code"><![CDATA[{:18_1434:}]]></item>
+				<item id="url"><![CDATA[yangcong43.gif]]></item>
+			</item>
+			<item id="67">
+				<item id="id"><![CDATA[1435]]></item>
+				<item id="typeid"><![CDATA[18]]></item>
+				<item id="displayorder"><![CDATA[0]]></item>
+				<item id="type"><![CDATA[smiley]]></item>
+				<item id="code"><![CDATA[{:18_1435:}]]></item>
+				<item id="url"><![CDATA[yangcong90.gif]]></item>
+			</item>
+			<item id="68">
+				<item id="id"><![CDATA[1436]]></item>
+				<item id="typeid"><![CDATA[18]]></item>
+				<item id="displayorder"><![CDATA[0]]></item>
+				<item id="type"><![CDATA[smiley]]></item>
+				<item id="code"><![CDATA[{:18_1436:}]]></item>
+				<item id="url"><![CDATA[yangcong25.gif]]></item>
+			</item>
+			<item id="69">
+				<item id="id"><![CDATA[1437]]></item>
+				<item id="typeid"><![CDATA[18]]></item>
+				<item id="displayorder"><![CDATA[0]]></item>
+				<item id="type"><![CDATA[smiley]]></item>
+				<item id="code"><![CDATA[{:18_1437:}]]></item>
+				<item id="url"><![CDATA[yangcong23.gif]]></item>
+			</item>
+			<item id="70">
+				<item id="id"><![CDATA[1438]]></item>
+				<item id="typeid"><![CDATA[18]]></item>
+				<item id="displayorder"><![CDATA[0]]></item>
+				<item id="type"><![CDATA[smiley]]></item>
+				<item id="code"><![CDATA[{:18_1438:}]]></item>
+				<item id="url"><![CDATA[yangcong02.gif]]></item>
+			</item>
+			<item id="71">
+				<item id="id"><![CDATA[1439]]></item>
+				<item id="typeid"><![CDATA[18]]></item>
+				<item id="displayorder"><![CDATA[0]]></item>
+				<item id="type"><![CDATA[smiley]]></item>
+				<item id="code"><![CDATA[{:18_1439:}]]></item>
+				<item id="url"><![CDATA[yangcong73.gif]]></item>
+			</item>
+			<item id="72">
+				<item id="id"><![CDATA[1440]]></item>
+				<item id="typeid"><![CDATA[18]]></item>
+				<item id="displayorder"><![CDATA[0]]></item>
+				<item id="type"><![CDATA[smiley]]></item>
+				<item id="code"><![CDATA[{:18_1440:}]]></item>
+				<item id="url"><![CDATA[yangcong18.gif]]></item>
+			</item>
+			<item id="73">
+				<item id="id"><![CDATA[1441]]></item>
+				<item id="typeid"><![CDATA[18]]></item>
+				<item id="displayorder"><![CDATA[0]]></item>
+				<item id="type"><![CDATA[smiley]]></item>
+				<item id="code"><![CDATA[{:18_1441:}]]></item>
+				<item id="url"><![CDATA[yangcong83.gif]]></item>
+			</item>
+			<item id="74">
+				<item id="id"><![CDATA[1442]]></item>
+				<item id="typeid"><![CDATA[18]]></item>
+				<item id="displayorder"><![CDATA[0]]></item>
+				<item id="type"><![CDATA[smiley]]></item>
+				<item id="code"><![CDATA[{:18_1442:}]]></item>
+				<item id="url"><![CDATA[yangcong21.gif]]></item>
+			</item>
+			<item id="75">
+				<item id="id"><![CDATA[1443]]></item>
+				<item id="typeid"><![CDATA[18]]></item>
+				<item id="displayorder"><![CDATA[0]]></item>
+				<item id="type"><![CDATA[smiley]]></item>
+				<item id="code"><![CDATA[{:18_1443:}]]></item>
+				<item id="url"><![CDATA[yangcong13.gif]]></item>
+			</item>
+			<item id="76">
+				<item id="id"><![CDATA[1444]]></item>
+				<item id="typeid"><![CDATA[18]]></item>
+				<item id="displayorder"><![CDATA[0]]></item>
+				<item id="type"><![CDATA[smiley]]></item>
+				<item id="code"><![CDATA[{:18_1444:}]]></item>
+				<item id="url"><![CDATA[yangcong19.gif]]></item>
+			</item>
+			<item id="77">
+				<item id="id"><![CDATA[1445]]></item>
+				<item id="typeid"><![CDATA[18]]></item>
+				<item id="displayorder"><![CDATA[0]]></item>
+				<item id="type"><![CDATA[smiley]]></item>
+				<item id="code"><![CDATA[{:18_1445:}]]></item>
+				<item id="url"><![CDATA[yangcong03.gif]]></item>
+			</item>
+			<item id="78">
+				<item id="id"><![CDATA[1446]]></item>
+				<item id="typeid"><![CDATA[18]]></item>
+				<item id="displayorder"><![CDATA[0]]></item>
+				<item id="type"><![CDATA[smiley]]></item>
+				<item id="code"><![CDATA[{:18_1446:}]]></item>
+				<item id="url"><![CDATA[yangcong31.gif]]></item>
+			</item>
+			<item id="79">
+				<item id="id"><![CDATA[1447]]></item>
+				<item id="typeid"><![CDATA[18]]></item>
+				<item id="displayorder"><![CDATA[0]]></item>
+				<item id="type"><![CDATA[smiley]]></item>
+				<item id="code"><![CDATA[{:18_1447:}]]></item>
+				<item id="url"><![CDATA[yangcong101.gif]]></item>
+			</item>
+			<item id="80">
+				<item id="id"><![CDATA[1448]]></item>
+				<item id="typeid"><![CDATA[18]]></item>
+				<item id="displayorder"><![CDATA[0]]></item>
+				<item id="type"><![CDATA[smiley]]></item>
+				<item id="code"><![CDATA[{:18_1448:}]]></item>
+				<item id="url"><![CDATA[yangcong39.gif]]></item>
+			</item>
+			<item id="81">
+				<item id="id"><![CDATA[1449]]></item>
+				<item id="typeid"><![CDATA[18]]></item>
+				<item id="displayorder"><![CDATA[0]]></item>
+				<item id="type"><![CDATA[smiley]]></item>
+				<item id="code"><![CDATA[{:18_1449:}]]></item>
+				<item id="url"><![CDATA[yangcong74.gif]]></item>
+			</item>
+			<item id="82">
+				<item id="id"><![CDATA[1450]]></item>
+				<item id="typeid"><![CDATA[18]]></item>
+				<item id="displayorder"><![CDATA[0]]></item>
+				<item id="type"><![CDATA[smiley]]></item>
+				<item id="code"><![CDATA[{:18_1450:}]]></item>
+				<item id="url"><![CDATA[yangcong14.gif]]></item>
+			</item>
+			<item id="83">
+				<item id="id"><![CDATA[1451]]></item>
+				<item id="typeid"><![CDATA[18]]></item>
+				<item id="displayorder"><![CDATA[0]]></item>
+				<item id="type"><![CDATA[smiley]]></item>
+				<item id="code"><![CDATA[{:18_1451:}]]></item>
+				<item id="url"><![CDATA[yangcong64.gif]]></item>
+			</item>
+			<item id="84">
+				<item id="id"><![CDATA[1452]]></item>
+				<item id="typeid"><![CDATA[18]]></item>
+				<item id="displayorder"><![CDATA[0]]></item>
+				<item id="type"><![CDATA[smiley]]></item>
+				<item id="code"><![CDATA[{:18_1452:}]]></item>
+				<item id="url"><![CDATA[yangcong16.gif]]></item>
+			</item>
+			<item id="85">
+				<item id="id"><![CDATA[1453]]></item>
+				<item id="typeid"><![CDATA[18]]></item>
+				<item id="displayorder"><![CDATA[0]]></item>
+				<item id="type"><![CDATA[smiley]]></item>
+				<item id="code"><![CDATA[{:18_1453:}]]></item>
+				<item id="url"><![CDATA[yangcong37.gif]]></item>
+			</item>
+			<item id="86">
+				<item id="id"><![CDATA[1454]]></item>
+				<item id="typeid"><![CDATA[18]]></item>
+				<item id="displayorder"><![CDATA[0]]></item>
+				<item id="type"><![CDATA[smiley]]></item>
+				<item id="code"><![CDATA[{:18_1454:}]]></item>
+				<item id="url"><![CDATA[yangcong55.gif]]></item>
+			</item>
+			<item id="87">
+				<item id="id"><![CDATA[1455]]></item>
+				<item id="typeid"><![CDATA[18]]></item>
+				<item id="displayorder"><![CDATA[0]]></item>
+				<item id="type"><![CDATA[smiley]]></item>
+				<item id="code"><![CDATA[{:18_1455:}]]></item>
+				<item id="url"><![CDATA[yangcong89.gif]]></item>
+			</item>
+			<item id="88">
+				<item id="id"><![CDATA[1456]]></item>
+				<item id="typeid"><![CDATA[18]]></item>
+				<item id="displayorder"><![CDATA[0]]></item>
+				<item id="type"><![CDATA[smiley]]></item>
+				<item id="code"><![CDATA[{:18_1456:}]]></item>
+				<item id="url"><![CDATA[yangcong61.gif]]></item>
+			</item>
+			<item id="89">
+				<item id="id"><![CDATA[1457]]></item>
+				<item id="typeid"><![CDATA[18]]></item>
+				<item id="displayorder"><![CDATA[0]]></item>
+				<item id="type"><![CDATA[smiley]]></item>
+				<item id="code"><![CDATA[{:18_1457:}]]></item>
+				<item id="url"><![CDATA[yangcong20.gif]]></item>
+			</item>
+			<item id="90">
+				<item id="id"><![CDATA[1458]]></item>
+				<item id="typeid"><![CDATA[18]]></item>
+				<item id="displayorder"><![CDATA[0]]></item>
+				<item id="type"><![CDATA[smiley]]></item>
+				<item id="code"><![CDATA[{:18_1458:}]]></item>
+				<item id="url"><![CDATA[yangcong10.gif]]></item>
+			</item>
+			<item id="91">
+				<item id="id"><![CDATA[1459]]></item>
+				<item id="typeid"><![CDATA[18]]></item>
+				<item id="displayorder"><![CDATA[0]]></item>
+				<item id="type"><![CDATA[smiley]]></item>
+				<item id="code"><![CDATA[{:18_1459:}]]></item>
+				<item id="url"><![CDATA[yangcong65.gif]]></item>
+			</item>
+			<item id="92">
+				<item id="id"><![CDATA[1460]]></item>
+				<item id="typeid"><![CDATA[18]]></item>
+				<item id="displayorder"><![CDATA[0]]></item>
+				<item id="type"><![CDATA[smiley]]></item>
+				<item id="code"><![CDATA[{:18_1460:}]]></item>
+				<item id="url"><![CDATA[yangcong22.gif]]></item>
+			</item>
+			<item id="93">
+				<item id="id"><![CDATA[1461]]></item>
+				<item id="typeid"><![CDATA[18]]></item>
+				<item id="displayorder"><![CDATA[0]]></item>
+				<item id="type"><![CDATA[smiley]]></item>
+				<item id="code"><![CDATA[{:18_1461:}]]></item>
+				<item id="url"><![CDATA[yangcong95.gif]]></item>
+			</item>
+			<item id="94">
+				<item id="id"><![CDATA[1462]]></item>
+				<item id="typeid"><![CDATA[18]]></item>
+				<item id="displayorder"><![CDATA[0]]></item>
+				<item id="type"><![CDATA[smiley]]></item>
+				<item id="code"><![CDATA[{:18_1462:}]]></item>
+				<item id="url"><![CDATA[yangcong97.gif]]></item>
+			</item>
+			<item id="95">
+				<item id="id"><![CDATA[1463]]></item>
+				<item id="typeid"><![CDATA[18]]></item>
+				<item id="displayorder"><![CDATA[0]]></item>
+				<item id="type"><![CDATA[smiley]]></item>
+				<item id="code"><![CDATA[{:18_1463:}]]></item>
+				<item id="url"><![CDATA[yangcong81.gif]]></item>
+			</item>
+			<item id="96">
+				<item id="id"><![CDATA[1464]]></item>
+				<item id="typeid"><![CDATA[18]]></item>
+				<item id="displayorder"><![CDATA[0]]></item>
+				<item id="type"><![CDATA[smiley]]></item>
+				<item id="code"><![CDATA[{:18_1464:}]]></item>
+				<item id="url"><![CDATA[yangcong12.gif]]></item>
+			</item>
+			<item id="97">
+				<item id="id"><![CDATA[1465]]></item>
+				<item id="typeid"><![CDATA[18]]></item>
+				<item id="displayorder"><![CDATA[0]]></item>
+				<item id="type"><![CDATA[smiley]]></item>
+				<item id="code"><![CDATA[{:18_1465:}]]></item>
+				<item id="url"><![CDATA[yangcong46.gif]]></item>
+			</item>
+			<item id="98">
+				<item id="id"><![CDATA[1466]]></item>
+				<item id="typeid"><![CDATA[18]]></item>
+				<item id="displayorder"><![CDATA[0]]></item>
+				<item id="type"><![CDATA[smiley]]></item>
+				<item id="code"><![CDATA[{:18_1466:}]]></item>
+				<item id="url"><![CDATA[yangcong86.gif]]></item>
+			</item>
+			<item id="99">
+				<item id="id"><![CDATA[1467]]></item>
+				<item id="typeid"><![CDATA[18]]></item>
+				<item id="displayorder"><![CDATA[0]]></item>
+				<item id="type"><![CDATA[smiley]]></item>
+				<item id="code"><![CDATA[{:18_1467:}]]></item>
+				<item id="url"><![CDATA[yangcong28.gif]]></item>
+			</item>
+			<item id="100">
+				<item id="id"><![CDATA[1468]]></item>
+				<item id="typeid"><![CDATA[18]]></item>
+				<item id="displayorder"><![CDATA[0]]></item>
+				<item id="type"><![CDATA[smiley]]></item>
+				<item id="code"><![CDATA[{:18_1468:}]]></item>
+				<item id="url"><![CDATA[yangcong85.gif]]></item>
+			</item>
+			<item id="101">
+				<item id="id"><![CDATA[1469]]></item>
+				<item id="typeid"><![CDATA[18]]></item>
+				<item id="displayorder"><![CDATA[0]]></item>
+				<item id="type"><![CDATA[smiley]]></item>
+				<item id="code"><![CDATA[{:18_1469:}]]></item>
+				<item id="url"><![CDATA[yangcong24.gif]]></item>
+			</item>
+			<item id="102">
+				<item id="id"><![CDATA[1470]]></item>
+				<item id="typeid"><![CDATA[18]]></item>
+				<item id="displayorder"><![CDATA[0]]></item>
+				<item id="type"><![CDATA[smiley]]></item>
+				<item id="code"><![CDATA[{:18_1470:}]]></item>
+				<item id="url"><![CDATA[yangcong56.gif]]></item>
+			</item>
+		</item>
+		<item id="version"><![CDATA[X3.1]]></item>
+	</item>
+</root>
