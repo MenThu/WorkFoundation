@@ -8,6 +8,7 @@
 
 #import "NSObject+HttpRequest.h"
 #import "NSString+isExist.h"
+#import "MyLog.h"
 
 
 @implementation NSObject (HttpRequest)
@@ -21,11 +22,11 @@
         
     } fail:^(HttpResponse *response) {
         
-        NSLog(@"response : %@", response);
+        MyLog(@"AppHttpFail : %@", response);
         
     } error:^(HttpResponse *response) {
         
-        NSLog(@"response : %@", response);
+        MyLog(@"AFNetWorkingError : %@", response);
         
     } isShowProgress:isShow];
 }
