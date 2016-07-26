@@ -14,7 +14,7 @@
 /**
  *  根URL，后拼接接口地址。
  */
-@property (nonatomic, copy) NSURL *baseURL;
+@property (nonatomic, copy) NSString *baseURLString;
 
 /**
  *  统一的超时时间设置。默认15s。

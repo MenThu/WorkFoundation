@@ -39,14 +39,23 @@ static HttpClient *_httpClient = nil;
     if (self) {
         NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
         configuration.timeoutIntervalForRequest = [HttpClientConfig sharedInstance].timeout;
-        _manager= [[AFHTTPSessionManager alloc] initWithBaseURL:[HttpClientConfig sharedInstance].baseURL sessionConfiguration:configuration];
+        _manager= [[AFHTTPSessionManager alloc] initWithBaseURL:[NSURL URLWithString:[HttpClientConfig sharedInstance].baseURLString] sessionConfiguration:configuration];
         _manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json", @"text/json", @"text/javascript", @"text/html", nil];
+        NSString *cerPath = [[NSBundle mainBundle] pathForResource:@"MenThu" ofType:@"cer"];//证书的路径
+        NSData *certData = [NSData dataWithContentsOfFile:cerPath];
+        _manager.securityPolicy = [AFSecurityPolicy policyWithPinningMode:AFSSLPinningModeCertificate withPinnedCertificates:[[NSArray alloc] initWithObjects:certData, nil]];
+        _manager.securityPolicy.allowInvalidCertificates = YES;
+        [_manager.securityPolicy setValidatesDomainName:NO];
     }
     return self;
 }
 
 - (NSURLSessionTask *)post:(HttpRequest *)request finish:(finishBlock)reponse fail:(finishBlock)failBlock error:(finishBlock)errorBlock isShowProgress:(BOOL)isShow
 {
+    
+    
+    
+    
     
 //    NSLog(@"path : %@, params : %@", request.path, request.params);
     @weakify(self);
