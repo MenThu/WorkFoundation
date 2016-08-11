@@ -15,7 +15,7 @@ Pod::Spec.new do |s|
   #s.resource     = "WorkFoundation/RichEditVC/View/**/*"
   #s.public_header_files = 'WorkFoundation/**/*.{h}'
 
-  #s.ios.vendored_frameworks = 'Vendor/Reveal.framework'
+  s.ios.vendored_frameworks = 'WorkFoundation/WorkFoundation/XHSoundRecorder/lame.framework'
 
   s.dependency 'AFNetworking'
   s.dependency 'MJExtension'
