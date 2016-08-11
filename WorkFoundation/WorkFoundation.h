@@ -32,6 +32,7 @@
 #import <WorkFoundation/XHSoundRecorder.h>
 #import <WorkFoundation/THObserver.h>
 #import <WorkFoundation/Singleton.h>
+#import <WorkFoundation/FileManager.h>
 
 
 #else
@@ -47,6 +48,7 @@
 #import "XHSoundRecorder.h"
 #import "THObserver.h"
 #import "Singleton.h"
+#import "FileManager.h"
 
 
 
