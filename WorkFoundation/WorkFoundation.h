@@ -28,15 +28,24 @@
 #import <WorkFoundation/HttpLibrary.h>
 #import <WorkFoundation/ConvenientView.h>
 
+#import <WorkFoundation/MyTimer.h>
+#import <WorkFoundation/XHSoundRecorder.h>
+#import <WorkFoundation/THObserver.h>
+#import <WorkFoundation/Singleton.h>
+
 #else
 
-#import"ZLPhoto.h"
-#import"CameraManager.h"
-#import"MyLog.h"
-#import"MyCategory.h"
-#import"HttpLibrary.h"
-#import"ConvenientView.h"
+#import "ZLPhoto.h"
+#import "CameraManager.h"
+#import "MyLog.h"
+#import "MyCategory.h"
+#import "HttpLibrary.h"
+#import "ConvenientView.h"
 
+#import "MyTimer.h"
+#import "XHSoundRecorder.h"
+#import "THObserver.h"
+#import "Singleton.h"
 
 #endif
 
