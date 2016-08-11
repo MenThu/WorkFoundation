@@ -11,7 +11,7 @@ Pod::Spec.new do |s|
   s.source       = { :git => "https://github.com/MenThu/WorkFoundation.git" }
 
   s.requires_arc = true
-  s.source_files = 'WorkFoundation/**/*.{h,m,xib}'
+  s.source_files = 'WorkFoundation/**/*.{h,m,framework}'
   #s.resource     = "WorkFoundation/RichEditVC/View/**/*"
   #s.public_header_files = 'WorkFoundation/**/*.{h}'
 
