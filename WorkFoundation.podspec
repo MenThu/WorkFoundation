@@ -11,11 +11,12 @@ Pod::Spec.new do |s|
   s.source       = { :git => "https://github.com/MenThu/WorkFoundation.git" }
 
   s.requires_arc = true
-  s.source_files = 'WorkFoundation/**/*.{h,m,framework.a}'
+  s.source_files = 'WorkFoundation/**/*.{h,m,framework,a}'
   #s.public_header_files = 'WorkFoundation/**/*.{h}'
 
   s.ios.vendored_frameworks = 'WorkFoundation/XHSoundRecorder/lame.framework'
-  s.libraries = "libopencore-amrnb", "libopencore-amrwb"
+
+  s.libraries = 'libopencore-amrnb', 'libopencore-amrwb'
 
   s.dependency 'AFNetworking'
   s.dependency 'MJExtension'
