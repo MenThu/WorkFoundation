@@ -15,6 +15,7 @@ Pod::Spec.new do |s|
   #s.public_header_files = 'WorkFoundation/**/*.{h}'
 
   s.ios.vendored_frameworks = 'WorkFoundation/XHSoundRecorder/lame.framework'
+  s.libraries = "libopencore-amrnb", "libopencore-amrwb"
 
   s.dependency 'AFNetworking'
   s.dependency 'MJExtension'

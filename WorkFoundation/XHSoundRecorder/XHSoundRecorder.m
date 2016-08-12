@@ -9,6 +9,7 @@
 #import "XHSoundRecorder.h"
 #import <AVFoundation/AVFoundation.h>
 #import "lame.h"
+#import "Mylog.h"
 
 @interface XHSoundRecorder () <AVAudioPlayerDelegate, AVAudioRecorderDelegate>
 
@@ -72,7 +73,7 @@ static id _instance;
         
         NSString *wavPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)lastObject];
         //caf
-        wavPath = [wavPath stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.wam",currentTimeString]];
+        wavPath = [wavPath stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.caf",currentTimeString]];
         
         self.wavPath = wavPath;
         
@@ -98,19 +99,19 @@ static id _instance;
          //        setting[AVEncoderAudioQualityKey] = [NSNumber numberWithInt:AVAudioQualityHigh];
          */
         
-        NSMutableDictionary *recordSettings = [[NSMutableDictionary alloc] init];
-        //录音格式 无法使用
-        [recordSettings setValue :[NSNumber numberWithInt:kAudioFormatLinearPCM] forKey: AVFormatIDKey];
-        //采样率
-        [recordSettings setValue :[NSNumber numberWithFloat:44100.0] forKey: AVSampleRateKey];//44100.0
-        //通道数
-        [recordSettings setValue :[NSNumber numberWithInt:2] forKey: AVNumberOfChannelsKey];
-        //线性采样位数
-        //[recordSettings setValue :[NSNumber numberWithInt:16] forKey: AVLinearPCMBitDepthKey];
-        //音频质量,采样质量
-        [recordSettings setValue:[NSNumber numberWithInt:AVAudioQualityMin] forKey:AVEncoderAudioQualityKey];
+        NSDictionary *recordSetting = [NSDictionary dictionaryWithObjectsAndKeys:
+                                       [NSNumber numberWithInt:kAudioFormatLinearPCM], AVFormatIDKey,
+                                       //[NSNumber numberWithFloat:44100.0], AVSampleRateKey,
+                                       [NSNumber numberWithFloat:8000.00], AVSampleRateKey,
+                                       [NSNumber numberWithInt:1], AVNumberOfChannelsKey,
+                                       //  [NSData dataWithBytes:&channelLayout length:sizeof(AudioChannelLayout)], AVChannelLayoutKey,
+                                       [NSNumber numberWithInt:16], AVLinearPCMBitDepthKey,
+                                       [NSNumber numberWithBool:NO], AVLinearPCMIsNonInterleaved,
+                                       [NSNumber numberWithBool:NO],AVLinearPCMIsFloatKey,
+                                       [NSNumber numberWithBool:NO], AVLinearPCMIsBigEndianKey,
+                                       nil];
         NSError *recordErr = nil;
-        _recorder = [[AVAudioRecorder alloc] initWithURL:url settings:recordSettings error:&recordErr];
+        _recorder = [[AVAudioRecorder alloc] initWithURL:url settings:recordSetting error:&recordErr];
         NSAssert(recordErr == nil, @"recordErr : %@", recordErr);
         
         _recorder.meteringEnabled = YES;
@@ -194,6 +195,41 @@ static id _instance;
         }
         
         self.player = [[AVAudioPlayer alloc] initWithContentsOfURL:url error:nil];
+        
+        self.player.delegate = self;
+        
+    }
+    
+    [self.player prepareToPlay];
+    
+    [self.player play];
+    
+    self.FinishPlaying = FinishPlaying;
+    
+}
+
+
+//播放【以数据播放】
+- (void)playWithData:(NSData *)fileData withFinishPlaying:(void (^)())FinishPlaying {
+    
+    if (!self.player) {
+        
+        AVAudioSession *session = [AVAudioSession sharedInstance];
+        
+        NSError *error = nil;
+        
+        [session setCategory:AVAudioSessionCategoryPlayback error:&error];
+        
+        if(error){
+            
+            NSLog(@"播放错误说明%@", [error description]);
+        }
+        
+        error = nil;
+        self.player = [[AVAudioPlayer alloc] initWithData:fileData error:&error];
+        if (error!=nil) {
+            NSLog(@"初始化播放器:%@", [error description]);
+        }
         
         self.player.delegate = self;
         

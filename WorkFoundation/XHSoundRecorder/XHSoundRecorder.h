@@ -30,6 +30,9 @@ typedef NS_ENUM(NSUInteger, Type) {
 //播放录音  传人需要播放的文件(如果传nil 直接播放录音文件)  播放完之后的回调
 - (void)playsound:(NSString *)filePath withFinishPlaying:(void (^)())FinishPlaying;
 
+
+- (void)playWithData:(NSData *)fileData withFinishPlaying:(void (^)())FinishPlaying;
+
 //暂停播放录音
 - (void)pausePlaysound;
 
