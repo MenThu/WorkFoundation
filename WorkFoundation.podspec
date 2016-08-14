@@ -26,4 +26,5 @@ Pod::Spec.new do |s|
   s.dependency 'SDWebImage'
   s.dependency 'Masonry'
   s.dependency 'SVProgressHUD'
+  s.dependency 'ZLPhotoLib'
 end
