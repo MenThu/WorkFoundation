@@ -7,7 +7,8 @@
 //
 
 #import "FileManager.h"
-#import "Singleton.h"
+#import "MyLog.h"
+
 
 NSString const* VoiceDocumentName = @"/Voice/";
 
@@ -30,16 +31,19 @@ kSingletonM
         self.myFileManager = [NSFileManager defaultManager];
         self.sanboxPath = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0] stringByAppendingString:(NSString *)VoiceDocumentName];
         NSError *error = nil;
-        [self.myFileManager createDirectoryAtPath:self.sanboxPath withIntermediateDirectories:YES attributes:nil error:&error];
+        if (![self.myFileManager fileExistsAtPath:self.sanboxPath]) {
+            [self.myFileManager createDirectoryAtPath:self.sanboxPath withIntermediateDirectories:YES attributes:nil error:&error];
+        }
         NSAssert(error==nil, @"%@",error);
-        NSLog(@"init!!!");
+        
     }
     return self;
 }
 
 - (BOOL)isFileExist:(NSString *)fileName
 {
-    return [self.myFileManager fileExistsAtPath:[self.sanboxPath stringByAppendingString:fileName]];
+    return [self.myFileManager fileExistsAtPath:fileName];
+//    return [self.myFileManager fileExistsAtPath:[self.sanboxPath stringByAppendingString:fileName]];
 }
 
 

@@ -33,6 +33,8 @@
 #import <WorkFoundation/THObserver.h>
 #import <WorkFoundation/Singleton.h>
 #import <WorkFoundation/amrFileCodec.h>
+#import <WorkFoundation/FileManager.h>
+
 
 #else
 
@@ -48,7 +50,7 @@
 #import "THObserver.h"
 #import "Singleton.h"
 #import "amrFileCodec.h"
-
+#import "FileManager.h"
 
 
 #endif
