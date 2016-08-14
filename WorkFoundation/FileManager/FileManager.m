@@ -7,6 +7,7 @@
 //
 
 #import "FileManager.h"
+#import "Singleton.h"
 
 NSString const* VoiceDocumentName = @"/Voice/";
 

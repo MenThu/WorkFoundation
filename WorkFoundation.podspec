@@ -16,6 +16,7 @@ Pod::Spec.new do |s|
 
   s.ios.vendored_frameworks = 'WorkFoundation/XHSoundRecorder/lame.framework'
 
+  #s.libraries = 'libopencore-amrnb', 'libopencore-amrwb'
   s.ios.vendored_libraries = 'libopencore-amrnb', 'libopencore-amrwb'
 
   s.dependency 'AFNetworking'
