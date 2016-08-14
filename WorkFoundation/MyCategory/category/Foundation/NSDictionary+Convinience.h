@@ -12,4 +12,6 @@
 
 - (BOOL)haveKey:(NSString*)keyString;
 
+- (NSData *)convertToData;
+
 @end

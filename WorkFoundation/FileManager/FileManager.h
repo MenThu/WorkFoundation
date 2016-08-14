@@ -55,6 +55,12 @@ kSingletonH
  */
 - (BOOL)deleteDir:(NSString *)dirPath;
 
+//覆盖的方式写文件
+- (BOOL)writeToFile:(NSString *)fileName WithContent:(id)content;
+
+
+//追加的方式写文件
+- (BOOL)appendDataToFile:(NSString *)fileName WithContent:(id)content;
 
 
 - (NSString *)priMyPath;

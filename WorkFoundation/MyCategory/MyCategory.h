@@ -12,9 +12,11 @@
 
 
 #import"NSDictionary+Convinience.h"
+#import"NSData+Convinience.h"
 #import"NSNull+isExist.h"
 #import"NSObject+HttpRequest.h"
 #import"NSString+isExist.h"
+
 
 
 #endif /* MyCategory_h */

@@ -21,4 +21,9 @@
     return NO;
 }
 
+- (NSData *)convertToData
+{
+    return [NSJSONSerialization dataWithJSONObject:self options:NSJSONWritingPrettyPrinted error:nil];
+}
+
 @end
