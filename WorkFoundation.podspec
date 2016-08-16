@@ -22,7 +22,7 @@ Pod::Spec.new do |s|
   s.dependency 'AFNetworking'
   s.dependency 'MJExtension'
   s.dependency 'MJRefresh'
-  #s.dependency 'YYKit'
+  s.dependency 'YYKit'
   s.dependency 'SDWebImage'
   s.dependency 'Masonry'
   #s.dependency 'SVProgressHUD'
