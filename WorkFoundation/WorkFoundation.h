@@ -34,6 +34,7 @@
 #import <WorkFoundation/Singleton.h>
 #import <WorkFoundation/amrFileCodec.h>
 #import <WorkFoundation/FileManager.h>
+#import <WorkFoundation/AwesomePickerView.h>
 
 
 #else
@@ -51,6 +52,7 @@
 #import "Singleton.h"
 #import "amrFileCodec.h"
 #import "FileManager.h"
+#import "AwesomePickerView.h"
 
 
 #endif
