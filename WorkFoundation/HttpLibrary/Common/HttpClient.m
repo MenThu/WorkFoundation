@@ -112,8 +112,9 @@ static HttpClient *_httpClient = nil;
         result = responseObj[@"success_response"];
     }
     
+    
+    response.rawResult = result;
     if (result && ![result isKindOfClass:[NSNull class]]) {
-        response.rawResult = result;
         response.emptyResult = NO;
     }else{
         response.emptyResult = YES;
