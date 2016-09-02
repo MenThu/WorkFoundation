@@ -8,6 +8,7 @@
 
 #import "ShakeManager.h"
 #import <AudioToolbox/AudioToolbox.h>
+#import "MyLog.h"
 
 static ShakeManager *selfPoint;
 
@@ -26,12 +27,18 @@ kSingletonM
 - (instancetype)init
 {
     if (self = [super init]) {
+        MyLog(@"[%@]", [NSBundle mainBundle]);
         selfPoint = self;
-        NSString *path = [[NSBundle mainBundle] pathForResource:@"wxls.mp3" ofType:nil];
-        NSURL *localSoundUrl = [NSURL fileURLWithPath:path];
-        AudioServicesCreateSystemSoundID((__bridge CFURLRef)localSoundUrl, &_customSound);
     }
     return self;
+}
+
+- (void)setSoundUrl:(NSString *)soundUrl
+{
+    _soundUrl = soundUrl;
+    NSString *path = [[NSBundle mainBundle] pathForResource:soundUrl ofType:nil];
+    NSURL *localSoundUrl = [NSURL fileURLWithPath:path];
+    AudioServicesCreateSystemSoundID((__bridge CFURLRef)localSoundUrl, &_customSound);
 }
 
 - (void)setShakeType:(ShakeType)shakeType

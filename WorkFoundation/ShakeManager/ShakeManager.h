@@ -23,8 +23,9 @@ typedef enum : NSUInteger {
 kSingletonH
 
 
-
+@property (nonatomic, copy) NSString *soundUrl;
 @property (nonatomic, assign) ShakeType shakeType;
+
 
 - (void)playShake;
 

@@ -11,7 +11,7 @@ Pod::Spec.new do |s|
   s.source       = { :git => "https://github.com/MenThu/WorkFoundation.git" }
 
   s.requires_arc = true
-  s.source_files = 'WorkFoundation/**/*.{h,m,framework,a,mp3}'
+  s.source_files = 'WorkFoundation/**/*.{h,m,framework,a}'
   #s.public_header_files = 'WorkFoundation/**/*.{h}'
 
   s.ios.vendored_frameworks = 'WorkFoundation/XHSoundRecorder/lame.framework'
