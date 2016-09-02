@@ -7,6 +7,7 @@
 //
 
 #import "AnimateManager.h"
+#import "UIView+Convenience.h"
 
 @interface AnimateManager ()
 
