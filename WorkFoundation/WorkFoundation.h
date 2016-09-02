@@ -34,7 +34,6 @@
 #import <WorkFoundation/Singleton.h>
 #import <WorkFoundation/amrFileCodec.h>
 #import <WorkFoundation/FileManager.h>
-#import <WorkFoundation/AwesomePickerView.h>
 #import <WorkFoundation/ScanManager.h>
 #import <WorkFoundation/ShakeManager.h>
 #import <WorkFoundation/AnimateManager.h>
@@ -55,7 +54,6 @@
 #import "Singleton.h"
 #import "amrFileCodec.h"
 #import "FileManager.h"
-#import "AwesomePickerView.h"
 #import "ScanManager.h"
 #import "ShakeManager.h"
 #import "AnimateManager.h"
