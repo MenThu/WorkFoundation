@@ -14,7 +14,7 @@ typedef void(^TimerCount)(NSInteger timeCount);
 
 @interface MyTimer : NSObject
 
-+ (instancetype)customTimerWithBlock:(TimerCount)block;
++ (instancetype)customTimeInterval:(CGFloat)timer WithBlock:(TimerCount)block;
 
 - (void)startTimer;
 - (void)pauseTimer;

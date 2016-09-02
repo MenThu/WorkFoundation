@@ -20,7 +20,7 @@
 @implementation MyTimer
 
 
-+ (instancetype)customTimerWithBlock:(TimerCount)block
++ (instancetype)customTimeInterval:(CGFloat)timer WithBlock:(TimerCount)block
 {
     
 
@@ -28,7 +28,7 @@
     __weak MyTimer* weakTarget = repeatCount;
     repeatCount.timeBlock = block;
     repeatCount.countSec = 0;
-    repeatCount.thisTimer = [NSTimer scheduledTimerWithTimeInterval:1 target:weakTarget selector:@selector(countFunc) userInfo:nil repeats:YES];
+    repeatCount.thisTimer = [NSTimer scheduledTimerWithTimeInterval:timer target:weakTarget selector:@selector(countFunc) userInfo:nil repeats:YES];
     [repeatCount.thisTimer setFireDate:[NSDate distantFuture]];
     repeatCount.isOn = NO;
     return repeatCount;
