@@ -47,12 +47,9 @@
     _imagePickerController.allowsEditing = YES;
 }
 
-- (void)takePhoto:(CameraPhoto)returnImage
+- (void)changeDelegate:(id)delegate
 {
-    
-    
-    
-    
+    _imagePickerController.delegate = delegate;
 }
 
 - (void)takePhotoUseType:(ManagerType)type With:(CameraPhoto)returnImage
@@ -62,8 +59,14 @@
         case FromAlbum:
             //从相册中获取
         {
-            _imagePickerController.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
-            [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:_imagePickerController animated:YES completion:nil];
+            if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypePhotoLibrary]) {
+                _imagePickerController.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+                [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:_imagePickerController animated:YES completion:nil];
+            }else{
+                UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"提示" message:@"该设备不支持选取照片" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+                [alert show];
+            }
+           
         }
             break;
             
@@ -88,14 +91,11 @@
 #pragma makr - UIImagePickerControllerDelegate
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info
 {
-    
-    NSLog(@"%@",info);
     [picker dismissViewControllerAnimated:YES completion:^{
         NSString *mediaType=[info objectForKey:UIImagePickerControllerMediaType];
         if ([mediaType isEqualToString:(NSString *)kUTTypeImage]){
             //如果是图片
             UIImage* image = info[UIImagePickerControllerEditedImage];
-            NSLog(@"image : %@",image);
             if (self.imageBlock) {
                 self.imageBlock(image);
             }
