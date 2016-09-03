@@ -45,21 +45,44 @@
     _imagePickerController.delegate = self;
     _imagePickerController.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
     _imagePickerController.allowsEditing = YES;
-    _imagePickerController.sourceType = UIImagePickerControllerSourceTypeCamera;
 }
 
 - (void)takePhoto:(CameraPhoto)returnImage
 {
     
-    if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
-        [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:_imagePickerController animated:YES completion:nil];
-        self.imageBlock = returnImage;
-    }else {
-        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"提示" message:@"该设备没有照相机" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
-        [alert show];
+    
+    
+    
+}
+
+- (void)takePhotoUseType:(ManagerType)type With:(CameraPhoto)returnImage
+{
+    self.imageBlock = returnImage;
+    switch (type) {
+        case FromAlbum:
+            //从相册中获取
+        {
+            _imagePickerController.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+            [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:_imagePickerController animated:YES completion:nil];
+        }
+            break;
+            
+        case FromCamera:
+            //拍摄照片
+        {
+            _imagePickerController.sourceType = UIImagePickerControllerSourceTypeCamera;
+            if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
+                [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:_imagePickerController animated:YES completion:nil];
+            }else {
+                UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"提示" message:@"该设备没有照相机" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+                [alert show];
+            }
+        }
+            break;
+            
+        default:
+            break;
     }
-    
-    
 }
 
 #pragma makr - UIImagePickerControllerDelegate

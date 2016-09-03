@@ -10,9 +10,18 @@
 
 typedef void(^CameraPhoto)(id image);
 
+typedef enum : NSUInteger {
+    FromCamera,
+    FromAlbum
+} ManagerType;
+
 @interface CameraManager : NSObject
 
 + (instancetype)shareInstance;
-- (void)takePhoto:(CameraPhoto)returnImage;
+
+
+//拍摄照片或者从相册中读取照片
+- (void)takePhotoUseType:(ManagerType)type With:(CameraPhoto)returnImage;
+
 
 @end
