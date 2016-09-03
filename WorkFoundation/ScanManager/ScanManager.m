@@ -12,6 +12,7 @@
 #import "KMQRCode.h"
 #import "UIImage+RoundedRectImage.h"
 #import <AVFoundation/AVFoundation.h>
+#import "MyLog.h"
 
 @interface ScanManager ()<AVCaptureMetadataOutputObjectsDelegate,UIImagePickerControllerDelegate> 
 
@@ -65,6 +66,7 @@ kSingletonM
             NSString *scannedResult = feature.messageString;
             if (scannedResult && self.endBlock) {
                 self.endBlock(scannedResult);
+                self.endBlock = nil;
             }
         }
         else{
@@ -119,6 +121,27 @@ kSingletonM
             // Start
             [_session startRunning];
         });
+    }
+}
+
+- (void)saveORCode:(UIImage *)ORImage Rezult:(ScanRezult)saveRezult
+{
+    self.endBlock = saveRezult;
+    UIImageWriteToSavedPhotosAlbum(ORImage, self, @selector(image:didFinishSavingWithError:contextInfo:), NULL);
+}
+
+- (void)image:(UIImage *)image didFinishSavingWithError:(NSError *)error contextInfo:(void *)contextInfo
+{
+    if (self.endBlock) {
+        NSMutableDictionary *save2AlbumRezult;
+        if(!error){
+            save2AlbumRezult = [NSMutableDictionary dictionaryWithDictionary:@{@"code":@(0)}];
+        }else{
+            MyLog(@"%@", contextInfo);
+            save2AlbumRezult = [NSMutableDictionary dictionaryWithDictionary:@{@"code":@(1)}];
+        }
+        self.endBlock(save2AlbumRezult);
+        self.endBlock = nil;
     }
 }
 
@@ -182,7 +205,10 @@ kSingletonM
         AVMetadataMachineReadableCodeObject * metadataObject = [metadataObjects objectAtIndex:0];
         stringValue = metadataObject.stringValue;
         [self endScan];
-        self.endBlock(stringValue);
+        if (self.endBlock) {
+            self.endBlock(stringValue);
+            self.endBlock = nil;
+        }
     }
 }
 

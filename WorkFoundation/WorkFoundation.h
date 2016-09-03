@@ -37,7 +37,7 @@
 #import <WorkFoundation/ScanManager.h>
 #import <WorkFoundation/ShakeManager.h>
 #import <WorkFoundation/AnimateManager.h>
-#import <WorkFoundation/QRcodeManager.h>
+
 
 
 #else
@@ -58,7 +58,6 @@
 #import "ScanManager.h"
 #import "ShakeManager.h"
 #import "AnimateManager.h"
-#import "QRcodeManager.h"
 
 
 #endif

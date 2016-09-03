@@ -28,4 +28,6 @@ kSingletonH
 //生成一个二维码
 - (UIImage *)createORImageWithInfo:(NSString *)ORString andSize:(CGSize)ORImageSize centerIcon:(UIImage *)centerImage;
 
+- (void)saveORCode:(UIImage *)ORImage Rezult:(ScanRezult)saveRezult;
+
 @end
