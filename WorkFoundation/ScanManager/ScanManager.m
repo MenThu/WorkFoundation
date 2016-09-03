@@ -173,10 +173,14 @@ kSingletonM
                                               green:114.0
                                                blue:237.0]; //0~255
     
+    
+    CGFloat centerImageWidh = ORImageSize.width/5.f;
     //使用核心绘图框架CG（Core Graphics）对象操作，创建带圆角效果的图片
     UIImage *imgIcon = [UIImage createRoundedRectImage:centerImage
-                                              withSize:CGSizeMake(30, 30)
+                                              withSize:CGSizeMake(centerImageWidh, centerImageWidh)
                                             withRadius:10];
+    
+    
     //使用核心绘图框架CG（Core Graphics）对象操作，合并二维码图片和用于中间显示的图标图片
     imgAdaptiveQRCode = [KMQRCode addIconToQRCodeImage:imgAdaptiveQRCode
                                               withIcon:imgIcon
