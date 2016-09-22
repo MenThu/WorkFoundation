@@ -37,6 +37,8 @@
 #import <WorkFoundation/ScanManager.h>
 #import <WorkFoundation/ShakeManager.h>
 #import <WorkFoundation/AnimateManager.h>
+#import <WorkFoundation/ConnectStatusManager.h>
+//ConnectStatusManager
 
 
 
@@ -58,6 +60,7 @@
 #import "ScanManager.h"
 #import "ShakeManager.h"
 #import "AnimateManager.h"
+#import "ConnectStatusManager.h"
 
 
 #endif
