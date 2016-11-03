@@ -11,7 +11,8 @@
 typedef enum : NSUInteger {
     ImageRight,//图片在左边
     ImageUp, //图片在上面
-    ImageBottom,
+    ImageBottom,//图片在下面
+    TitleCenter //图片和btn的Frame一样，然后title在Btn中间
 } ButtomStyle;
 
 @interface UIButton (Custom)

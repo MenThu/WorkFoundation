@@ -13,8 +13,8 @@
 
 @implementation UIButton (Custom)
 
-- (void)buttonDisplayStyle:(ButtomStyle)buttomStyle
-{
+- (void)buttonDisplayStyle:(ButtomStyle)buttomStyle{
+
     self.backgroundColor = [UIColor yellowColor];
     
     self.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
@@ -36,14 +36,19 @@
             [self image2Bottom];
         }
             break;
+        case TitleCenter:
+        {
+            [self title2Center];
+        }
+            break;
             
         default:
             break;
     }
 }
 
-- (void)image2Right
-{
+- (void)image2Right{
+
     CGFloat imageWidth = self.imageView.width;
     CGFloat labelWidth = self.titleLabel.width;
     
@@ -65,8 +70,8 @@
 }
 
 
-- (void)image2Top
-{
+- (void)image2Top{
+
     CGFloat imageWidth = self.imageView.width;
     
     NSString *labelText = self.titleLabel.text;
@@ -92,8 +97,8 @@
     self.titleEdgeInsets = UIEdgeInsetsMake(labelVerMoveSpace, labelHorizonMoveSpace, 0, 0);
 }
 
-- (void)image2Bottom
-{
+- (void)image2Bottom{
+    
     CGFloat imageWidth = self.imageView.width;
     
     NSString *labelText = self.titleLabel.text;
@@ -115,6 +120,23 @@
     CGFloat imageVerMoveSpace = btnHeight/2 - (labelHeight + imageHeight)/2 + labelHeight + Space/2;
     
     self.imageEdgeInsets = UIEdgeInsetsMake(imageVerMoveSpace, imageHorizonMoveSpace, 0, 0);
+    self.titleEdgeInsets = UIEdgeInsetsMake(labelVerMoveSpace, labelHorizonMoveSpace, 0, 0);
+}
+
+- (void)title2Center{
+    CGFloat correctWidth = [self.titleLabel.text boundingRectWithSize:CGSizeMake(MAXFLOAT, 0.0) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:self.titleLabel.font} context:nil].size.width;
+    
+    CGFloat labelWidth = (self.titleLabel.width < correctWidth ? correctWidth : self.titleLabel.width);
+    
+    CGFloat labelHeight = [self titleRectForContentRect:self.frame].size.height;
+    
+    CGFloat btnWidth = self.width;
+    CGFloat btnHeight = self.height;
+    
+    CGFloat labelHorizonMoveSpace = -(btnWidth/2 + labelWidth/2);
+
+    CGFloat labelVerMoveSpace = btnHeight/2 - labelHeight/2;
+    
     self.titleEdgeInsets = UIEdgeInsetsMake(labelVerMoveSpace, labelHorizonMoveSpace, 0, 0);
 }
 
