@@ -1,6 +1,5 @@
-Pod::Spec.new do |s|
+Pod::Spec.target do |s|
 
-	s.target         = "WorkFoundation"
 	s.name         = "WorkFoundation"
 	s.version      = "0.1"
 	s.summary      = "WorkFoundation Develpoe iOS Library."
