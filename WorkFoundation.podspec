@@ -1,4 +1,4 @@
-Pod::Spec.target do |s|
+target 'MyApp' do |s|
 
 	s.name         = "WorkFoundation"
 	s.version      = "0.1"
