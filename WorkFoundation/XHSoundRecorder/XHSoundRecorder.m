@@ -8,7 +8,7 @@
 
 #import "XHSoundRecorder.h"
 #import <AVFoundation/AVFoundation.h>
-#import "lame.h"
+#import <lame.h>
 #import "Mylog.h"
 
 @interface XHSoundRecorder () <AVAudioPlayerDelegate, AVAudioRecorderDelegate>

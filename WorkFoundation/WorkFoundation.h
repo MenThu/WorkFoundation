@@ -9,40 +9,12 @@
 #ifndef WorkFoundation_h
 #define WorkFoundation_h
 
-
 #import <AFNetworking.h>
 #import <Masonry.h>
+#import <MJRefresh.h>
 #import <MJExtension.h>
-#import <UIImageView+WebCache.h>
 #import <MBProgressHUD.h>
 #import <YYKit.h>
-
-
-#if __has_include(<WorkFoundation/WorkFoundation.h>)
-
-
-#import <WorkFoundation/ZLPhoto.h>
-#import <WorkFoundation/CameraManager.h>
-#import <WorkFoundation/MyLog.h>
-#import <WorkFoundation/MyCategory.h>
-#import <WorkFoundation/HttpLibrary.h>
-#import <WorkFoundation/ConvenientView.h>
-
-#import <WorkFoundation/MyTimer.h>
-#import <WorkFoundation/XHSoundRecorder.h>
-#import <WorkFoundation/THObserver.h>
-#import <WorkFoundation/Singleton.h>
-#import <WorkFoundation/amrFileCodec.h>
-#import <WorkFoundation/FileManager.h>
-#import <WorkFoundation/ScanManager.h>
-#import <WorkFoundation/ShakeManager.h>
-#import <WorkFoundation/AnimateManager.h>
-#import <WorkFoundation/ConnectStatusManager.h>
-//ConnectStatusManager
-
-
-
-#else
 
 #import "ZLPhoto.h"
 #import "CameraManager.h"
@@ -61,9 +33,7 @@
 #import "ShakeManager.h"
 #import "AnimateManager.h"
 #import "ConnectStatusManager.h"
-
+#import "MTBaseTable.h"
+#import "GlobalMacro.h"
 
 #endif
-
-
-#endif /* WorkFoundation_h */

@@ -19,6 +19,8 @@
 #import "NSArray+Convience.h"
 #import "UIButton+Custom.h"
 #import "UIView+Convenience.h"
+#import "UIImage+Extension.h"
+
 
 
 
