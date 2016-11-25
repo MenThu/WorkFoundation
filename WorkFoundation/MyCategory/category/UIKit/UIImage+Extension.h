@@ -33,4 +33,7 @@
 
 - (UIImage *)scaleImage:(CGSize)scaleSize;
 
+
++ (UIImage *)createRoundedRectImage:(UIImage *)image withSize:(CGSize)size withRadius:(NSInteger)radius;
+
 @end

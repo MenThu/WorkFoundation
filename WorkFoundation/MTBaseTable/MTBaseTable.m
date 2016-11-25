@@ -15,6 +15,8 @@ static NSString *cellID = @"cellId";
 static NSString *headViewID = @"headId";
 static NSInteger startPageNo = 1;
 
+#define isGCD_On 0
+
 @interface MTBaseTable ()
 {
     //tableview当前页数
@@ -48,29 +50,22 @@ static NSInteger startPageNo = 1;
 }
 
 - (void)setGifPath:(NSString *)gifPath{
+    _isHaveGif = YES;
     _gifPath = gifPath;
     NSBundle *mainBundle = [NSBundle mainBundle];
-    @weakify(self);
     NSURL * url = [[NSURL alloc] initFileURLWithPath:[mainBundle pathForResource:_gifPath ofType:nil]];
+    
+    @weakify(self);
     [UIImage analyzeGif2UIImage:url returnData:^(NSArray<UIImage *> *imageArray, NSArray<NSNumber *> *timeArray, NSArray<NSNumber *> *widths, NSArray<NSNumber *> *heights, CGFloat totalTime) {
         @strongify(self);
+        _gifTime = totalTime;
         self.gifArray = imageArray;
-        _totalTime = totalTime;
     }];
 }
 
 - (void)setGifArray:(NSArray<UIImage *> *)gifArray{
+    _gifArray = gifArray;
     _isHaveGif = YES;
-    NSMutableArray *tempArray = [NSMutableArray array];
-    CGFloat height = MIN(120.f, gifArray.lastObject.size.height);
-    CGFloat width = 0.f;
-    
-    CGFloat scale = gifArray.lastObject.size.width / gifArray.lastObject.size.height;
-    for (UIImage *originNalImage in gifArray) {
-        width = height * scale;
-        [tempArray addObject:[originNalImage scaleImage:CGSizeMake(width, height)]];
-    }
-    _gifArray = [NSArray arrayWithArray:tempArray];
 }
 
 - (void)setRefreshBlock:(void (^)(NSInteger))refreshBlock{
@@ -82,8 +77,6 @@ static NSInteger startPageNo = 1;
 }
 
 - (void)prepareTable{
-    
-    
     @weakify(self);
     self.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
         @strongify(self);
@@ -91,28 +84,32 @@ static NSInteger startPageNo = 1;
         self.refreshBlock(_pageNo);
     }];
     
-    if (_isHaveGif) {
-        MTBaseGifHead *mj_header = [MTBaseGifHead headerWithRefreshingBlock:^{
-            @strongify(self);
-            _pageNo = startPageNo;
-            self.refreshBlock(_pageNo);
-        }];
-        //设置刷新的头部动态视图
-        mj_header.iamgesArray = _gifArray;
-        mj_header.gifTime = 3;
-        
-        if ([self.titleString isExist]) {
-            mj_header.titleString = self.titleString;
-        }
-        [mj_header prepareMTGifHead];
-        self.mj_header = mj_header;
-    }else{
+    if (!_isHaveGif){
         //普通的下拉刷新头部
         self.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
             @strongify(self);
             _pageNo = 1;
             self.refreshBlock(_pageNo);
         }];
+    }else{
+        MTBaseGifHead *mj_header = [MTBaseGifHead headerWithRefreshingBlock:^{
+            @strongify(self);
+            _pageNo = startPageNo;
+            self.refreshBlock(_pageNo);
+        }];
+        
+        mj_header.gifTime = _gifTime * 0.5;
+        
+        if ([self.titleString isExist]) {
+            mj_header.titleString = self.titleString;
+        }
+        NSLog(@"开始 : [%@]",[NSDate systemCurrentTime]);
+        mj_header.iamgesArray = _gifArray;
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [mj_header prepareMTGifHead];
+            self.mj_header = mj_header;
+            NSLog(@"更新主UI %@", [NSDate systemCurrentTime]);
+        });
     }
 }
 

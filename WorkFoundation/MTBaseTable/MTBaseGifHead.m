@@ -49,14 +49,12 @@
     _titleString = titleString;
     self.titleLabel.text = titleString;
     self.hintLabel.textAlignment = NSTextAlignmentLeft;
-    self.gifView.contentMode = UIViewContentModeScaleToFill;
     self.titleLabel.hidden = NO;
     _isHaveTitle = YES;
 }
 
 - (void)setIamgesArray:(NSArray<UIImage *> *)iamgesArray{
     _iamgesArray = iamgesArray;
-    
 }
 
 - (void)setGifTime:(CGFloat)gifTime{
@@ -98,13 +96,17 @@
     
     /* 根据图片设置控件的高度 */
     UIImage *image = [images firstObject];
+    CGFloat imageHeight = 0.f;
+    if (image.size.height > imageHeight) {
+        imageHeight = image.size.height;
+        imageHeight = MIN(90.f, imageHeight);
+    }
+    
     _imageScale = image.size.width / image.size.height;
     _totalHeightScale = 0.7;
-    _normalImageHeight = image.size.height * _totalHeightScale;
+    _normalImageHeight = imageHeight;
+    self.mj_h = imageHeight / _totalHeightScale;
     _normalImageWidth = _imageScale * _normalImageHeight;
-    if (image.size.height > self.mj_h) {
-        self.mj_h = image.size.height;
-    }
 }
 
 #pragma mark - 实现父类的方法
@@ -122,7 +124,7 @@
     
     
     CGFloat scale = MIN(1, pullingPercent);
-    if (_isHaveTitle) {
+    if (_isHaveTitle && scale > 0) {
         self.gifView.frame = CGRectMake(_gifViewCenter.x-_normalImageWidth*scale/2, self.mj_h*(1-scale/2)-_normalImageHeight*scale/2, _normalImageWidth*scale, _normalImageHeight*scale);
     }else{
         CGFloat imageTotalSpace = CGRectGetHeight(self.frame)*scale - _lablHeight - 3*_space;
@@ -133,7 +135,9 @@
         CGFloat imageWidth = imageHeight * _imageScale;
         self.gifView.frame = CGRectMake((self.mj_w-imageWidth)/2, CGRectGetHeight(self.frame) - _space*2 - _lablHeight - imageHeight, imageWidth, imageHeight);
     }
-    self.gifView.layer.cornerRadius = self.gifView.width/2;
+    if (scale>0) {
+        self.gifView.layer.cornerRadius = self.gifView.width/2;
+    }
 }
 
 - (void)setState:(MJRefreshState)state{
@@ -195,7 +199,7 @@
 {
     if (!_gifView) {
         UIImageView *gifView = [[UIImageView alloc] init];
-        gifView.contentMode = UIViewContentModeCenter;
+        gifView.contentMode = UIViewContentModeScaleAspectFill;
         gifView.clipsToBounds = YES;
         gifView.layer.masksToBounds = YES;
         [self addSubview:_gifView = gifView];

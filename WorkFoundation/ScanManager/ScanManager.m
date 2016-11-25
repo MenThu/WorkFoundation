@@ -10,7 +10,6 @@
 #import "ScanManager.h"
 #import "CameraManager.h"
 #import "KMQRCode.h"
-#import "UIImage+RoundedRectImage.h"
 #import <AVFoundation/AVFoundation.h>
 #import "MyLog.h"
 
