@@ -23,6 +23,7 @@ static NSInteger startPageNo = 1;
     NSInteger _pageNo;
     BOOL _isHaveGif;
     CGFloat _totalTime;
+    CGRect _refreshBounds;
 }
 @property (nonatomic, strong) NSMutableArray *gitStingArray;
 
@@ -108,8 +109,10 @@ static NSInteger startPageNo = 1;
         dispatch_async(dispatch_get_main_queue(), ^{
             [mj_header prepareMTGifHead];
             self.mj_header = mj_header;
+            _refreshBounds = CGRectMake(0, 0, YYScreenSize().width, YYScreenSize().height-64);
             NSLog(@"更新主UI %@", [NSDate systemCurrentTime]);
         });
+        
     }
 }
 

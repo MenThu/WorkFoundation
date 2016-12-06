@@ -11,6 +11,10 @@
 
 @interface MTBaseModel : NSObject
 
+//Cell的行高
 @property (nonatomic, assign) CGFloat cellHeight;
+
+//cell的单元格
+@property (nonatomic, weak) NSIndexPath *cellIndexPath;
 
 @end

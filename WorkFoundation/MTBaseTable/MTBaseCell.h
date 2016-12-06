@@ -8,7 +8,13 @@
 
 #import <UIKit/UIKit.h>
 #import "MTBaseModel.h"
+#import "UITableViewRowAction+Image.h"
 
 @interface MTBaseCell : UITableViewCell
+
+@property (nonatomic, weak) id cellModel;
+
+//子类应该覆盖的方法
+- (void)configCell;
 
 @end

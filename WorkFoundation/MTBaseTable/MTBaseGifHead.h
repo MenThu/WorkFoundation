@@ -19,4 +19,7 @@
 //设置好所有变量后，告诉gifhead更新布局
 - (void)prepareMTGifHead;
 
+//获取gifHead的高度
+- (CGFloat)gitHeadHeight;
+
 @end

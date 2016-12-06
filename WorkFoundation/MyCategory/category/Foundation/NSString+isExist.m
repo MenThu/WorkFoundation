@@ -26,6 +26,46 @@
     return [self boundingRectWithSize:CGSizeMake(width, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading attributes:dic context:nil].size.height;
 }
 
++ (NSString *)getStringWithWidth:(CGFloat)stringMaxWidth inFont:(UIFont *)font{
+    NSMutableArray *shuffledAlphabet = [NSMutableArray arrayWithArray:@[@"A",@"B",@"C",@"D",@"E",@"F",@"G",@"H",@"I",@"J",@"K",@"L",@"M",@"N",@"O",@"P",@"Q",@"R",@"S",@"T",@"U",@"V",@"W",@"X",@"Y",@"Z"]];
+    NSMutableString *string = [NSMutableString string];
+    float strWidth = 0;
+    while (strWidth < stringMaxWidth) {
+        [string appendString:shuffledAlphabet[arc4random() % shuffledAlphabet.count]];
+        strWidth = [string widthForFont:font];
+    }
+    [string deleteCharactersInRange:NSMakeRange(string.length-1, 1)];
+    return string;
+}
 
+- (NSAttributedString *)lineSpace:(CGFloat)lineSpace strFont:(UIFont *)font limitWidth:(CGFloat)width strNeedHeight:(CGFloat *)height{
+    NSAttributedString *attrString = nil;
+    NSDictionary *dic = nil;
+    //查看string是否有一行以上
+    BOOL isMoreThanOneLine = ([self heightForFont:font width:width] > font.lineHeight ? YES : NO);
+    if (!isMoreThanOneLine) {
+        dic = @{NSFontAttributeName:font};
+        attrString = [[NSAttributedString alloc] initWithString:self attributes:dic];
+        if (height) {
+            *height = font.lineHeight;
+        }
+    }else{
+        NSMutableParagraphStyle *paraStyle = [[NSMutableParagraphStyle alloc] init];
+        paraStyle.lineBreakMode = NSLineBreakByCharWrapping;
+        paraStyle.alignment = NSTextAlignmentLeft;
+        paraStyle.lineSpacing = lineSpace; //设置行间距
+        paraStyle.hyphenationFactor = 1.0;
+        paraStyle.firstLineHeadIndent = 0.0;
+        paraStyle.paragraphSpacingBefore = 0.0;
+        paraStyle.headIndent = 0;
+        paraStyle.tailIndent = 0;
+        dic = @{NSFontAttributeName:font, NSParagraphStyleAttributeName:paraStyle, NSKernAttributeName:@(0.2)};
+        attrString = [[NSAttributedString alloc] initWithString:self attributes:dic];
+        if (height) {
+            *height = [self boundingRectWithSize:CGSizeMake(width, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin|NSStringDrawingUsesFontLeading attributes:dic context:nil].size.height;
+        }
+    }
+    return attrString;
+}
 
 @end

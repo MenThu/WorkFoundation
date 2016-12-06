@@ -27,4 +27,20 @@
  **/
 - (CGFloat)heightWithFont:(UIFont *)font limitWidth:(CGFloat)width;
 
+
+/**
+    在规定的字体下，生成最接近要求宽度的字符串（字符串宽度 < stringMaxWidth）
+ **/
++ (NSString *)getStringWithWidth:(CGFloat)stringMaxWidth inFont:(UIFont *)font;
+
+
+/**
+    根据要求生成一个富文本
+    lineSpace   :   行间距
+    font        :   字体大小
+    width       :   限制宽度
+    height      :   所占宽度(输出参数)
+ **/
+- (NSAttributedString *)lineSpace:(CGFloat)lineSpace strFont:(UIFont *)font limitWidth:(CGFloat)width strNeedHeight:(CGFloat *)height;
+
 @end

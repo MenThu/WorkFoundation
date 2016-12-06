@@ -61,6 +61,10 @@
     _gifTime = gifTime;
 }
 
+- (CGFloat)gitHeadHeight{
+    return self.mj_h;
+}
+
 //最后做的初始化
 - (void)prepareMTGifHead{
     self.backgroundColor = [UIColor orangeColor];
