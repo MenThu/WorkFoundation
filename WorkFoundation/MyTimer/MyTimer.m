@@ -66,7 +66,6 @@
 
 - (void)countFunc
 {
-    NSLog(@"countFunc");
     if (self.timeBlock) {
         self.timeBlock(++self.countSec);
     }
