@@ -43,13 +43,16 @@ static HttpClient *_httpClient = nil;
         NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
         configuration.timeoutIntervalForRequest = [HttpClientConfig sharedInstance].timeout;
         _manager= [[AFHTTPSessionManager alloc] initWithBaseURL:[NSURL URLWithString:[HttpClientConfig sharedInstance].baseURLString] sessionConfiguration:configuration];
-//        _manager.responseSerializer = [AFHTTPResponseSerializer serializer];
         _manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json", @"text/json", @"text/javascript", @"text/html", nil];
-        /**
-         NSString *cerPath = [[NSBundle mainBundle] pathForResource:@"MenThu" ofType:@"cer"];//证书的路径
-         NSData *certData = [NSData dataWithContentsOfFile:cerPath];
-         _manager.securityPolicy = [AFSecurityPolicy policyWithPinningMode:AFSSLPinningModeCertificate withPinnedCertificates:[[NSArray alloc] initWithObjects:certData, nil]];
-         */
+        AFSecurityPolicy *policy = [AFSecurityPolicy policyWithPinningMode:AFSSLPinningModeNone];
+//        policy.allowInvalidCertificates = YES;
+//        policy.validatesDomainName = YES;
+//        NSString *cerPath = @"";
+//        NSData *cerData = [NSData dataWithContentsOfFile:cerPath];
+//        SecCertificateRef certificate = SecCertificateCreateWithData(NULL, (__bridge CFDataRef)(cerData));
+//        policy.pinnedCertificates = [NSSet setWithObject:CFBridgingRelease(certificate)];
+        _manager.securityPolicy = policy;
+      
         _manager.securityPolicy.allowInvalidCertificates = YES;
         [_manager.securityPolicy setValidatesDomainName:NO];
         _appWindow = [UIApplication sharedApplication].keyWindow;
