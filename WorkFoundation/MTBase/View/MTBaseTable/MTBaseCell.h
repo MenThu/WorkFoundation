@@ -15,6 +15,8 @@
 @property (nonatomic, weak) id cellModel;
 
 //子类应该覆盖的方法
-- (void)configCell;
+- (void)configCustomView;
+//Model被更新后，会调用的方法
+- (void)updateCustomView;
 
 @end

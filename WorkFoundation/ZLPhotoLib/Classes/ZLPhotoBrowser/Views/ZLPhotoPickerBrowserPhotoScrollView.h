@@ -29,6 +29,7 @@ typedef void(^callBackPhotoBlock)(id img);
 @property (nonatomic, weak) id <ZLPhotoPickerPhotoScrollViewDelegate> photoScrollViewDelegate;
 // 长按图片的操作，可以外面传入
 @property (strong,nonatomic) UIActionSheet *sheet;
+
 // 单击销毁的block
 @property (copy,nonatomic) callBackPhotoBlock callback;
 - (void)setMaxMinZoomScalesForCurrentBounds;

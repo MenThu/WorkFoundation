@@ -19,7 +19,7 @@ kSingletonH
 /**
  *  检查文件是否存在
  *
- *  @param filePath 现在默认是检查 沙盒/Voice/下面的文件是否存在
+ *  @param fileName 现在默认是检查 沙盒/Voice/下面的文件是否存在
  *
  *  @return 存在则返回为YES
  */

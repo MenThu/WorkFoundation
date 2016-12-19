@@ -37,7 +37,6 @@
 /**
  *  删除indexPath对应索引的图片
  *
- *  @param indexPath        要删除的索引值
  */
 - (void)photoBrowser:(ZLPhotoPickerBrowserViewController *)photoBrowser removePhotoAtIndex:(NSInteger)index;
 /**

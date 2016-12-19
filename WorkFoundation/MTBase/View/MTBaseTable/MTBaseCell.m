@@ -19,26 +19,35 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-    self.selectionStyle = UITableViewCellSelectionStyleNone;
-    self.contentView.userInteractionEnabled = YES;
-    [self configCell];
+    [self configBaseContentView];
 }
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
-        self.selectionStyle = UITableViewCellSelectionStyleNone;
-        self.contentView.userInteractionEnabled = YES;
-        [self configCell];
+        [self configBaseContentView];
     }
     return self;
 }
 
-- (void)configCell{
+- (void)configBaseContentView{
+    self.selectionStyle = UITableViewCellSelectionStyleNone;
+    self.contentView.userInteractionEnabled = YES;
+    self.backgroundColor = [UIColor clearColor];
+    self.contentView.backgroundColor = [UIColor clearColor];
+    [self configCustomView];
+}
+
+- (void)configCustomView{
 }
 
 - (void)setCellModel:(id)cellModel{
     NSAssert([cellModel isKindOfClass:[MTBaseModel class]], @"cellModel必须为MTBaseModel的子类!");
     _cellModel = cellModel;
+    [self updateCustomView];
+}
+
+- (void)updateCustomView{
+    
 }
 
 - (void)willTransitionToState:(UITableViewCellStateMask)state

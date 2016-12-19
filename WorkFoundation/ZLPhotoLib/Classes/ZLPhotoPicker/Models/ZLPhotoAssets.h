@@ -17,6 +17,7 @@ typedef void(^callBackImage)(UIImage *image);
 - (void)thumbImageCallBack:(callBackImage)callBack;
 
 @property (strong,nonatomic) ALAsset *asset;
+
 /**
  *  缩略图
  */

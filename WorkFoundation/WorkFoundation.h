@@ -33,7 +33,7 @@
 #import "ShakeManager.h"
 #import "AnimateManager.h"
 #import "ConnectStatusManager.h"
-#import "MTBaseTable.h"
+#import "MTBase.h"
 #import "GlobalMacro.h"
 
 #endif

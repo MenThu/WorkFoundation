@@ -41,6 +41,9 @@ static id _instance;
     dispatch_once(&onceToken, ^{
         
         _instance = [[self alloc] init];
+        
+        
+        
     });
     
     return _instance;
