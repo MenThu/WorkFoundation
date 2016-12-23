@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "MTBaseCell.h"
-#import "MTBaseModel.h"
+#import "MTBaseCellModel.h"
 
 @interface MTBaseTable : UITableView <UITableViewDataSource,UITableViewDelegate>
 
@@ -46,7 +46,7 @@
 /**
  数据源
  **/
-@property (nonatomic, weak) NSArray <MTBaseModel *> *tableSource;
+@property (nonatomic, weak) NSArray <MTBaseCellModel *> *tableSource;
 
 /**
  UITableView滚动的代理

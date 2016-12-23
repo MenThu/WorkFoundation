@@ -38,51 +38,54 @@ static NSString *cellReusableId = @"cellId";
         @strongify(self);
         [self dragTableHttpRequest:pageNo];
     };
-}
-
-- (void)initTableView{
-    NSAssert([self.cellClassName isExist], @"cellClassName不存在!!!");
-    @weakify(self);
-    _requestPageNo = self.requeStartPageNo;
+    
+    
     UITableView *mtBaseTableView = [[UITableView alloc] initWithFrame:CGRectZero style:(self.isStylePlain ? UITableViewStylePlain : UITableViewStyleGrouped)];
     mtBaseTableView.delegate = self;
     mtBaseTableView.dataSource = self;
     mtBaseTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     mtBaseTableView.showsVerticalScrollIndicator = mtBaseTableView.showsHorizontalScrollIndicator = NO;
-    if (self.isFromXib) {
-        [mtBaseTableView registerNib:[UINib nibWithNibName:self.cellClassName bundle:nil] forCellReuseIdentifier:cellReusableId];
-    }else{
-        [mtBaseTableView registerClass:NSClassFromString(self.cellClassName) forCellReuseIdentifier:cellReusableId];
+    self.mtBaseTableView = mtBaseTableView;
+    self.contentView = mtBaseTableView;
+    [self.view addSubview:self.mtBaseTableView];
+}
+
+- (void)initTableView{
+    @weakify(self);
+    _requestPageNo = self.requeStartPageNo;
+    if ([self.cellClassName isExist]) {
+        if (self.isFromXib) {
+            [self.mtBaseTableView registerNib:[UINib nibWithNibName:self.cellClassName bundle:nil] forCellReuseIdentifier:cellReusableId];
+        }else{
+            [self.mtBaseTableView registerClass:NSClassFromString(self.cellClassName) forCellReuseIdentifier:cellReusableId];
+        }
     }
     if (self.refreshBlock) {
         //有上拉下载刷新
-        mtBaseTableView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
+        self.mtBaseTableView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
             @strongify(self);
             _requestPageNo ++;
             self.refreshBlock(_requestPageNo);
         }];
         
-        mtBaseTableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        self.mtBaseTableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
             @strongify(self);
             _requestPageNo = self.requeStartPageNo;
             self.refreshBlock(_requestPageNo);
         }];
     }
     
-    [self.view addSubview:mtBaseTableView];
     CGFloat top = self.baseTableMargin[0].floatValue;
     CGFloat left = self.baseTableMargin[1].floatValue;
     CGFloat bottom = -self.baseTableMargin[2].floatValue;
     CGFloat right = -self.baseTableMargin[3].floatValue;
-    [mtBaseTableView mas_makeConstraints:^(MASConstraintMaker *make) {
+    [self.mtBaseTableView mas_remakeConstraints:^(MASConstraintMaker *make) {
         @strongify(self);
         make.top.equalTo(self.view).offset(top);
         make.left.equalTo(self.view).offset(left);
         make.bottom.equalTo(self.view).offset(bottom);
         make.right.equalTo(self.view).offset(right);
     }];
-    self.mtBaseTableView = mtBaseTableView;
-    self.contentView = mtBaseTableView;
 }
 
 
@@ -103,7 +106,7 @@ static NSString *cellReusableId = @"cellId";
     }
 }
 
-- (void)setTableSource:(NSArray<MTBaseModel *> *)tableSource{
+- (void)setTableSource:(NSArray <MTBaseCellModel *> *)tableSource{
     _tableSource = tableSource;
     [self.mtBaseTableView reloadData];
 }
@@ -130,7 +133,6 @@ static NSString *cellReusableId = @"cellId";
 - (void)scrollViewMove:(CGPoint)contentOffset view:(UITableView *)tableView{
     
 }
-
 
 #pragma mark - UITableView的代理及数据源
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{

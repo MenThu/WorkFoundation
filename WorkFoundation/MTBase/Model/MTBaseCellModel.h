@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <CoreImage/CoreImage.h>
 
-@interface MTBaseModel : NSObject
+@interface MTBaseCellModel : NSObject
 
 //Cell的行高
 @property (nonatomic, assign) CGFloat cellHeight;

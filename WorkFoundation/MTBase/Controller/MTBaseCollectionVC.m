@@ -51,7 +51,6 @@ static NSString *collectionCellReuseId = @"cellId";
 }
 
 - (void)initCollectionView{
-    NSAssert([self.cellClassName isExist], @"cellClassName不能为空!!!");
     
     UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
     layout.sectionInset = UIEdgeInsetsZero;
@@ -69,18 +68,23 @@ static NSString *collectionCellReuseId = @"cellId";
     collectionView.showsVerticalScrollIndicator = NO;
     collectionView.delegate = self;
     collectionView.dataSource = self;
-    if (self.isFromXib) {
-        [collectionView registerNib:[UINib nibWithNibName:self.cellClassName bundle:nil] forCellWithReuseIdentifier:collectionCellReuseId];
-    }else{
-        [collectionView registerClass:NSClassFromString(self.cellClassName) forCellWithReuseIdentifier:collectionCellReuseId];
+    
+    if ([self.cellClassName isExist]) {
+        if (self.isFromXib) {
+            [collectionView registerNib:[UINib nibWithNibName:self.cellClassName bundle:nil] forCellWithReuseIdentifier:collectionCellReuseId];
+        }else{
+            [collectionView registerClass:NSClassFromString(self.cellClassName) forCellWithReuseIdentifier:collectionCellReuseId];
+        }
     }
+    
+    
     [self.view addSubview:collectionView];
     CGFloat top = self.collectionViewMarginArray[0].floatValue;
     CGFloat left = self.collectionViewMarginArray[1].floatValue;
     CGFloat bottom = -self.collectionViewMarginArray[2].floatValue;
     CGFloat right = -self.collectionViewMarginArray[3].floatValue;
     @weakify(self);
-    [collectionView mas_makeConstraints:^(MASConstraintMaker *make) {
+    [collectionView mas_remakeConstraints:^(MASConstraintMaker *make) {
         @strongify(self);
         make.top.equalTo(self.view).offset(top);
         make.left.equalTo(self.view).offset(left);

@@ -36,6 +36,9 @@
 //cell的高度[默认50]
 @property (nonatomic, assign) CGFloat itemHeight;
 
+//cell的宽度，默认0，不适用
+@property (nonatomic, assign) CGFloat itemWidth;
+
 //cell重用的字符串
 @property (nonatomic, copy) NSString *cellClassName;
 
@@ -44,6 +47,9 @@
 
 //数据源
 @property (nonatomic, weak) NSArray *collectionViewSource;
+
+//点击Item的block
+@property (nonatomic, copy) void (^selectItem) (NSIndexPath *indexPath, UICollectionView *selectView);
 
 //添加子类控件
 - (void)customView;
@@ -56,5 +62,8 @@
 
 //获取视图高度
 - (CGFloat)getmtBaseHeight;
+
+//滚动调用的函数，子类可以复写
+- (void)scrollView:(UICollectionView *)collectionView;
 
 @end

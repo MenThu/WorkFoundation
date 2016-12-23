@@ -135,7 +135,7 @@ static NSInteger startPageNo = 1;
     }
 }
 
-- (void)setTableSource:(NSArray<MTBaseModel *> *)tableSource{
+- (void)setTableSource:(NSArray<MTBaseCellModel *> *)tableSource{
     _tableSource = tableSource;
     [self reloadData];
 }

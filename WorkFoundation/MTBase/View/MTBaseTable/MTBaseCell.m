@@ -41,7 +41,7 @@
 }
 
 - (void)setCellModel:(id)cellModel{
-    NSAssert([cellModel isKindOfClass:[MTBaseModel class]], @"cellModel必须为MTBaseModel的子类!");
+    NSAssert([cellModel isKindOfClass:[MTBaseCellModel class]], @"cellModel必须为MTBaseModel的子类!");
     _cellModel = cellModel;
     [self updateCustomView];
 }

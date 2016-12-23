@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "MTBaseModel.h"
+#import "MTBaseCellModel.h"
 #import "UITableViewRowAction+Image.h"
 
 @interface MTBaseCell : UITableViewCell

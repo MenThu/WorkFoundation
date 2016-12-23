@@ -6,8 +6,8 @@
 //  Copyright © 2016年 MenThu. All rights reserved.
 //
 
-#import "MTBaseModel.h"
+#import "MTBaseCellModel.h"
 
-@implementation MTBaseModel
+@implementation MTBaseCellModel
 
 @end

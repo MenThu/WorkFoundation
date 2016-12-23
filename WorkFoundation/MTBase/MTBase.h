@@ -16,5 +16,6 @@
 #import "MTBaseNavigationVC.h"
 #import "MTBaseCollectionVC.h"
 #import "MTBaseTabVC.h"
+#import "MTPageControlView.h"
 
 #endif /* MTBase_h */

@@ -47,6 +47,7 @@ static NSString *cellReuseId = @"cellReuseId";
     self.numofLine = 1;
     self.isFromXib = YES;
     self.isScrollDirectionHorizon = YES;
+    self.itemWidth = 0.f;
     self.itemHeight = 50.f;
     self.marginArray = @[@(0),@(0),@(0),@(0)];
     self.sectionInset = UIEdgeInsetsZero;
@@ -70,8 +71,6 @@ static NSString *cellReuseId = @"cellReuseId";
 
 //告诉MTBaseCollectionView上述变量开始布局
 - (void)startLayout{
-    NSAssert([self.cellClassName isExist], @"cellClassName不能为空！！！");
-    
     //初始化layout
     UICollectionView *collectionView = self.collectionView;
     UICollectionViewFlowLayout *layout = (UICollectionViewFlowLayout *)collectionView.collectionViewLayout;
@@ -89,10 +88,13 @@ static NSString *cellReuseId = @"cellReuseId";
     }
     
     
-    if (self.isFromXib) {
-        [collectionView registerNib:[UINib nibWithNibName:self.cellClassName bundle:nil] forCellWithReuseIdentifier:cellReuseId];
-    }else{
-        [collectionView registerClass:NSClassFromString(self.cellClassName) forCellWithReuseIdentifier:cellReuseId];
+    
+    if ([self.cellClassName isExist]) {
+        if (self.isFromXib) {
+            [collectionView registerNib:[UINib nibWithNibName:self.cellClassName bundle:nil] forCellWithReuseIdentifier:cellReuseId];
+        }else{
+            [collectionView registerClass:NSClassFromString(self.cellClassName) forCellWithReuseIdentifier:cellReuseId];
+        }
     }
     
     CGFloat top = self.marginArray[0].floatValue;
@@ -101,12 +103,17 @@ static NSString *cellReuseId = @"cellReuseId";
     CGFloat right = -self.marginArray[3].floatValue;
     
     MJWeakSelf;
-    [collectionView mas_makeConstraints:^(MASConstraintMaker *make) {
+    //因为startLayout可能会被多次调用，所以这里使用mas_remakeConstraints
+    [collectionView mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(weakSelf).offset(top);
         make.left.equalTo(weakSelf).offset(left);
         make.bottom.equalTo(weakSelf).offset(bottom);
         make.right.equalTo(weakSelf).offset(right);
     }];
+}
+
+- (void)scrollView:(UICollectionView *)collectionView{
+    
 }
 
 //获取视图高度
@@ -124,8 +131,9 @@ static NSString *cellReuseId = @"cellReuseId";
 
 - (void)layoutSubviews{
     [super layoutSubviews];
-    //因为我设置numInaLine为cgfloat，所以这里numInaLine需要向上取整
-    CGFloat cellWidth = (self.width  - self.marginArray[1].floatValue - self.marginArray[3].floatValue - (ceilf(self.numInaLine) - 1) * self.horizonSpace) / self.numInaLine;
+    
+    //如果设置itemWidth就使用itemWidth,如果未设置，则由 (（宽度 - 左右间距 - 空隙）/ 个数 ) 得出
+    CGFloat cellWidth = (self.itemWidth > 0 ? self.itemWidth : (self.width  - self.marginArray[1].floatValue - self.marginArray[3].floatValue - (ceilf(self.numInaLine) - 1) * self.horizonSpace) / self.numInaLine);
     
     //计算itemSize
     UICollectionViewFlowLayout *layout = (UICollectionViewFlowLayout *)self.collectionView.collectionViewLayout;
@@ -133,6 +141,7 @@ static NSString *cellReuseId = @"cellReuseId";
     self.collectionView.collectionViewLayout = layout;
 }
 
+#pragma mark - Collectionview代理数据
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
     return self.collectionViewSource.count;
 }
@@ -142,6 +151,17 @@ static NSString *cellReuseId = @"cellReuseId";
     NSAssert([cell isKindOfClass:[MTBaseCollectionCell class]], @"cell必须为MTBaseCollectionCell的子类");
     cell.cellModel = self.collectionViewSource[indexPath.row];
     return cell;
+}
+
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
+    if (self.selectItem) {
+        self.selectItem(indexPath, collectionView);
+    }
+}
+
+#pragma mark - ScrollView的代理
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView{
+    [self scrollView:self.collectionView];
 }
 
 @end

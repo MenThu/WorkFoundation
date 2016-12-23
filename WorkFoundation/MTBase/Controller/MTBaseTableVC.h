@@ -7,7 +7,7 @@
 //
 
 #import "MTBaseVC.h"
-#import "MTBaseModel.h"
+#import "MTBaseCellModel.h"
 
 #define toDo 1
 
@@ -16,7 +16,7 @@
 /**
     table的数据源
  **/
-@property (nonatomic, strong) NSArray <MTBaseModel *> *tableSource;
+@property (nonatomic, strong) NSArray <MTBaseCellModel *> *tableSource;
 
 /**
     基类的tableView
