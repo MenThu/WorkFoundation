@@ -65,4 +65,13 @@ kSingletonH
 
 - (NSString *)priMyPath;
 
+/**
+ *  文件大小
+ *
+ *  @param fileName 全路径名
+ *
+ *  @return 返回文件大小
+ */
+- (NSString *)fileSize:(NSString *)fileName;
+
 @end

@@ -24,7 +24,7 @@
 #import "ConvenientView.h"
 
 #import "MyTimer.h"
-#import "XHSoundRecorder.h"
+#import "MTRecordManager.h"
 #import "THObserver.h"
 #import "Singleton.h"
 #import "amrFileCodec.h"
