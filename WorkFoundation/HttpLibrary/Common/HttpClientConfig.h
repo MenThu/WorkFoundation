@@ -10,33 +10,31 @@
 
 @interface HttpClientConfig : NSObject
 
+/**
+ *  请使用次方法获取实例，并网络请求前设置好相关配置。
+ *
+ *  @return Config对象。
+ */
+kSingletonH
 
 /**
  *  根URL，后拼接接口地址。
  */
-@property (nonatomic, copy) NSString *baseURLString;
+@property (nonatomic, copy) NSURL *baseURL;
 
 /**
  *  统一的超时时间设置。默认15s。
  */
 @property (nonatomic, assign) NSTimeInterval timeout;
 
-
 /**
- *  返回的业务数据Key值
+ *  包含内容的key值
  */
-@property (nonatomic, copy) NSString *returnContentKey;
+@property (nonatomic, copy) NSString *contentKey;
 
 /**
- *  服务器反悔成功的status码。默认为0；
+ *  服务器返回成功的status码。默认为0；
  */
 @property (nonatomic, assign) NSInteger successStatus;
-
-/**
- *  请使用次方法获取实例，并网络请求前设置好相关配置。
- *
- *  @return Config对象。
- */
-+ (instancetype)sharedInstance;
 
 @end

@@ -21,108 +21,187 @@ static HttpClient *_httpClient = nil;
 
 @interface HttpClient ()
 
-@property (nonatomic, strong, readwrite) AFHTTPSessionManager *manager;
-@property (nonatomic, weak) UIWindow* appWindow;
+@property (nonatomic, strong) AFHTTPSessionManager *manager;
 
 @end
 
 
 @implementation HttpClient
 
-+ (instancetype)sharedInstance {
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        _httpClient = [[HttpClient alloc] init];
-    });
-    return _httpClient;
-}
+kSingletonM
 
 - (instancetype)init {
-    self = [super init];
-    if (self) {
+    if (self = [super init]) {
+        /**
+            https适配
+         **/
+        AFSecurityPolicy *policy = [AFSecurityPolicy policyWithPinningMode:AFSSLPinningModeNone];
+        policy.allowInvalidCertificates = NO;
+        policy.validatesDomainName = NO;
+        
+        /**
+            超时时间
+         **/
         NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
         configuration.timeoutIntervalForRequest = [HttpClientConfig sharedInstance].timeout;
-        _manager= [[AFHTTPSessionManager alloc] initWithBaseURL:[NSURL URLWithString:[HttpClientConfig sharedInstance].baseURLString] sessionConfiguration:configuration];
-        _manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json", @"text/json", @"text/javascript", @"text/html", nil];
-        AFSecurityPolicy *policy = [AFSecurityPolicy policyWithPinningMode:AFSSLPinningModeNone];
-//        policy.allowInvalidCertificates = YES;
-//        policy.validatesDomainName = YES;
-//        NSString *cerPath = @"";
-//        NSData *cerData = [NSData dataWithContentsOfFile:cerPath];
-//        SecCertificateRef certificate = SecCertificateCreateWithData(NULL, (__bridge CFDataRef)(cerData));
-//        policy.pinnedCertificates = [NSSet setWithObject:CFBridgingRelease(certificate)];
+        
+        _manager= [[AFHTTPSessionManager alloc] initWithBaseURL:[HttpClientConfig sharedInstance].baseURL sessionConfiguration:configuration];
         _manager.securityPolicy = policy;
-      
-        _manager.securityPolicy.allowInvalidCertificates = YES;
-        [_manager.securityPolicy setValidatesDomainName:NO];
-        _appWindow = [UIApplication sharedApplication].keyWindow;
+        _manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json", @"text/json", @"text/javascript", @"text/html", nil];
     }
     return self;
 }
 
-- (NSURLSessionTask *)post:(HttpRequest *)request finish:(finishBlock)reponse fail:(finishBlock)failBlock error:(finishBlock)errorBlock isShowProgress:(BOOL)isShow
-{
-    @weakify(self);
-    MBProgressHUD *hub = nil;
-    if (isShow) {
-        hub = [MBProgressHUD showHUDAddedTo:self.appWindow animated:YES];
+- (NSURLSessionTask *)get:(HttpRequest *)request blockView:(UIView *)blockView finish:(finishBlock)reponse {
+    
+    MBProgressHUD *hud = nil;
+    if (blockView != nil && [blockView isKindOfClass:[UIView class]]) {
+        //遮挡
+        hud = [MBProgressHUD showHUDAddedTo:blockView animated:YES];
+        hud.removeFromSuperViewOnHide = YES;
     }
     
+    
+    @weakify(self);
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated"
+    NSURLSessionDataTask *task = [self.manager GET:request.path parameters:request.params success:^(NSURLSessionDataTask *_Nonnull task, id _Nonnull responseObject) {
+#pragma clang diagnostic pop
+        
+        if (blockView != nil && [blockView isKindOfClass:[UIView class]] && hud != nil) {
+            //取消遮挡
+            [hud hideAnimated:YES];
+        }
+        
+        //与后台通讯成功
+        @strongify(self);
+        HttpResponse *response = [self responseWithJson:responseObject];
+        reponse(response);
+    } failure:^(NSURLSessionDataTask *_Nullable task, NSError *_Nonnull error) {
+        
+        if (blockView != nil && [blockView isKindOfClass:[UIView class]] && hud != nil) {
+            //取消遮挡
+            [hud hideAnimated:YES];
+        }
+        
+        //与后台通讯失败 打印日志
+        MyLog(@"NetError:[%@]", error);
+        HttpResponse *response = [HttpResponse new];
+        response.error = error;
+        response.emptyResult = YES;
+        reponse(response);
+    }];
+    return task;
+}
+
+- (NSURLSessionTask *)post:(HttpRequest *)request blockView:(UIView *)blockView finish:(finishBlock)reponse {
+    
+    MBProgressHUD *hud = nil;
+    if (blockView != nil && [blockView isKindOfClass:[UIView class]]) {
+        //遮挡
+        hud = [MBProgressHUD showHUDAddedTo:blockView animated:YES];
+        hud.removeFromSuperViewOnHide = YES;
+    }
+    
+    @weakify(self);
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wdeprecated"
     NSURLSessionDataTask *task = [self.manager POST:request.path parameters:request.params success:^(NSURLSessionDataTask *_Nonnull task, id _Nonnull responseObject) {
 #pragma clang diagnostic pop
         
-        @strongify(self);
-        
-        [hub hideAnimated:YES];
-        
-        HttpResponse *fromServer = [self responseWithJson:responseObject];
-        if (fromServer.status != [HttpClientConfig sharedInstance].successStatus) {
-            failBlock(fromServer);
-        }else{
-            reponse(fromServer);
+        if (blockView != nil && [blockView isKindOfClass:[UIView class]] && hud != nil) {
+            //取消遮挡
+            [hud hideAnimated:YES];
         }
         
+        //与后台通讯成功
+        @strongify(self);
+        HttpResponse *response = [self responseWithJson:responseObject];
+        reponse(response);
     } failure:^(NSURLSessionDataTask *_Nullable task, NSError *_Nonnull error) {
-        [hub hideAnimated:YES];
+        
+        if (blockView != nil && [blockView isKindOfClass:[UIView class]] && hud != nil) {
+            //取消遮挡
+            [hud hideAnimated:YES];
+        }
+        
+        //与后台通讯失败 打印日志
+        MyLog(@"NetError:[%@]", error);
         HttpResponse *response = [HttpResponse new];
         response.error = error;
-        if (error.userInfo && [error.userInfo isKindOfClass:[NSDictionary class]]) {
-            response.msg = [NSString stringWithFormat:@"%@",error.userInfo];
-        }else{
-            response.msg = @"AFNetWorking层错误";
-        }
-        errorBlock(response);
+        response.emptyResult = YES;
+        reponse(response);
     }];
     return task;
 }
 
-- (HttpResponse *)responseWithJson:(id)responseObj {
+- (NSURLSessionTask *)uploadWith:(HttpRequest *)request blockView:(UIView *)blockView finish:(finishBlock)reponse {
     
+    MBProgressHUD *hud = nil;
+    if (blockView != nil && [blockView isKindOfClass:[UIView class]]) {
+        //遮挡
+        hud = [MBProgressHUD showHUDAddedTo:blockView animated:YES];
+        hud.removeFromSuperViewOnHide = YES;
+    }
+    
+    @weakify(self);
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated"
+    NSURLSessionDataTask *task = [self.manager POST:request.path parameters:request.params constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+#pragma clang diagnostic pop
+        NSDictionary *imageDict = request.imageDataAndKey;
+        NSArray *keyArray = [imageDict allKeys];
+        for (NSString *key in keyArray) {
+            NSData *data = (NSData *)[imageDict objectForKey:key];
+            [formData appendPartWithFileData:data name:key fileName:[NSString stringWithFormat:@"%@.jpg",key] mimeType:@"jpg"];
+        }
+    } success:^(NSURLSessionDataTask *_Nonnull task, id _Nonnull responseObject) {
+        
+        if (blockView != nil && [blockView isKindOfClass:[UIView class]] && hud != nil) {
+            //取消遮挡
+            [hud hideAnimated:YES];
+        }
+        
+        //与后台通讯成功
+        @strongify(self);
+        HttpResponse *response = [self responseWithJson:responseObject];
+        reponse(response);
+    } failure:^(NSURLSessionDataTask *_Nullable task, NSError *_Nonnull error){
+        
+        if (blockView != nil && [blockView isKindOfClass:[UIView class]] && hud != nil) {
+            //取消遮挡
+            [hud hideAnimated:YES];
+        }
+        
+        //与后台通讯失败
+        MyLog(@"NetError:[%@]", error);
+        HttpResponse *response = [HttpResponse new];
+        response.error = error;
+        response.emptyResult = YES;
+        reponse(response);
+    }];
+    return task;
+}
+
+#pragma mark - 内部方法
+- (HttpResponse *)responseWithJson:(id)responseObj {
     HttpResponse *response = [HttpResponse mj_objectWithKeyValues:responseObj];
     if (response.status != [HttpClientConfig sharedInstance].successStatus) {
-        NSError *error = [NSError errorWithDomain:kHttpClientErrorDomain code:response.status userInfo:@{NSLocalizedDescriptionKey : [response.msg isExist] ? response.msg : @"出现未知错误了，请重试。"}];
+        NSError *error = [NSError errorWithDomain:kHttpClientErrorDomain code:response.status userInfo:@{NSLocalizedDescriptionKey : [response.msg isExist] ? response.msg : @"网络请求失败了，请重试。"}];
         response.error = error;
-        return response;
-    }
-    
-    id result = nil;
-    NSString *keyString = [HttpClientConfig sharedInstance].returnContentKey;
-    if ([keyString isExist]) {
-        result = responseObj[keyString];
-    }else{
-        result = responseObj[@"success_response"];
-    }
-    
-    
-    response.rawResult = result;
-    if (result && ![result isKindOfClass:[NSNull class]]) {
-        response.emptyResult = NO;
-    }else{
         response.emptyResult = YES;
+    }else{
+        id result = responseObj[[HttpClientConfig sharedInstance].contentKey];
+        if (result && ![result isKindOfClass:[NSNull class]] && [result isKindOfClass:[NSDictionary class]]) {
+            response.rawResult = result;
+            response.emptyResult = NO;
+        } else {
+            response.emptyResult = YES;
+        }
+        response.error = nil;
     }
     return response;
 }
+
 
 @end

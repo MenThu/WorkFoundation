@@ -27,9 +27,10 @@
 @property(nonatomic, strong) id params;
 
 /**
- *  文件上传的block
+ *  文件上传的参数
+ *  图片的key和图片数据
  */
-//@property (nonatomic, copy) AFConstructingBlock constrauctingBlock;
+@property (nonatomic, strong) NSDictionary *imageDataAndKey;
 
 /**
  *  是否从缓存获取

@@ -26,28 +26,9 @@
 }
 
 + (instancetype)requestWithPath:(NSString *)path contentKey:(NSString *)key {
-    NSAssert1([key isExist], @"%@不能为空", @"contentKey");
-    
     HttpRequest *request = [self requestWithPath:path];
-    [request setValue:key forKeyPath:@"contentKey"];
+    request.contentKey = key;
     return request;
-}
-
-- (void)setParams:(id)params
-{
-#if IS_JZ100
-    
-    NSMutableDictionary *tempParams = [NSMutableDictionary dictionary];
-    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:params options:NSJSONWritingPrettyPrinted error:nil];
-    NSString *jsonString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
-    tempParams[@"params"] = jsonString;
-    _params = tempParams;
-    
-#else
-    
-    _parmas = params;
-    
-#endif
 }
 
 @end

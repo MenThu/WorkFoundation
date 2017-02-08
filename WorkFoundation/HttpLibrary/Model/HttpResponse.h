@@ -50,6 +50,9 @@
  */
 @property(nonatomic, assign) BOOL fromCache;
 
+/**
+ *  错误
+ */
 @property(nonatomic, strong) NSError *error;
 
 

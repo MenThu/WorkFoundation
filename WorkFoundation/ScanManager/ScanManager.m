@@ -45,8 +45,8 @@ kSingletonM
 - (void)startScanInAlbum:(ScanRezult)scanBlock
 {
     self.endBlock = scanBlock;
-    [[CameraManager shareInstance] changeDelegate:self];
-    [[CameraManager shareInstance] takePhotoUseType:FromAlbum With:nil];
+    [[CameraManager sharedInstance] changeDelegate:self];
+    [[CameraManager sharedInstance] takePhotoUseType:ManagerTypeAlbum With:nil];
 }
 
 #pragma mark- ImagePickerController delegate

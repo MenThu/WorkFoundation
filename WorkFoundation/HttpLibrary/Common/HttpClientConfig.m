@@ -13,13 +13,14 @@ static HttpClientConfig *_config = nil;
 @implementation HttpClientConfig
 
 
-+ (instancetype)sharedInstance
-{
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        _config = [[self alloc] init];
-    });
-    return _config;
+kSingletonM
+
+- (instancetype)init{
+    if (self = [super init]) {
+        self.timeout = 15;
+        self.successStatus = 0;
+    }
+    return self;
 }
 
 

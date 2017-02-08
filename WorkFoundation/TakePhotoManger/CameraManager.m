@@ -21,15 +21,7 @@
 
 @implementation CameraManager
 
-+ (instancetype)shareInstance
-{
-    static id selfPoint = nil;
-    static dispatch_once_t predicate;
-    dispatch_once(&predicate, ^{
-        selfPoint = [[self alloc] init];
-    });
-    return selfPoint;
-}
+kSingletonM
 
 - (instancetype)init
 {
@@ -56,28 +48,33 @@
 {
     self.imageBlock = returnImage;
     switch (type) {
-        case FromAlbum:
+        case ManagerTypeAlbum:
             //从相册中获取
         {
             if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypePhotoLibrary]) {
                 _imagePickerController.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
                 [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:_imagePickerController animated:YES completion:nil];
             }else{
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated"
                 UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"提示" message:@"该设备不支持选取照片" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+#pragma clang diagnostic pop
                 [alert show];
             }
-           
         }
             break;
             
-        case FromCamera:
+        case ManagerTypeCamera:
             //拍摄照片
         {
             _imagePickerController.sourceType = UIImagePickerControllerSourceTypeCamera;
             if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
                 [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:_imagePickerController animated:YES completion:nil];
             }else {
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated"
                 UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"提示" message:@"该设备没有照相机" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+#pragma clang diagnostic pop
                 [alert show];
             }
         }

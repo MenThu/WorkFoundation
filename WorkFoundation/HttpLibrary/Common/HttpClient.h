@@ -10,6 +10,7 @@
 #import "AFHTTPSessionManager.h"
 #import "HttpRequest.h"
 #import "HttpResponse.h"
+#import "Singleton.h"
 
 FOUNDATION_EXTERN NSString *const kHttpClientErrorDomain;
 
@@ -17,11 +18,27 @@ typedef void(^finishBlock)(HttpResponse* response);
 
 @interface HttpClient : NSObject
 
+kSingletonH;
 
-@property (nonatomic, strong, readonly) AFHTTPSessionManager *manager;
+/**
+ *  get请求
+ *  @params request 请求
+ *  @params reponse 返回的block
+ **/
+- (NSURLSessionTask *)get:(HttpRequest *)request blockView:(UIView *)blockView finish:(finishBlock)reponse;
 
-+ (instancetype)sharedInstance;
+/**
+ *  post请求
+ *  @params request 请求
+ *  @params reponse 返回的block
+ **/
+- (NSURLSessionTask *)post:(HttpRequest *)request blockView:(UIView *)blockView finish:(finishBlock)reponse;
 
-- (NSURLSessionTask *)post:(HttpRequest *)request finish:(finishBlock)reponse fail:(finishBlock)failMsg error:(finishBlock)errorBlock isShowProgress:(BOOL)isShow;
+/**
+ *  上传文件
+ *  @params request 请求
+ *  @params reponse 返回的block
+ **/
+- (NSURLSessionTask *)uploadWith:(HttpRequest *)request blockView:(UIView *)blockView finish:(finishBlock)reponse;
 
 @end

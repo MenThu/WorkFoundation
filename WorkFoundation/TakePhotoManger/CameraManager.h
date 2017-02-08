@@ -7,18 +7,19 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "Singleton.h"
 
-typedef void(^CameraPhoto)(id image);
+typedef void(^CameraPhoto)(UIImage *image);
 
 typedef enum : NSUInteger {
-    FromCamera,
-    FromAlbum
+    ManagerTypeCamera,
+    ManagerTypeAlbum
 } ManagerType;
+
 
 @interface CameraManager : NSObject
 
-+ (instancetype)shareInstance;
-
+kSingletonH;
 
 //拍摄照片或者从相册中读取照片
 - (void)takePhotoUseType:(ManagerType)type With:(CameraPhoto)returnImage;

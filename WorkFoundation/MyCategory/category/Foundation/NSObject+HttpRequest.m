@@ -9,26 +9,22 @@
 #import "NSObject+HttpRequest.h"
 #import "NSString+isExist.h"
 #import "MyLog.h"
+#import "WorkFoundation.h"
 
 
 @implementation NSObject (HttpRequest)
 
-
-+ (void)requestServerWith:(HttpRequest *)request successReturn:(finishBlock)success  isShowProgress:(BOOL)isShow
++ (void)post:(HttpRequest *)request blockView:(UIView *)blockView finish:(finishBlock)finishBlock
 {
-    [[HttpClient sharedInstance] post:request finish:^(HttpResponse *response) {
-        
-        success([self dealDataWith:response ContentKey:request.contentKey]);
-        
-    } fail:^(HttpResponse *response) {
-        
-        MyLog(@"AppHttpFail : %@", response);
-        
-    } error:^(HttpResponse *response) {
-        
-        MyLog(@"AFNetWorkingError : %@", response);
-        
-    } isShowProgress:isShow];
+    [[HttpClient sharedInstance] post:request blockView:blockView finish:^(HttpResponse *response) {
+        //这里是未处理的业务数据 将rawData处理成rezultData
+        if (!response.emptyResult) {
+            //服务端返回不为空
+            finishBlock([self dealDataWith:response ContentKey:request.contentKey]);
+        }else{
+            finishBlock(response);
+        }
+    }];
 }
 
 + (HttpResponse *)dealDataWith:(HttpResponse *)response ContentKey:(NSString *)keyString
