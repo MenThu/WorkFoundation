@@ -8,7 +8,6 @@
 
 #import "MTBaseTabVC.h"
 #import "MTBaseNavigationVC.h"
-#import "HomePageVC.h"
 
 @interface MTBaseTabVC ()
 {
@@ -33,7 +32,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    HomePageVC *homePage = [[HomePageVC alloc] init];
+    UIViewController *homePage = [[UIViewController alloc] init];
     [self addModel:homePage normalImage:@"01_dark" selectImage:@"01_light" tarbarItemName:@"首页"];
     
     UIViewController *homePage1 = [[UIViewController alloc] init];
