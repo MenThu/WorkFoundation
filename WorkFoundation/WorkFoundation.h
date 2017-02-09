@@ -24,6 +24,7 @@
 #import "ConvenientView.h"
 
 #import "MyTimer.h"
+#import "MTPlayer.h"
 #import "MTRecordManager.h"
 #import "THObserver.h"
 #import "Singleton.h"
@@ -35,5 +36,6 @@
 #import "ConnectStatusManager.h"
 #import "MTBase.h"
 #import "GlobalMacro.h"
+
 
 #endif

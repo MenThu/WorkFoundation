@@ -43,4 +43,6 @@
  **/
 - (NSAttributedString *)lineSpace:(CGFloat)lineSpace strFont:(UIFont *)font limitWidth:(CGFloat)width strNeedHeight:(CGFloat *)height;
 
++ (NSString *)convertTime:(float)second;
+
 @end

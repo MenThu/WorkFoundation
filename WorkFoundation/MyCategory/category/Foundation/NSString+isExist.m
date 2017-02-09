@@ -68,4 +68,16 @@
     return attrString;
 }
 
++ (NSString *)convertTime:(float)second{
+    NSDate *d = [NSDate dateWithTimeIntervalSince1970:second];
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    dateFormatter.timeZone = [NSTimeZone timeZoneWithName:@"GMT"];
+    if (second/3600 >= 1) {
+        [dateFormatter setDateFormat:@"HH:mm:ss"];
+    } else {
+        [dateFormatter setDateFormat:@"mm:ss"];
+    }
+    return [dateFormatter stringFromDate:d];
+}
+
 @end

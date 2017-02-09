@@ -1,3 +1,3 @@
 git add *
-git commit -a "default"
+git commit -m "default"
 git push origin
