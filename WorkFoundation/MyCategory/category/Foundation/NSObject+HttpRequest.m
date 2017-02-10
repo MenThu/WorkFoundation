@@ -27,6 +27,20 @@
     }];
 }
 
+
++ (void)get:(HttpRequest *)request blockView:(UIView *)blockView finish:(finishBlock)finishBlock{
+    [[HttpClient sharedInstance] get:request blockView:blockView finish:^(HttpResponse *response) {
+        //这里是未处理的业务数据 将rawData处理成rezultData
+        if (!response.emptyResult) {
+            //服务端返回不为空
+            finishBlock([self dealDataWith:response ContentKey:request.contentKey]);
+        }else{
+            finishBlock(response);
+        }
+    }];
+}
+
+#pragma mark - 内部方法
 + (HttpResponse *)dealDataWith:(HttpResponse *)response ContentKey:(NSString *)keyString
 {
     id result = nil;

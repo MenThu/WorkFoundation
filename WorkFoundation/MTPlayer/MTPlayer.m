@@ -9,7 +9,6 @@
 #import "MTPlayer.h"
 #import <AVFoundation/AVFoundation.h>
 #import <Masonry.h>
-#import "NSString+Temp.h"
 
 typedef enum : NSUInteger {
     MTVideoStatusInitial, //播放器初始化状态，未点击播放，暂停，也没有暂停

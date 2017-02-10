@@ -28,7 +28,6 @@
 #import "MTRecordManager.h"
 #import "THObserver.h"
 #import "Singleton.h"
-#import "amrFileCodec.h"
 #import "FileManager.h"
 #import "ScanManager.h"
 #import "ShakeManager.h"
@@ -36,6 +35,7 @@
 #import "ConnectStatusManager.h"
 #import "MTBase.h"
 #import "GlobalMacro.h"
+#import "MTLivePlayer.h"
 
 
 #endif
