@@ -15,6 +15,55 @@
     return [[self stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] length] != 0;
 }
 
+- (BOOL)isPhoneExist{
+    NSString *phoneNum = [self stringByReplacingOccurrencesOfString:@" " withString:@""];
+    if (phoneNum.length != 11){
+        return NO;
+    }else{
+        /**
+         * 移动号段正则表达式
+         */
+        NSString *CM_NUM = @"^((13[4-9])|(147)|(15[0-2,7-9])|(178)|(18[2-4,7-8]))\\d{8}|(1705)\\d{7}$";
+        /**
+         * 联通号段正则表达式
+         */
+        NSString *CU_NUM = @"^((13[0-2])|(145)|(15[5-6])|(176)|(18[5,6]))\\d{8}|(1709)\\d{7}$";
+        /**
+         * 电信号段正则表达式
+         */
+        NSString *CT_NUM = @"^((133)|(153)|(177)|(18[0,1,9]))\\d{8}$";
+        NSPredicate *pred1 = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", CM_NUM];
+        BOOL isMatch1 = [pred1 evaluateWithObject:phoneNum];
+        NSPredicate *pred2 = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", CU_NUM];
+        BOOL isMatch2 = [pred2 evaluateWithObject:phoneNum];
+        NSPredicate *pred3 = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", CT_NUM];
+        BOOL isMatch3 = [pred3 evaluateWithObject:phoneNum];
+        if (isMatch1 || isMatch2 || isMatch3) {
+            return YES;
+        }else{
+            return NO;
+        }
+    }
+}
+
+
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
+- (void)makeCall{
+    NSMutableString *phoneUrlScheme = [[NSMutableString alloc] initWithFormat:@"tel:%@",self];
+    if ([UIDevice currentDevice].systemVersion.floatValue >= 10) {
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:phoneUrlScheme] options:@{} completionHandler:^(BOOL success) {
+            if (success) {
+                MyLog(@"yes");
+            }else{
+                MyLog(@"no");
+            }
+        }];
+    }else{
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:phoneUrlScheme]];
+    }
+}
+#pragma clang diagnostic pop
 
 - (CGFloat)widthWithFont:(UIFont *)font limitHeight:(CGFloat)height{
     NSMutableDictionary *dic = [NSMutableDictionary dictionaryWithObject:font forKey:NSFontAttributeName];
@@ -78,6 +127,42 @@
         [dateFormatter setDateFormat:@"mm:ss"];
     }
     return [dateFormatter stringFromDate:d];
+}
+
+
+- (CGFloat)widthForFont:(UIFont *)font {
+    CGSize size = [self sizeForFont:font size:CGSizeMake(HUGE, HUGE) mode:NSLineBreakByWordWrapping];
+    return size.width;
+}
+
+- (CGFloat)heightForFont:(UIFont *)font width:(CGFloat)width {
+    CGSize size = [self sizeForFont:font size:CGSizeMake(width, HUGE) mode:NSLineBreakByWordWrapping];
+    return size.height;
+}
+
+
+- (CGSize)sizeForFont:(UIFont *)font size:(CGSize)size mode:(NSLineBreakMode)lineBreakMode {
+    CGSize result;
+    if (!font) font = [UIFont systemFontOfSize:12];
+    if ([self respondsToSelector:@selector(boundingRectWithSize:options:attributes:context:)]) {
+        NSMutableDictionary *attr = [NSMutableDictionary new];
+        attr[NSFontAttributeName] = font;
+        if (lineBreakMode != NSLineBreakByWordWrapping) {
+            NSMutableParagraphStyle *paragraphStyle = [NSMutableParagraphStyle new];
+            paragraphStyle.lineBreakMode = lineBreakMode;
+            attr[NSParagraphStyleAttributeName] = paragraphStyle;
+        }
+        CGRect rect = [self boundingRectWithSize:size
+                                         options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading
+                                      attributes:attr context:nil];
+        result = rect.size;
+    } else {
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
+        result = [self sizeWithFont:font constrainedToSize:size lineBreakMode:lineBreakMode];
+#pragma clang diagnostic pop
+    }
+    return result;
 }
 
 @end

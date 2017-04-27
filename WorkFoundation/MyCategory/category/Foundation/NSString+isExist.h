@@ -12,7 +12,6 @@
 
 - (BOOL)isExist;
 
-
 /**
  *  根据字体 高度，计算字体所需宽度
  *  font    :   字体
@@ -44,5 +43,20 @@
 - (NSAttributedString *)lineSpace:(CGFloat)lineSpace strFont:(UIFont *)font limitWidth:(CGFloat)width strNeedHeight:(CGFloat *)height;
 
 + (NSString *)convertTime:(float)second;
+
+/**
+ *
+ *  计算字符串高度宽度
+ *
+ **/
+- (CGFloat)heightForFont:(UIFont *)font width:(CGFloat)width;
+- (CGFloat)widthForFont:(UIFont *)font;
+- (CGSize)sizeForFont:(UIFont *)font
+                 size:(CGSize)size
+                 mode:(NSLineBreakMode)lineBreakMode;
+
+- (BOOL)isPhoneExist;
+
+- (void)makeCall;
 
 @end

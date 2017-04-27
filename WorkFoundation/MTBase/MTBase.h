@@ -17,5 +17,6 @@
 #import "MTBaseCollectionVC.h"
 #import "MTBaseTabVC.h"
 #import "MTPageControlView.h"
+#import "MTBaseAutoHeightTableVC.h"
 
 #endif /* MTBase_h */
