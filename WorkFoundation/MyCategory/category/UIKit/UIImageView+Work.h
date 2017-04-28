@@ -11,7 +11,8 @@
 @interface UIImageView (Work)
 
 /**
- 裁剪图片
+ *  裁剪图片
+ *  clipPath    被裁剪的路径一定是相对UIImageView本身的,所以path应该是坐标转换后的值
  **/
 - (void)clip:(UIBezierPath *)clipPath;
 
