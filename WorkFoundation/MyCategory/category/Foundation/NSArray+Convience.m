@@ -15,4 +15,12 @@
     return [[NSSet setWithArray:self] allObjects];
 }
 
+- (BOOL)isExist{
+    if ([self isKindOfClass:[NSArray class]] && self.count > 0) {
+        return YES;
+    }else{
+        return NO;
+    }
+}
+
 @end

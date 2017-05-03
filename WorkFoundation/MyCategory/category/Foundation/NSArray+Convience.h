@@ -12,4 +12,6 @@
 
 - (NSArray *)RemoveDuplicate;
 
+- (BOOL)isExist;
+
 @end
