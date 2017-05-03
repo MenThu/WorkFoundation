@@ -67,8 +67,8 @@ kSingletonM
         case ManagerTypeCamera:
             //拍摄照片
         {
-            _imagePickerController.sourceType = UIImagePickerControllerSourceTypeCamera;
             if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
+                _imagePickerController.sourceType = UIImagePickerControllerSourceTypeCamera;
                 [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:_imagePickerController animated:YES completion:nil];
             }else {
 #pragma clang diagnostic push
