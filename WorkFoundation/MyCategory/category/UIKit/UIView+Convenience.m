@@ -7,6 +7,7 @@
 //
 
 #import "UIView+Convenience.h"
+#import "UIColor+HexColor.h"
 
 @implementation UIView (Convenience)
 
@@ -124,6 +125,76 @@
     UIImage *snapshootImage = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     return snapshootImage;
+}
+
+- (void)hideAllMB{
+    for (MBProgressHUD *subView in self.subviews) {
+        if ([subView isKindOfClass:[MBProgressHUD class]]) {
+            [subView hide:NO];
+        }
+    }
+}
+
+- (void)showMessage:(NSString *)message offset:(CGFloat)offset{
+    //显示提示信息
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self animated:YES];
+    hud.tag = 1000;
+    hud.userInteractionEnabled = YES;
+    UITapGestureRecognizer *removeTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(remove:)];
+    [hud addGestureRecognizer:removeTap];
+    hud.mode = MBProgressHUDModeText;
+    
+    if ([self isSet2DetailTextWith:message andFont:hud.labelFont]) {
+        hud.detailsLabelText = message;
+    }else{
+        hud.labelText = message;
+    }
+    hud.margin = 10.f;
+    hud.yOffset = offset;
+    hud.removeFromSuperViewOnHide = YES;
+    [hud hide:YES afterDelay:1.f];
+}
+
+- (void)showMessageInMiddleOfView:(NSString *)message{
+    [self showMessage:message offset:0];
+}
+
+- (BOOL)isSet2DetailTextWith:(NSString *)message andFont:(UIFont *)font{
+    BOOL isSet2Detail;
+    UILabel *label = [[UILabel alloc] init];
+    label.font = font;
+    label.text = message;
+    label.numberOfLines = 0;
+    CGSize maxSize = CGSizeMake(MAXFLOAT, font.lineHeight);
+    CGSize fitSize = [label sizeThatFits:maxSize];
+    if (fitSize.width >= MTScreenSize().width-20) {
+        isSet2Detail = YES;
+    }else{
+        isSet2Detail = NO;
+    }
+    return isSet2Detail;
+}
+
+- (void)remove:(UITapGestureRecognizer *)tap{
+    UIView *tapView = [tap view];
+    MBProgressHUD *hud = (MBProgressHUD *)tapView;
+    if ([hud isKindOfClass:[MBProgressHUD class]]) {
+        [hud hide:YES];
+    }
+}
+
+- (void)removeAllSubviews {
+    while (self.subviews.count) {
+        [self.subviews.lastObject removeFromSuperview];
+    }
+}
+
+- (void)addShadowWith:(ShadowInfo *)info{
+    self.clipsToBounds = NO;
+    self.layer.shadowColor = [UIColor colorWithHex:info.colorHexStr].CGColor;
+    self.layer.shadowRadius = info.shadowRadius;
+    self.layer.shadowOffset = info.shadowOffset;
+    self.layer.shadowOpacity = info.Opacity;
 }
 
 @end
