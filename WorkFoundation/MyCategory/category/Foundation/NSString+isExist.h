@@ -55,8 +55,24 @@
                  size:(CGSize)size
                  mode:(NSLineBreakMode)lineBreakMode;
 
+/**
+ *  检查字符串是否为电话号码
+ **/
 - (BOOL)isPhoneExist;
 
+/**
+ *  拨打电话
+ **/
 - (void)makeCall;
+
+/**
+ *  时间转机器时间,单位秒(时间格式YYYY-MM-dd HH:mm:ss)
+ **/
+- (NSTimeInterval)conver2TimeInterval;
+
+/**
+ *  是否为整数
+ **/
+- (BOOL)isPureInt;
 
 @end
