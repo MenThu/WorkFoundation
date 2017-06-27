@@ -99,7 +99,7 @@ kSingletonM
 }
 
 #pragma mark - 录音
-- (void)startRecord:(void (^)(NSString *, CGFloat audioDuration))finishRecord{
+- (void)startRecord:(void (^)(NSString *fileName, CGFloat audioDuration))finishRecord{
     if (!finishRecord) {
         MyLog(@"finishRecord不能为空");
         return;
@@ -114,7 +114,7 @@ kSingletonM
     [_audioSession setCategory:AVAudioSessionCategoryRecord error:&error];
     NSAssert(error == nil, @"FILE[%s]\tLINE:[%d]\tERROR:[%@]", __FILE__, __LINE__, error);
     
-    MJWeakSelf;
+    MTWeakSelf;
     NSInteger check = [self checkAuthorization];
     if (check == 0) {
         //第一次申请
@@ -180,19 +180,23 @@ kSingletonM
 }
 
 - (void)endRecord{
-    if ([_audioRecoder isRecording]) {
-        _endRecordTime = CACurrentMediaTime();
-        [_audioRecoder stop];
-        _audioRecoder = nil;
-    }
+    _endRecordTime = CACurrentMediaTime();
+    [self stopAudioRecord];
 }
 
 - (void)cancelRecord{
     _endRecordStatus = 1;
     self.finishRecord = nil;
+    [self stopAudioRecord];
+}
+
+- (void)stopAudioRecord{
     if ([_audioRecoder isRecording]) {
         [_audioRecoder stop];
+        _audioRecoder = nil;
     }
+    AVAudioSession *session = [AVAudioSession sharedInstance];
+    [session setCategory:AVAudioSessionCategoryPlayback error:nil];
 }
 
 #pragma mark - 播放
@@ -201,7 +205,7 @@ kSingletonM
         MyLog(@"播放回调不允许为空");
         return;
     }
-    
+    self.finishPlay = finisPlay;
     NSError *error = nil;
     AVAudioSession *session = [AVAudioSession sharedInstance];
 //    [_audioSession setActive:YES error:&error];
@@ -220,7 +224,7 @@ kSingletonM
         //使用字节流进行播放
         _audioPlayer = [[AVAudioPlayer alloc] initWithData:filePathAndNameOrData error:&error];
     }else{
-        //使用文件进行播放
+        //使用本地文件进行播放
 #warning 判断文件是否存在
         _audioPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:[NSURL fileURLWithPath:filePathAndNameOrData] error:&error];
     }
@@ -250,7 +254,7 @@ kSingletonM
 //录音结束的代理
 - (void)audioRecorderDidFinishRecording:(AVAudioRecorder *)recorder successfully:(BOOL)flag {
     if (flag == YES && self.finishRecord != nil) {
-        self.finishRecord(_filePathAndName, _endRecordTime - _startRecordTime);
+        self.finishRecord(_filePathAndName, ceil(_endRecordTime - _startRecordTime));
         self.finishRecord = nil;
     }
     

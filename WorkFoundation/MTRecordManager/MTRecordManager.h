@@ -20,7 +20,7 @@ kSingletonH
 /**
     每次调用会生成一个新的录音文件，默认以系统时间命名
  **/
-- (void)startRecord:(void (^)(NSString *, CGFloat audioDuration))finishRecord;
+- (void)startRecord:(void (^)(NSString *fileName, CGFloat audioDuration))finishRecord;
 
 /**
     暂停录音
