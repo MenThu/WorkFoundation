@@ -23,9 +23,9 @@
 @property (nonatomic, assign) CGFloat dateLabelHeight;
 
 /**
- *  展开收起状态Label
+ *  展开收起状态btn
  **/
-@property (nonatomic, weak) UILabel *statusLabel;
+@property (nonatomic, weak) UIButton *statusBtn;
 
 /**
  *  周视图
@@ -78,16 +78,9 @@
 @property (nonatomic, assign) BOOL isSet2Middle;
 
 /**
- *  当前月在数组中的下表
+ *  当前展示的月在数组中的下表
  **/
 @property (nonatomic, assign) NSInteger indexOfCurrentMonth;
-
-/**
- *  一行日历表的高度
- **/
-@property (nonatomic, assign) CGFloat lineHeightOfDayCell;
-
-
 
 @end
 
@@ -103,52 +96,57 @@
 }
 
 - (void)prepareData{
-    self.foldStatus = 0;
+    _foldStatus = 0;
+    self.indexOfCurrentMonth = -1;
     self.isSet2Middle = NO;
     self.lineForFoldStatus = 1;
     self.weekArray = @[@(1), @(2), @(3), @(4), @(5), @(6), @(7)];
-    self.space = 5.f;
-    self.dateLabelHeight = 30.f;
+    self.space = 10.f;
+    self.dateLabelHeight = 45.f;
     self.dataArray = [self prepareDataForMonthView];
 }
 
 - (CGFloat)getHeight:(BOOL)isFold{
     NSInteger line = (isFold == YES ? self.lineForFoldStatus: 6);
-    CGFloat height = self.dateLabelHeight + self.weekViewHeight + self.lineHeightOfDayCell*line + self.space * 4;
+    CGFloat height = self.dateLabelHeight + self.weekViewHeight + LineHeight*line;
     return height;
 }
 
 - (void)configView{
     MTWeakSelf;
-    self.backgroundColor = [UIColor whiteColor];
+    self.backgroundColor = mtColor;
     self.clipsToBounds = YES;
+    
     //title
     UILabel *dateLabel = [UILabel new];
     dateLabel.userInteractionEnabled = YES;
     dateLabel.textAlignment = NSTextAlignmentCenter;
     dateLabel.font = [UIFont systemFontOfSize:13];
     dateLabel.textColor = [UIColor darkTextColor];
-    dateLabel.text = @"日历表";
+    CalendarMonth *model = self.dataArray[self.indexOfCurrentMonth];
+    dateLabel.text = [NSString stringWithFormat:@"%04d年%02d月", (int)model.year, (int)model.month];
+    dateLabel.backgroundColor = [UIColor whiteColor];
     UITapGestureRecognizer *foldOrUnfoldAct = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(changeFoldStatus)];
     [dateLabel addGestureRecognizer:foldOrUnfoldAct];
     [self addSubview:(_dateLabel = dateLabel)];
     
     //展开(收起)
-    UILabel *statusLabel = [UILabel new];
-    statusLabel.userInteractionEnabled = NO;
-    statusLabel.text = @"展开";
-    statusLabel.textAlignment = NSTextAlignmentRight;
-    statusLabel.font = [UIFont systemFontOfSize:12];
-    statusLabel.textColor = [UIColor grayColor];
-    [self addSubview:(_statusLabel = statusLabel)];
+    UIButton *statusBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    statusBtn.userInteractionEnabled = NO;
+    [statusBtn setTitle:@"展开" forState:UIControlStateNormal];
+    [statusBtn setTitle:@"收起" forState:UIControlStateSelected];
+    [statusBtn setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
+    statusBtn.titleLabel.font = [UIFont systemFontOfSize:12];
+    [self addSubview:(_statusBtn = statusBtn)];
     
     //星期
     MTBaseCollectionView *weekView = [[MTBaseCollectionView alloc] initWithFrame:CGRectMake(0, 0, MTScreenSize().width, 500)];
     weekView.cellClassName = @"CalendarWeekCell";
     weekView.isFromXib = NO;
     weekView.numofLine = 1;
-    weekView.itemWidth = (self.viewWidth-2*self.space) / self.weekArray.count;
+    weekView.itemWidth = (self.viewWidth) / self.weekArray.count;
     weekView.itemHeight = 30.f;
+    weekView.backgroundColor = [UIColor whiteColor];
     [weekView startLayout];
     self.weekViewHeight = [weekView getmtBaseHeight];
     weekView.collectionViewSource = (NSMutableArray *)self.weekArray;
@@ -159,7 +157,6 @@
     
     //UICollectionView
     MTBaseCollectionView *monthView = [[MTBaseCollectionView alloc] initWithFrame:CGRectMake(0, 0, MTScreenSize().width, 500)];
-    //    monthView.collectionView.scrollEnabled = NO;
     monthView.cellClassName = @"CalendarMonthCell";
     monthView.dequeCell = ^(UICollectionView *collectionView, NSIndexPath *indexPath){
         CalendarMonthCell *monthCell = [collectionView dequeueReusableCellWithReuseIdentifier:cellReuseId forIndexPath:indexPath];
@@ -169,46 +166,45 @@
         return monthCell;
     };
     monthView.collectionView.pagingEnabled = YES;
+    //默认状态是折叠，而折叠状态下，日历表不允许滚动
+    monthView.collectionView.scrollEnabled = NO;
     monthView.isFromXib = NO;
     monthView.numofLine = 1;
     monthView.numInaLine = 1;
-    monthView.itemWidth = self.viewWidth-2*self.space;
+    monthView.itemWidth = self.viewWidth;
     monthView.itemHeight = LineHeight*6;
-    self.lineHeightOfDayCell = LineHeight;
     monthView.scrollerBlock = ^(NSInteger page){
         [weakSelf changeTitleWith:page];
     };
+    monthView.backgroundColor = [UIColor whiteColor];
     [monthView startLayout];
     self.monthViewHeight = [monthView getmtBaseHeight];
     [self addSubview:(_monthView = monthView)];
     monthView.collectionViewSource = (NSMutableArray *)self.dataArray;
     //添加监听者
     [monthView.collectionView addObserver:self forKeyPath:@"contentSize" options: NSKeyValueObservingOptionNew context:nil];
-    [monthView.collectionView addObserver:self forKeyPath:@"contentOffset" options: NSKeyValueObservingOptionNew context:nil];
     
     [dateLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(weakSelf).offset(weakSelf.space);
-        make.left.equalTo(weakSelf).offset(weakSelf.space);
-        make.right.equalTo(weakSelf).offset(-weakSelf.space);
+        make.top.left.right.equalTo(weakSelf);
         make.height.mas_equalTo(weakSelf.dateLabelHeight);
     }];
     
-    [statusLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.right.bottom.equalTo(dateLabel);
-        make.width.mas_equalTo(50);
+    [statusBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.bottom.equalTo(dateLabel);
+        make.right.equalTo(dateLabel).offset(-5);
+        make.width.mas_equalTo(80);
     }];
     
     [weekView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(dateLabel.mas_bottom).offset(weakSelf.space);
-        make.left.equalTo(weakSelf).offset(weakSelf.space);
-        make.right.equalTo(weakSelf).offset(-weakSelf.space);
+        make.top.equalTo(dateLabel.mas_bottom);
+        make.left.right.equalTo(weakSelf);
         make.height.mas_equalTo(weakSelf.weekViewHeight);
     }];
     
     [monthView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(weekView.mas_bottom).offset(weakSelf.space);
+        make.top.equalTo(weekView.mas_bottom);
         make.left.right.equalTo(weekView);
-        make.height.mas_equalTo(weakSelf.monthViewHeight);
+        make.height.mas_equalTo(LineHeight * 6);
     }];
 }
 
@@ -229,43 +225,65 @@
 }
 
 - (void)changeTitleWith:(NSInteger)page{
+    if (_indexOfCurrentMonth == page) {
+        return;
+    }
     CalendarMonth *model = self.dataArray[page];
     self.indexOfCurrentMonth = page;
     self.dateLabel.text = [NSString stringWithFormat:@"%04d年%02d月", (int)model.year, (int)model.month];
+    
+    if (self.monthCourse && !model.isSetMonthCourse) {
+        model.isSetMonthCourse = YES;
+        self.monthCourse(model);
+    }
 }
 
 - (void)setFoldStatus:(NSInteger)foldStatus{
     _foldStatus = foldStatus;
+    CGFloat oldOffsetX = self.monthView.collectionView.contentOffset.x;
     if (foldStatus == 1) {
-        self.statusLabel.text = @"折叠";
+        self.statusBtn.selected = YES;
+        self.monthView.collectionView.contentOffset = CGPointMake(oldOffsetX, 0);
+        self.monthView.collectionView.scrollEnabled = YES;
     }else if (foldStatus == 0){
-        self.statusLabel.text = @"展开";
+        self.statusBtn.selected = NO;
+        self.monthView.collectionView.scrollEnabled = NO;
+        NSInteger selectLine = self.dataArray[self.indexOfCurrentMonth].selectLine;
+        self.monthView.collectionView.contentOffset = CGPointMake(oldOffsetX, LineHeight*selectLine);
     }
-    /**
-     *  更改所有月的折叠状态
-     **/
-    for (CalendarMonth *model in self.dataArray) {
-        model.isStatusFold = foldStatus;
-    }
-    [self.monthView.collectionView reloadData];
 }
 
 - (void)changeFoldStatus{
+    if (self.foldStatus == 1) {
+        //将要折叠
+        self.foldStatus = 0;
+    }else{
+        //将要展开
+        self.foldStatus = 1;
+    }
     if (self.foldBlock) {
-        if (self.foldStatus == 0) {
-            self.foldStatus = 1;
-        }else if (self.foldStatus == 1){
-            self.foldStatus = 0;
-        }
         self.foldBlock(self.foldStatus);
     }
 }
 
 - (void)displayData{
+    if (self.isSet2Middle == YES) {
+        return;
+    }
+    CGSize contentSize = CGSizeMake(self.viewWidth * self.dataArray.count, LineHeight * 6);
+    if (!CGSizeEqualToSize(contentSize, self.monthView.collectionView.contentSize)) {
+        return;
+    }
+    self.isSet2Middle = YES;
     //滚动到当前月
-    NSIndexPath *displayIndexPath = [NSIndexPath indexPathForRow:self.indexOfCurrentMonth inSection:0];
-    [self.monthView.collectionView scrollToItemAtIndexPath:displayIndexPath atScrollPosition:UICollectionViewScrollPositionLeft animated:NO];
-    [self changeTitleWith:self.indexOfCurrentMonth];}
+    CGFloat offsetY = 0;
+    if (self.foldStatus == 0) {
+        offsetY = self.dataArray[self.indexOfCurrentMonth].selectLine * LineHeight;
+    }
+    CGPoint newOffset = CGPointMake(self.indexOfCurrentMonth * self.viewWidth, offsetY);
+    self.monthView.collectionView.contentOffset = newOffset;
+    [self changeTitleWith:self.indexOfCurrentMonth];
+}
 
 /**
  *  准备数据
@@ -273,7 +291,7 @@
 - (NSArray <CalendarMonth *> *)prepareDataForMonthView{
     MTWeakSelf;
     __block NSMutableArray <CalendarMonth *> *dataArray = [NSMutableArray array];
-    [[DateCompent sharedInstance] secondOffsetFromNow:0 rezult:^(DateCompentObject *dateObject) {
+    [[DateCompent sharedInstance] secondOffsetFromNow:24*60*60*3 rezult:^(DateCompentObject *dateObject) {
         weakSelf.currentTime = dateObject;
         NSInteger year = dateObject.year.integerValue;
         NSInteger startYear = year - 2;
@@ -291,12 +309,13 @@
         if (model.year == self.currentTime.year.integerValue) {
             if (model.month == self.currentTime.month.integerValue) {
                 self.indexOfCurrentMonth = index;
+                model.isSetMonthCourse = YES;
                 NSInteger indexPathOfFirstDay = [self weekDayFor:model.year Month:model.month Day:1] -1;
                 NSInteger indexPathCurrentDay = indexPathOfFirstDay + self.currentTime.day.integerValue - 1;
                 model.days[indexPathCurrentDay].isNow = YES;
                 model.days[indexPathCurrentDay].isSelect = YES;
                 NSInteger count = indexPathCurrentDay + 1;
-                model.displayLineForFoldStatus = count/7 + (count % 7 > 0 ? 1 : 0) -1;
+                model.selectLine = count/7 + (count%7 > 0 ? 1 : 0) - 1;
                 break;
             }
         }
@@ -443,31 +462,27 @@
  */
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSString *,id> *)change context:(void *)context{
     if ([keyPath isEqualToString:@"contentSize"]) {
-        if (!self.isSet2Middle) {
-            self.isSet2Middle = YES;
             [self displayData];
-        }
     }
 }
 
-- (void)setMatterArray:(NSArray <CalendarDay *> *)matterArray{
-    _matterArray = matterArray;
-    //找到年月
-    NSInteger year = matterArray[0].year;
-    NSInteger month = matterArray[0].month;
-    CalendarMonth *matterMonth = nil;
+- (void)setCourseForMonth:(CalendarMonth *)courseForMonth{
+    CalendarMonth *currentMonth = nil;
     for (CalendarMonth *model in self.dataArray) {
-        if (model.year == year) {
-            if (model.month == month) {
-                matterMonth = model;
+        if (model.year == courseForMonth.year) {
+            if (model.month == courseForMonth.month) {
+                currentMonth = model;
                 break;
             }
         }
     }
-    for (CalendarDay *matterDay in matterArray) {
-        for (CalendarDay *monthDay in matterMonth.days) {
-            if (matterDay.day == monthDay.day) {
-                monthDay.isHaveMatter = 1;
+    if (!currentMonth) {
+        return;
+    }
+    for (CalendarDay *day in courseForMonth.days) {
+        for (CalendarDay *dayInCurrentMonth in currentMonth.days) {
+            if (dayInCurrentMonth.day == day.day && dayInCurrentMonth.previouOrCurrentOrNext == 0) {
+                dayInCurrentMonth.isHaveMatter = YES;
                 break;
             }
         }
@@ -477,7 +492,6 @@
 
 - (void)dealloc{
     [self.monthView.collectionView removeObserver:self forKeyPath:@"contentSize"];
-    [self.monthView.collectionView removeObserver:self forKeyPath:@"contentOffset"];
 }
 
 @end

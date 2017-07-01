@@ -34,13 +34,18 @@
 @property (nonatomic, assign) BOOL isStatusFold;
 
 /**
- *  折叠状态下，月默认展示第0行
+ *  点击的行数，折叠状态下显示该行
  **/
-@property (nonatomic, assign) NSInteger displayLineForFoldStatus;
+@property (nonatomic, assign) NSInteger selectLine;
 
 /**
  *  存储当月的每一天的数据
  **/
 @property (nonatomic, strong) NSArray <CalendarDay *> *days;
+
+/**
+ *  是否已经对本月设置了课程
+ **/
+@property (nonatomic, assign) BOOL isSetMonthCourse;
 
 @end

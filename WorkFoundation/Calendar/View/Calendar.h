@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "CalendarDay.h"
+#import "CalendarMonth.h"
 
 @interface Calendar : UIView
 
@@ -17,16 +17,21 @@
 - (instancetype)initWithWidth:(CGFloat)viewWidth;
 
 /**
+ *  状态(1展开/0折叠)
+ **/
+@property (nonatomic, assign) NSInteger foldStatus;
+
+/**
+ *  status表示当前日历表的状态
  *  0   折叠
  *  1   展开
  **/
 @property (nonatomic, copy) void (^foldBlock) (NSInteger status);
 
 /**
- *  有待办事项的事项
- *  matterArray的天数必修在同一个月
+ *  当月行程
  **/
-@property (nonatomic, strong) NSArray <CalendarDay *> *matterArray;
+@property (nonatomic, strong) CalendarMonth *courseForMonth;
 
 /**
  *  选择日期回调
@@ -34,9 +39,9 @@
 @property (nonatomic, copy) void (^selectDate) (CalendarDay *day);
 
 /**
- *  状态(展开/折叠)
+ *  请求当月行程
  **/
-@property (nonatomic, assign) NSInteger foldStatus;
+@property (nonatomic, copy) void (^monthCourse) (CalendarMonth *month);
 
 /**
  *  折叠时，展示的行数，默认一行

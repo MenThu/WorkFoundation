@@ -8,11 +8,13 @@
 
 #import "MTBaseCollectionCell.h"
 #import "CalendarDay.h"
-#define LineHeight 50.f
+#define LineHeight 45.f
 
 @interface CalendarMonthCell : MTBaseCollectionCell
 
+/**
+ *  选择日期的回调
+ **/
 @property (nonatomic, copy) void (^selectDate) (CalendarDay *day);
-- (void)setFoldStatus:(NSInteger)isFold;
 
 @end

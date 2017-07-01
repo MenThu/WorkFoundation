@@ -21,6 +21,7 @@
     UILabel *week = [UILabel new];
     week.font = [UIFont systemFontOfSize:13];
     week.textAlignment = NSTextAlignmentCenter;
+    week.textColor = [UIColor blackColor];
     [self.contentView addSubview:(_week = week)];
     MTWeakSelf;
     [week mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -39,31 +40,24 @@
     switch (weekDay) {
         case 1:
             weekDayString = @"一";
-            self.week.textColor = [UIColor blackColor];
             break;
         case 2:
             weekDayString = @"二";
-            self.week.textColor = [UIColor blackColor];
             break;
         case 3:
             weekDayString = @"三";
-            self.week.textColor = [UIColor blackColor];
             break;
         case 4:
             weekDayString = @"四";
-            self.week.textColor = [UIColor blackColor];
             break;
         case 5:
             weekDayString = @"五";
-            self.week.textColor = [UIColor blackColor];
             break;
         case 6:
             weekDayString = @"六";
-            self.week.textColor = [UIColor redColor];
             break;
         case 7:
             weekDayString = @"日";
-            self.week.textColor = [UIColor redColor];
             break;
         default:
             break;

@@ -12,8 +12,9 @@
 
 - (instancetype)init{
     if (self = [super init]) {
-        self.displayLineForFoldStatus = 0;
+        self.selectLine = 0;
         self.isStatusFold = 0;
+        self.isSetMonthCourse = NO;
     }
     return self;
 }

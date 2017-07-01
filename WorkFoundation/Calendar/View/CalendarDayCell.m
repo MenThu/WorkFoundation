@@ -12,8 +12,8 @@
 @interface CalendarDayCell ()
 
 @property (nonatomic, weak) UILabel *dayLabel;
-@property (nonatomic, weak) UIView *hintView;
 @property (nonatomic, weak) CAShapeLayer *circleLayer;
+@property (nonatomic, weak) CAShapeLayer *hintLayer;
 
 @end
 
@@ -24,6 +24,10 @@
     circleLayer.fillColor = [UIColor redColor].CGColor;
     [self.contentView.layer addSublayer:(_circleLayer = circleLayer)];
     
+    CAShapeLayer *hintLayer = [CAShapeLayer layer];
+    hintLayer.fillColor = [UIColor redColor].CGColor;
+    [self.contentView.layer addSublayer:(_hintLayer = hintLayer)];
+    
     UILabel *dayLabel = [UILabel new];
     dayLabel.textAlignment = NSTextAlignmentCenter;
     dayLabel.font = [UIFont systemFontOfSize:12.f];
@@ -31,21 +35,12 @@
     dayLabel.backgroundColor = [UIColor clearColor];
     [self.contentView addSubview:(_dayLabel = dayLabel)];
     
-    UIView *hintView = [UIView new];
-    hintView.backgroundColor = [UIColor redColor];
-    CGFloat hintViewWidth = 5.f;
-    UIBezierPath *hintMaskLayerPath = [UIBezierPath bezierPathWithOvalInRect:CGRectMake(0, 0, hintViewWidth, hintViewWidth)];
-    CAShapeLayer *maskLayer = [CAShapeLayer layer];
-    maskLayer.path = hintMaskLayerPath.CGPath;
-    hintView.layer.mask = maskLayer;
-    [self.contentView addSubview:(_hintView = hintView)];
-    
-    MTWeakSelf;
-    [hintView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerX.equalTo(weakSelf.contentView);
-        make.bottom.equalTo(weakSelf.contentView).offset(-5);
-        make.size.mas_equalTo(CGSizeMake(hintViewWidth, hintViewWidth));
-    }];
+    /**
+     UIBezierPath *hintMaskLayerPath = [UIBezierPath bezierPathWithOvalInRect:CGRectMake(0, 0, hintViewWidth, hintViewWidth)];
+     CAShapeLayer *maskLayer = [CAShapeLayer layer];
+     maskLayer.path = hintMaskLayerPath.CGPath;
+     hintView.layer.mask = maskLayer;
+     **/
 }
 
 - (void)updateCustomView{
@@ -67,7 +62,7 @@
             }
         }
     }
-    self.hintView.hidden = (model.isHaveMatter == 0 ? YES : NO);
+    self.hintLayer.hidden = (model.isHaveMatter == 0 ? YES : NO);
 }
 
 - (void)layoutSubviews{
@@ -78,6 +73,12 @@
     self.dayLabel.frame = CGRectMake(x, 5, width, height);
     UIBezierPath *circlePath = [UIBezierPath bezierPathWithOvalInRect:self.dayLabel.frame];
     self.circleLayer.path = circlePath.CGPath;
+    
+    CGFloat widthForHint = 5;
+    CGFloat yForHint = self.contentView.height - 3 - widthForHint;
+    CGRect frameForHint = CGRectMake(self.contentView.centerX-widthForHint/2, yForHint, widthForHint, widthForHint);
+    UIBezierPath *hintLayerPath = [UIBezierPath bezierPathWithOvalInRect:frameForHint];
+    self.hintLayer.path = hintLayerPath.CGPath;
 }
 
 @end
