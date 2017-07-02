@@ -29,19 +29,9 @@
 @property (nonatomic, copy) void (^foldBlock) (NSInteger status);
 
 /**
- *  当月行程
- **/
-@property (nonatomic, strong) CalendarMonth *courseForMonth;
-
-/**
  *  选择日期回调
  **/
 @property (nonatomic, copy) void (^selectDate) (CalendarDay *day);
-
-/**
- *  请求当月行程
- **/
-@property (nonatomic, copy) void (^monthCourse) (CalendarMonth *month);
 
 /**
  *  折叠时，展示的行数，默认一行

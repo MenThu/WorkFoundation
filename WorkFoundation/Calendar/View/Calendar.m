@@ -82,17 +82,65 @@
  **/
 @property (nonatomic, assign) NSInteger indexOfCurrentMonth;
 
+@property (nonatomic, assign) NSInteger nowTimeIndexInDataArray;
+
 @end
 
 @implementation Calendar
 
 - (instancetype)initWithWidth:(CGFloat)viewWidth{
+    MTWeakSelf;
     if (self = [super init]) {
         self.viewWidth = viewWidth;
         [self prepareData];
-        [self configView];
+        [self getMonthCourse:self.indexOfCurrentMonth finish:^{
+            [weakSelf configView];
+        }];
+        [self registerNotification];
     }
     return self;
+}
+
+//
+- (void)registerNotification{
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(go2Today) name:kCalendarGo2Today object:nil];
+}
+
+- (void)go2Today{
+    CalendarMonth *nowMonth = self.dataArray[self.nowTimeIndexInDataArray];
+    NSInteger line = 0;
+    for (NSInteger index = 0; index < nowMonth.days.count; index ++) {
+        CalendarDay *day = nowMonth.days[index];
+        if (day.isNow) {
+            day.isSelect = YES;
+            line = (index+1)/7 + ((index+1) % 7 > 0 ? 1 : 0) - 1;
+        }else{
+            day.isSelect = NO;
+        }
+    }
+    
+    for (NSInteger index = 0; index < self.nowTimeIndexInDataArray; index ++) {
+        CalendarMonth *month = self.dataArray[index];
+        for (CalendarDay *day in month.days) {
+            day.isSelect = NO;
+        }
+    }
+    for (NSInteger index = self.nowTimeIndexInDataArray+1; index < self.dataArray.count; index ++) {
+        CalendarMonth *month = self.dataArray[index];
+        for (CalendarDay *day in month.days) {
+            day.isSelect = NO;
+        }
+    }
+    [self.monthView.collectionView reloadData];
+    
+    //滚动到今天
+    CGFloat newOffsetX = self.nowTimeIndexInDataArray * self.viewWidth;
+    CGFloat newOffsetY = line*LineHeight;
+    if (self.foldStatus == 1) {
+        newOffsetY = 0;
+    }
+    CGPoint offset = CGPointMake(newOffsetX, newOffsetY);
+    [self.monthView.collectionView setContentOffset:offset animated:YES];
 }
 
 - (void)prepareData{
@@ -102,6 +150,7 @@
     self.lineForFoldStatus = 1;
     self.weekArray = @[@(1), @(2), @(3), @(4), @(5), @(6), @(7)];
     self.space = 10.f;
+    self.nowTimeIndexInDataArray = -1;
     self.dateLabelHeight = 45.f;
     self.dataArray = [self prepareDataForMonthView];
 }
@@ -232,9 +281,9 @@
     self.indexOfCurrentMonth = page;
     self.dateLabel.text = [NSString stringWithFormat:@"%04d年%02d月", (int)model.year, (int)model.month];
     
-    if (self.monthCourse && !model.isSetMonthCourse) {
+    if (!model.isSetMonthCourse) {
         model.isSetMonthCourse = YES;
-        self.monthCourse(model);
+        [self getMonthCourse:page finish:nil];
     }
 }
 
@@ -291,7 +340,7 @@
 - (NSArray <CalendarMonth *> *)prepareDataForMonthView{
     MTWeakSelf;
     __block NSMutableArray <CalendarMonth *> *dataArray = [NSMutableArray array];
-    [[DateCompent sharedInstance] secondOffsetFromNow:24*60*60*3 rezult:^(DateCompentObject *dateObject) {
+    [[DateCompent sharedInstance] secondOffsetFromNow:24*60*60 rezult:^(DateCompentObject *dateObject) {
         weakSelf.currentTime = dateObject;
         NSInteger year = dateObject.year.integerValue;
         NSInteger startYear = year - 2;
@@ -320,6 +369,7 @@
             }
         }
     }
+    self.nowTimeIndexInDataArray = self.indexOfCurrentMonth;
     return dataArray;
 }
 
@@ -462,7 +512,7 @@
  */
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSString *,id> *)change context:(void *)context{
     if ([keyPath isEqualToString:@"contentSize"]) {
-            [self displayData];
+        [self displayData];
     }
 }
 
@@ -488,6 +538,43 @@
         }
     }
     [self.monthView.collectionView reloadData];
+}
+
+/**
+ *  请求月行程
+ **/
+- (void)getMonthCourse:(NSInteger)monthIndex finish:(void (^)(void))finishBlock{
+    CalendarMonth *month = self.dataArray[monthIndex];
+    NSString *dayStr = [NSString stringWithFormat:@"%04d-%02d", (int)month.year, (int)month.month];
+    MTWeakSelf;
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    params[@"month"] = dayStr;
+    HttpRequest *request = [HttpRequest requestWithPath:@"course/getMonthCourse"];
+    request.params = params;
+    [[HttpClient sharedInstance] post:request blockView:nil finish:^(HttpResponse *response) {
+        if (response.success) {
+            NSArray <NSNumber *> *dayArray = response.body[@"monthCourses"];
+            if ([dayArray isExist]) {
+                for (NSNumber *dayValue in dayArray) {
+                    for (CalendarDay *monthDay in month.days) {
+                        if (monthDay.previouOrCurrentOrNext != 0) {
+                            continue;
+                        }
+                        if (monthDay.day == dayValue.integerValue) {
+                            monthDay.isHaveMatter = 1;
+                            break;
+                        }
+                    }
+                }
+                if (finishBlock) {
+                    finishBlock();
+                }else{
+                    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:monthIndex inSection:0];
+                    [weakSelf.monthView.collectionView reloadItemsAtIndexPaths:@[indexPath]];
+                }
+            }
+        }
+    }];
 }
 
 - (void)dealloc{
