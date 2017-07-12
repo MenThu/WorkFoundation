@@ -111,7 +111,9 @@
 }
 
 - (void)singleTap:(UITapGestureRecognizer *)tap {
-    
+    if (self.singleTapCell) {
+        self.singleTapCell();
+    }
 }
 
 #pragma mark - ScrollView的代理
@@ -126,5 +128,7 @@
     CGFloat offsetY = (scrollView.height > scrollView.contentSize.height) ? (scrollView.height - scrollView.contentSize.height) * 0.5 : 0.0;
     self.imageContainerView.center = CGPointMake(scrollView.contentSize.width * 0.5 + offsetX, scrollView.contentSize.height * 0.5 + offsetY);
 }
+
+
 
 @end

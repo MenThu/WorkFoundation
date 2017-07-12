@@ -12,5 +12,8 @@
 @interface MTPhotoPreviewControler : MTBaseCollectionVC
 
 @property (nonatomic, strong) NSArray <MTPhotoPreviewModel *> *photoArray;
+- (void)showFromViewController:(UIViewController *)viewController;
+- (void)dismiss;
+- (void)hiddenNavibar;
 
 @end

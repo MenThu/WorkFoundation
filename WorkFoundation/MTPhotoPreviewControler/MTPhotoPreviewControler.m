@@ -7,6 +7,7 @@
 //
 
 #import "MTPhotoPreviewControler.h"
+#import "MTPhotoPreviewCell.h"
 
 @interface MTPhotoPreviewControler ()
 
@@ -32,6 +33,33 @@
 - (void)setPhotoArray:(NSArray<MTPhotoPreviewModel *> *)photoArray{
     _photoArray = photoArray;
     self.collectionViewSource = photoArray;
+}
+
+- (void)showFromViewController:(UIViewController *)viewController{
+    MTBaseNavigationVC *photoNavi = [[MTBaseNavigationVC alloc] initWithRootViewController:self];
+    [viewController presentViewController:photoNavi animated:YES completion:nil];
+}
+
+- (void)dismiss{
+    UIViewController *viewController = self;
+    if ([self.navigationController isKindOfClass:[UINavigationController class]]) {
+        viewController = self.navigationController;
+    }
+    [viewController dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (void)hiddenNavibar{
+    self.navigationController.navigationBar.hidden = !self.navigationController.navigationBar.hidden;
+}
+
+- (MTBaseCollectionCell *)cellForIndexPath:(NSIndexPath *)indexPath view:(UICollectionView *)collectionView{
+    MTWeakSelf;
+    MTBaseCollectionCell *cell = [super cellForIndexPath:indexPath view:collectionView];
+    MTPhotoPreviewCell *previewCell = (MTPhotoPreviewCell *)cell;
+    previewCell.singleTapCell = ^(){
+        [weakSelf hiddenNavibar];
+    };
+    return previewCell;
 }
 
 @end

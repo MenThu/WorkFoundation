@@ -10,4 +10,6 @@
 
 @interface MTPhotoPreviewCell : MTBaseCollectionCell
 
+@property (nonatomic, copy) void (^singleTapCell) ();
+
 @end
