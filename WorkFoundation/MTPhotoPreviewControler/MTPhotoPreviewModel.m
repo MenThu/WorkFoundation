@@ -18,6 +18,16 @@
     return self;
 }
 
+- (void)setImgUrl:(NSString *)imgUrl{
+    _imgUrl = imgUrl;
+    _type = 0;
+}
+
+- (void)setImgIcon:(UIImage *)imgIcon{
+    _imgIcon = imgIcon;
+    _type = 1;
+}
+
 - (NSString *)description{
     return [NSString stringWithFormat:@"%@", @{@"type":@(self.type), @"imgUrl":self.imgUrl}];
 }

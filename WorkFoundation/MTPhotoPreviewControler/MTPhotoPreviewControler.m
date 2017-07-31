@@ -8,35 +8,71 @@
 
 #import "MTPhotoPreviewControler.h"
 #import "MTPhotoPreviewCell.h"
+#import "iYiNavigationController.h"
 
 @interface MTPhotoPreviewControler ()
+
+@property (nonatomic, weak) UILabel *indexLabel;
+@property (nonatomic, assign) CGFloat animateTime;
+@property (nonatomic, copy) NSString *total;
 
 @end
 
 @implementation MTPhotoPreviewControler
 
++ (void)initialize{
+    NSMutableDictionary*dict = [NSMutableDictionary dictionary];
+    dict[NSForegroundColorAttributeName] = [UIColor whiteColor];
+    
+    UINavigationBar *navibar = [UINavigationBar appearance];
+    [navibar setTitleTextAttributes:dict];
+    [navibar setTintColor:[UIColor whiteColor]];
+    
+    UIBarButtonItem *barItem = [UIBarButtonItem appearance];
+    [barItem setTitleTextAttributes:dict forState:UIControlStateNormal];
+    [barItem setTintColor:[UIColor whiteColor]];
+}
+
+- (void)configNavigationItem{
+    self.navigationItem.title = @"照片查看器";
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"完成" style:UIBarButtonItemStylePlain target:self action:@selector(dismiss)];
+    UIColor *alphaColor = MTColor(0, 0, 0, 0.7);
+    UIImage *navibarImage = [UIImage imageWithColor:alphaColor];
+    [self.navigationController.navigationBar setBackgroundImage:navibarImage forBarMetrics:UIBarMetricsDefault];
+    [super configNavigationItem];
+}
+
 - (void)initVariable{
-    self.isScrollDirectionHorizon = NO;
+    self.edgesForExtendedLayout = UIRectEdgeAll;
+    self.isScrollDirectionHorizon = self.scrollDirection;
     self.itemWidth = MTScreenSize().width;
     //减去导航栏的高度
-    self.itemHeight = MTScreenSize().height - 64.f;
+    self.itemHeight = MTScreenSize().height;
     self.cellClassName = @"MTPhotoPreviewCell";
     self.isFromXib = NO;
+    self.animateTime = 0.3f;
 }
 
 - (void)configView{
     [super configView];
     self.collectionView.backgroundColor = [UIColor blackColor];
     self.collectionView.pagingEnabled = YES;
-}
-
-- (void)setPhotoArray:(NSArray<MTPhotoPreviewModel *> *)photoArray{
-    _photoArray = photoArray;
-    self.collectionViewSource = photoArray;
+    UILabel *indexLabel = [UILabel new];
+    indexLabel.textColor = [UIColor whiteColor];
+    indexLabel.backgroundColor = MTColor(0, 0, 0, 0.5);
+    indexLabel.font = [UIFont systemFontOfSize:17];
+    indexLabel.textAlignment = NSTextAlignmentCenter;
+    CGFloat indexLabelHeight = 50.f;
+    indexLabel.frame = CGRectMake(0, MTScreenSize().height-indexLabelHeight, MTScreenSize().width, indexLabelHeight);
+    [self.view addSubview:(_indexLabel = indexLabel)];
+    
+    self.total = [NSString stringWithFormat:@"%@", @(self.photoArray.count)];
+    self.collectionViewSource = (NSMutableArray *)self.photoArray;
+    self.indexLabel.text = [NSString stringWithFormat:@"1/%@", @(self.photoArray.count)];
 }
 
 - (void)showFromViewController:(UIViewController *)viewController{
-    MTBaseNavigationVC *photoNavi = [[MTBaseNavigationVC alloc] initWithRootViewController:self];
+    UINavigationController *photoNavi = [[UINavigationController alloc] initWithRootViewController:self];
     [viewController presentViewController:photoNavi animated:YES completion:nil];
 }
 
@@ -49,7 +85,28 @@
 }
 
 - (void)hiddenNavibar{
-    self.navigationController.navigationBar.hidden = !self.navigationController.navigationBar.hidden;
+    MTWeakSelf;
+    BOOL isHidden = !self.navigationController.navigationBar.hidden;
+    [self.navigationController setNavigationBarHidden:isHidden animated:YES];
+    [[UIApplication sharedApplication] setStatusBarHidden:isHidden withAnimation:UIStatusBarAnimationSlide];
+    if (isHidden) {
+        [UIView animateWithDuration:self.animateTime animations:^{
+            weakSelf.indexLabel.y = weakSelf.view.height;
+        }];
+    }else{
+        [UIView animateWithDuration:self.animateTime animations:^{
+            weakSelf.indexLabel.y = weakSelf.view.height-weakSelf.indexLabel.height;
+        }];
+    }
+}
+
+- (void)scrollViewMove:(CGPoint)contentOffset view:(UICollectionView *)scrollView{
+    CGFloat onePageLength = (self.isScrollDirectionHorizon == YES ? self.collectionView.width : self.collectionView.height);
+    CGFloat offset = (self.isScrollDirectionHorizon == YES ? contentOffset.x : contentOffset.y);
+    NSInteger currentIndex = (NSInteger)((offset / onePageLength) + 0.5) + 1;
+    currentIndex = MAX(1, currentIndex);
+    currentIndex = MIN(self.photoArray.count, currentIndex);
+    self.indexLabel.text = [NSString stringWithFormat:@"%@/%@", @(currentIndex), self.total];
 }
 
 - (MTBaseCollectionCell *)cellForIndexPath:(NSIndexPath *)indexPath view:(UICollectionView *)collectionView{
