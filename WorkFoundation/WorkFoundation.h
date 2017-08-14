@@ -9,18 +9,13 @@
 #ifndef WorkFoundation_h
 #define WorkFoundation_h
 
-#import "AFNetworking.h"
-#import "Masonry.h"
-#import "MJRefresh.h"
-#import "MJExtension.h"
-#import "MBProgressHUD.h"
-#import "UIImageView+WebCache.h"
-
+/**
+ *  自己的开发工具
+ **/
+#import "GlobalMacro.h"
 #import "MyLog.h"
 #import "MyCategory.h"
-#import "HttpLibrary.h"
-
-#import "MyTimer.h"
+#import "MTTimer.h"
 #import "MTToolPlayer.h"
 #import "MTRecordManager.h"
 #import "Singleton.h"
@@ -28,26 +23,27 @@
 #import "AnimateManager.h"
 #import "ConnectStatusManager.h"
 #import "MTBase.h"
-#import "GlobalMacro.h"
-#import "IQKeyboardManager.h"
-
-#import "MTCMethod.h"
-#import "ShareTool.h"
-#import "ShareManager.h"
-
-#import "MTArtapp.h"
-#import "AVURLAsset+Work.h"
-#import "PersonnalCount.h"
-#import "DateCompent.h"
-
-#import "MTBaseView.h"
+#import "MTFunc.h"
+#import "MTTimerManager.h"
 #import "MTDatePickerView.h"
-
 #import "CameraManager.h"
-#import "SIAlertView.h"
 #import "MTSelectManager.h"
+#import "Calendar.h"
 
+/**
+ *  业务相关代码
+ **/
+#import "HttpLibrary.h"
 
-#define MTWeakSelf __weak typeof(self) weakSelf = self
+/**
+ *  第三方
+ **/
+#import "AFNetworking.h"
+#import "Masonry.h"
+#import "MJRefresh.h"
+#import "MJExtension.h"
+#import "MBProgressHUD.h"
+#import "IQKeyboardManager.h"
+#import "UIImageView+WebCache.h"
 
 #endif
