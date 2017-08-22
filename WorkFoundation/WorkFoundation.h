@@ -16,7 +16,7 @@
 #import "MyLog.h"
 #import "MyCategory.h"
 #import "MTTimer.h"
-#import "MTToolPlayer.h"
+#import "MTPlayer.h"
 #import "MTRecordManager.h"
 #import "Singleton.h"
 #import "FileManager.h"
