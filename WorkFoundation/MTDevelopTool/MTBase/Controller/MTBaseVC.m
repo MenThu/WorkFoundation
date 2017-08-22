@@ -101,4 +101,8 @@
     NSLog(@"[%@] MemoryWarning",NSStringFromClass([self class]));
 }
 
+- (void)dealloc{
+    MyLog(@"[%@] has release", [self class]);
+}
+
 @end
