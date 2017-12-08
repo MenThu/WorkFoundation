@@ -11,6 +11,7 @@
 @interface MTTextView ()
 
 @property (nonatomic, weak, readwrite) UILabel *placeHoldLabel;
+@property (nonatomic, assign) CGPoint placeOrigin;//placeHoldLabel的origin
 
 @end
 
@@ -31,16 +32,15 @@
 
 - (void)layoutSubviews{
     [super layoutSubviews];
-    CGFloat originX = 4;
-    CGFloat originY = 7;
-    CGFloat width = self.width-2*originX;
+    CGFloat width = self.frame.size.width - 2*self.placeOrigin.x;
     CGSize maxSize = CGSizeMake(width, MAXFLOAT);
     CGFloat suitHeight = [self.placeHoldLabel sizeThatFits:maxSize].height;
-    self.placeHoldLabel.frame = CGRectMake(originX, originY, width, suitHeight);
+    self.placeHoldLabel.frame = CGRectMake(self.placeOrigin.x, self.placeOrigin.y, width, suitHeight);
 }
 
 #pragma mark - Private
 - (void)configView{
+    [self adjustPlaceHoldLabelOrgin];
     UILabel *placeHoldLabel = [UILabel new];
     placeHoldLabel.numberOfLines = 0.f;
     placeHoldLabel.userInteractionEnabled = NO;
@@ -50,6 +50,15 @@
 
 - (void)textDidChange{
     self.placeHoldLabel.hidden = [self.text isExist];
+}
+
+- (void)adjustPlaceHoldLabelOrgin{
+    CGRect frame = [self caretRectForPosition:self.selectedTextRange.start];
+    if (CGRectEqualToRect(frame, CGRectZero)) {
+        self.placeOrigin = CGPointMake(4, 7);
+    }else{
+        self.placeOrigin = frame.origin;
+    }
 }
 
 #pragma mark - Setter
@@ -65,6 +74,11 @@
 - (void)setFont:(UIFont *)font{
     [super setFont:font];
     self.placeHoldLabel.font = font;
+}
+
+- (void)setTextAlignment:(NSTextAlignment)textAlignment{
+    [super setTextAlignment:textAlignment];
+    self.placeHoldLabel.textAlignment = textAlignment;
 }
 
 @end
