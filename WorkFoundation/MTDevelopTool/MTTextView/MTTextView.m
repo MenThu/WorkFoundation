@@ -7,6 +7,7 @@
 //
 
 #import "MTTextView.h"
+#import "PublicHeader.h"
 
 @interface MTTextView ()
 
@@ -25,8 +26,13 @@
     return self;
 }
 
+- (void)awakeFromNib{
+    [super awakeFromNib];
+    [self configView];
+}
+
 - (void)dealloc{
-    MyLog(@"MTTextView die");
+    NSLog(@"MTTextView die");
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UITextViewTextDidChangeNotification object:self];
 }
 
@@ -41,10 +47,6 @@
 #pragma mark - Private
 - (void)configView{
     [self adjustPlaceHoldLabelOrgin];
-    UILabel *placeHoldLabel = [UILabel new];
-    placeHoldLabel.numberOfLines = 0.f;
-    placeHoldLabel.userInteractionEnabled = NO;
-    [self addSubview:(_placeHoldLabel = placeHoldLabel)];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(textDidChange) name:UITextViewTextDidChangeNotification object:self];
 }
 
@@ -61,9 +63,20 @@
     }
 }
 
+#pragma mark - Getter
+- (UILabel *)placeHoldLabel{
+    if (_placeHoldLabel == nil) {
+        UILabel *placeHoldLabel = [UILabel new];
+        placeHoldLabel.numberOfLines = 0.f;
+        placeHoldLabel.userInteractionEnabled = NO;
+        [self addSubview:(_placeHoldLabel = placeHoldLabel)];
+    }
+    return _placeHoldLabel;
+}
+
 #pragma mark - Setter
 - (void)setPlaceHoldText:(NSString *)placeHoldText{
-    self.placeHoldLabel.text = placeHoldText;
+    self.placeHoldLabel.text = self.placeHoldText;
     [self setNeedsLayout];
 }
 

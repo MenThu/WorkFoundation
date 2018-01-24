@@ -27,4 +27,6 @@
  **/
 + (void)get:(HttpRequest *)request blockView:(UIView *)blockView finish:(finishBlock)finishBlock;
 
++ (void)testLog;
+
 @end

@@ -7,10 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-
 @interface MTTextView : UITextView
 
-@property (nonatomic, strong) NSString *placeHoldText;
-@property (nonatomic, strong) UIColor *placeHoldColor;
+@property (nonatomic, strong) IBInspectable NSString *placeHoldText;
+@property (nonatomic, strong) IBInspectable UIColor *placeHoldColor;
 
 @end

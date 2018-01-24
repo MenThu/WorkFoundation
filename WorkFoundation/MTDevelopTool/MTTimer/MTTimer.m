@@ -11,29 +11,31 @@
 @interface MTTimer ()
 
 @property (nonatomic, strong) NSTimer* timer;
-@property (nonatomic, strong) MTTimerInfo *timerInfo;
-@property (nonatomic, assign) CGFloat timerCount;
+@property (nonatomic, strong) MTTimerSetting *timerInfo;
+@property (nonatomic, assign) NSInteger timerCount;
 @property (nonatomic, assign) BOOL isTimerOn;
+@property (nonatomic, copy) TimerCallBack callBack;
 
 @end
 
 @implementation MTTimer
 
-+ (MTTimer *)createWith:(MTTimerInfo *)timerInfo{
-    MTTimer *timerManager = [MTTimer new];
-    timerManager.timerInfo = timerInfo;
-    timerManager.timerCount = 0;
-    __weak MTTimer* weakTimer = timerManager;
-    NSTimer *timer = [NSTimer scheduledTimerWithTimeInterval:timerInfo.timeInterval target:weakTimer selector:@selector(countFunc) userInfo:nil repeats:YES];
-    [[NSRunLoop currentRunLoop] addTimer:timer forMode:NSRunLoopCommonModes];
-    timerManager.timer = timer;
-    [timerManager.timer setFireDate:[NSDate distantFuture]];
-    timerManager.isTimerOn = NO;
-    return timerManager;
+- (instancetype)initWithSetting:(MTTimerSetting *)setting callback:(TimerCallBack)callBack{
+    if (self = [super init]) {
+        self.callBack = callBack;
+        self.timerInfo = setting;
+        self.timerCount = 0;
+        __weak typeof(self) weakSelf = self;
+        NSTimer *timer = [NSTimer scheduledTimerWithTimeInterval:self.timerInfo.timeInterval target:weakSelf selector:@selector(countFunc) userInfo:nil repeats:YES];
+        [[NSRunLoop currentRunLoop] addTimer:timer forMode:NSRunLoopCommonModes];
+        self.timer = timer;
+        [self.timer setFireDate:[NSDate distantFuture]];
+        self.isTimerOn = NO;
+    }
+    return self;
 }
 
-- (void)startTimer
-{
+- (void)startTimer{
     if (self.isTimerOn) {
         return;
     }
@@ -47,8 +49,7 @@
 }
 
 
-- (void)pauseTimer
-{
+- (void)pauseTimer{
     if (!self.isTimerOn) {
         return;
     }
@@ -56,8 +57,7 @@
     self.isTimerOn = NO;
 }
 
-- (void)endTimer
-{
+- (void)endTimer{
     if (![self.timer isValid]) {
         return ;
     }
@@ -66,16 +66,14 @@
     self.isTimerOn = NO;
 }
 
-- (void)countFunc
-{
+- (void)countFunc{
     ++self.timerCount;
-    if (self.timerInfo.countBlock) {
-        self.timerInfo.countBlock(self.timerCount * self.timerInfo.timeInterval);
+    if (self.callBack) {
+        self.callBack(self.timerCount, self.timerCount * self.timerInfo.timeInterval);
     }
 }
 
-- (void)dealloc
-{
+- (void)dealloc{
     NSLog(@"%@  die",self);
 }
 
