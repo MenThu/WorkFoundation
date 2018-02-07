@@ -76,7 +76,8 @@
 
 #pragma mark - Setter
 - (void)setPlaceHoldText:(NSString *)placeHoldText{
-    self.placeHoldLabel.text = self.placeHoldText;
+    _placeHoldText = placeHoldText;
+    self.placeHoldLabel.text = placeHoldText;
     [self setNeedsLayout];
 }
 
