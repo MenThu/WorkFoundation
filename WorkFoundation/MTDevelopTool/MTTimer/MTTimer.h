@@ -10,9 +10,20 @@
 #import <UIKit/UIkit.h>
 #import "MTTimerSetting.h"
 
-typedef void(^TimerCallBack)(NSInteger callCount, CGFloat passTime);
+typedef void(^TimerCallBack)(NSUInteger callCount, CGFloat passTime);
 
 @interface MTTimer : NSObject
+
+
+/**
+ *  用setting初始化一个定时器
+ *  callBack
+ *      callCount 当前回调次数
+ *      passTime  过去的时间
+ **/
+- (instancetype)initTimerWithInterval:(CGFloat)interval
+                        isStartAcOnce:(BOOL)yesOrNo
+                        timerCallBack:(TimerCallBack)callBack;
 
 /**
  *  用setting初始化一个定时器

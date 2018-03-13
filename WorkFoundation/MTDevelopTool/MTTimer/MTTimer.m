@@ -12,13 +12,35 @@
 
 @property (nonatomic, strong) NSTimer* timer;
 @property (nonatomic, strong) MTTimerSetting *timerInfo;
-@property (nonatomic, assign) NSInteger timerCount;
+@property (nonatomic, assign) NSUInteger timerCount;
 @property (nonatomic, assign) BOOL isTimerOn;
 @property (nonatomic, copy) TimerCallBack callBack;
 
 @end
 
 @implementation MTTimer
+
+- (instancetype)initTimerWithInterval:(CGFloat)interval
+                        isStartAcOnce:(BOOL)yesOrNo
+                        timerCallBack:(TimerCallBack)callBack{
+    if (self = [super init]) {
+        //构造参数
+        MTTimerSetting *timerInfo = [MTTimerSetting new];
+        timerInfo.isInstantStart = yesOrNo;
+        timerInfo.timeInterval = interval;
+        
+        self.timerInfo = timerInfo;
+        self.callBack = callBack;
+        self.timerCount = 0;
+        __weak typeof(self) weakSelf = self;
+        NSTimer *timer = [NSTimer scheduledTimerWithTimeInterval:self.timerInfo.timeInterval target:weakSelf selector:@selector(countFunc) userInfo:nil repeats:YES];
+        [[NSRunLoop currentRunLoop] addTimer:timer forMode:NSRunLoopCommonModes];
+        self.timer = timer;
+        [self.timer setFireDate:[NSDate distantFuture]];
+        self.isTimerOn = NO;
+    }
+    return self;
+}
 
 - (instancetype)initWithSetting:(MTTimerSetting *)setting callback:(TimerCallBack)callBack{
     if (self = [super init]) {
